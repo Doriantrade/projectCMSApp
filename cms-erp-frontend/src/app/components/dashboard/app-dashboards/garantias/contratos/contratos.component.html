@@ -1,0 +1,457 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="mini-module-workarea w-100 p-4 " style="height: 100vh !important;" >
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>contract</mat-icon>
+        <span class="fs-5">Gestión de Contratos</span>
+    </div>
+    <hr>
+    <mat-tab-group>
+        <mat-tab label="Contratos registrados">
+            <div class="table-responsive w-100">
+                <section class="filtros  mb-2 p-3">
+                    <!-- <input type="text" class="form-control" > -->
+                    <small class="text-secondary">
+                        Cantidad de contratos registrados
+                        <strong class="text-primary">
+                           ( {{listaContrato.length}} )
+                        </strong>
+                    </small>
+                    <div class="mb-2 d-flex">
+                        <input class=" w-100 form-control rounded-pill"
+                               fxFlex="auto" type="text"    
+                               (keyup)="applyFilter($event)"                         
+                               #input placeholder="Búsqueda de contratos registrados....">
+                    </div>            
+                </section>
+                <table mat-table [dataSource]="dataSourceC" class="mtTable shadow" matSort class="w-100" >            
+                    <!-- <ng-container matColumnDef="edit">                        
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                          <span>
+                            <mat-icon>
+                              edit
+                            </mat-icon>
+                          </span>
+                          <span *ngIf="_delete_show" >
+                            <mat-icon>
+                              delete
+                            </mat-icon>
+                          </span>
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          <span *ngIf="pMod <= 3" class="edit" >
+                            <mat-icon>
+                              edit
+                            </mat-icon>
+                          </span>
+                          <span *ngIf="_delete_show && pMod === 1" class="delete" >
+                            <mat-icon  >
+                              delete
+                            </mat-icon>
+                          </span>
+                        </td>            
+                      </ng-container> 
+                    -->
+            
+                    <ng-container matColumnDef="Usuario a Cargo" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Usuario a Cargo
+                        </th>
+                        <td style="cursor: pointer;" mat-cell
+                            *matCellDef="let row"
+                            [ngStyle]="{color: row.colorText}">
+                                {{row.usuarioCargo}}
+                        </td>
+                    </ng-container>                
+                    <ng-container matColumnDef="Cliente" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Nombre
+                        </th>
+                        <td style="cursor: pointer;" mat-cell
+                            *matCellDef="let row"
+                            [ngStyle]="{color: row.colorText}">
+                            {{row.nombre}}
+                        </td>
+                    </ng-container>
+            
+                    <ng-container matColumnDef="Rep. Legal">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Rep. Legal
+                        </th>
+                        <td mat-cell *matCellDef="let row"
+                        [ngStyle]="{color: row.colorText}">
+                          {{row.replegal}}
+                        </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="Fec. Inicial">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Fec. Inicial
+                        </th>
+                        <td mat-cell *matCellDef="let row"
+                        [ngStyle]="{color: row.colorText}">
+                          {{row.fecinicial | date: 'dd-MMM-yyyy' }}
+                        </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="Fec. Final">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Fec. Final
+                        </th>
+                        <td mat-cell *matCellDef="let row"
+                        [ngStyle]="{color: row.colorText}">
+                          {{row.fecfinal | date: 'dd-MMM-yyyy' }}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="textestado">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Estado
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <span [ngStyle]="{'color': row.colorestado}" > 
+                                {{row.textestado}}
+                            </span>
+                        </td>
+                    </ng-container>
+            
+                    <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+                
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">
+                        Datos no encontrados...
+                      </td>
+                    </tr>
+                </table>
+                <mat-paginator [length]="100"
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 25, 100]"
+                               aria-label="Select page">
+            </mat-paginator>    
+            </div>
+        </mat-tab>
+        <mat-tab label="Creación y parametrización del contrato"> 
+            <div class="d-flex mt-3 " style="height: 80vh;">
+                <div class="contratos-crea m-2 p-1">
+                    <mat-tab-group>
+                        <mat-tab label="Edición de Texto">                            
+                            <div class="d-flex flex-column">
+                                <section class="mt-2">
+                                    <section class="w-100 d-flex flex-column sect">
+                                        <small class="text-secondary">
+                                            Fecha del contrato:
+                                        </small>
+                                        <form [formGroup]="fechaForm"                       
+                                              class="mb-2 d-flex flex-column w-100"
+                                              (ngSubmit)="onSubmit()">
+                                            <div class="mb-3 w-100">
+                                                <label for="codProv" class="form-label ">
+                                                    Fecha de celebración del contrato:
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="date"
+                                                       (change)="obtenerFecha()"
+                                                       formControlName="fechaFirma"
+                                                       #fechaFirma
+                                                       id="fechaFirma"
+                                                       class="form-control inpForms w-100 rounded-pill">
+                                            </div>
+                                        </form>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2 ">
+                                        <small class="text-secondary" >  Lugar del contrato:</small>
+                                        <form [formGroup]="agenciaForm" class="mb-2 d-flex flex-column w-100 " (ngSubmit)="onSubmit()">
+                                            <div class="mb-3 w-100">
+                                                <label for="nomProv" class="form-label ">
+                                                    Provincia: <span class="text-danger">*</span>
+                                                </label>
+                                                <select class="inpForms form-select   w-100"
+                                                        formControlName="nomProv" #nomProv id="nomProv"
+                                                        (change)="getCantones()" aria-label="">
+                                                        <option *ngFor="let tipo of provinciaLista" 
+                                                                [value]="tipo.codigo" >
+                                                                {{tipo.nombre | titlecase }}
+                                                        </option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3 w-100">
+                                                <label for="nomCant">Cantón <span class="text-danger">*</span></label>
+                                                <select class="inpForms form-select   w-100"
+                                                        formControlName="nomCant"
+                                                        #nomCant id="nomCant"
+                                                        (change)="obtenerCanton()"
+                                                        aria-label="">
+                                                        <option *ngFor="let canton of cantonLista"
+                                                                [value]="canton.nombre">
+                                                                {{canton.nombre | titlecase }}
+                                                        </option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </section>
+                                    <section class="mt-2 sect ">
+                                        <small class="text-secondary mt-2">Detalle del cliente</small>
+                                        <button class="btn btn-outline-primary d-flex align-items-center w-100 "
+                                                style="border: dashed 2px steelblue;"
+                                                (click)="openDialog()">
+                                                <mat-icon>add</mat-icon> Obtener cliente
+                                        </button>
+                                        <div class="d-flex flex-column mt-2">
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Nombre: </small> <br> {{nombrecliente}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Rep. Legal: </small> <br> {{replegal}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >R.U.C.: </small> <br> {{ruc}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Descripcion: </small> <br> {{descripcion}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Tipo de contribuyente: </small> <br> {{tipoContribuyente}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Encargado del pago: </small> <br> {{nombrePago}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Email del encargado del pago: </small> <br> {{correopago}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Teléfono del encargado del pago: </small> <br> {{telfpago}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Encargado del mantenimiento: </small> <br> {{nombreMantenimiento}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Email del encargado del mantenimiento: </small> <br> {{correomantenimiento}} 
+                                            </span>
+                                            <span class="des"> 
+                                                <small class="text-secondary" >Teléfono del encargado del mantenimiento: </small> <br> {{telfclimanteni}} 
+                                            </span>
+                                        </div>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2">
+                                        <small class="text-secondary"></small>
+                                            <div class="mb-3 w-100">
+                                                <label for="codProv" class="form-label ">
+                                                    TAG. Cliente: <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text"
+                                                        [(ngModel)]="tag"
+                                                        (keyup)="obtenerTag(tag)"
+                                                        class="form-control inpForms w-100 rounded-pill"
+                                                       >
+                                            </div>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2">
+                                            <div class="mb-3 w-100">
+                                                <label for="codProv" class="form-label ">
+                                                    PRIMERA: Antecedentes: <span class="text-danger">*</span>
+                                                </label>
+                                                <textarea type="text" rows="10"
+                                                        [(ngModel)]="_antecedentes"
+                                                        (keyup)="obtenerAntecedentes(_antecedentes)"
+                                                        class="form-control inpForms w-100 rounded-2">
+                                                </textarea>
+                                            </div>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2">
+                                        <small class="text-secondary mt-2">Agregar productos al contrato</small>
+                                        <button class="btn btn-outline-primary d-flex align-items-center w-100 "
+                                        style="border: dashed 2px steelblue;"
+                                        (click)="opernDialogMachinesContract()">
+                                        <mat-icon>add</mat-icon> Productos
+                                    </button>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2">
+                                        <div class="mb-3 w-100">
+                                                <label for="codProv" class="form-label ">
+                                                    CUARTA: OBJETO DEL CONTRATO: <span class="text-danger">*</span>
+                                                </label>
+                                                <textarea type="text" rows="10"
+                                                [(ngModel)]="_cuartaObjeto"
+                                                (keyup)="obtenerCuartaObjeto(_cuartaObjeto)"
+                                                class="form-control inpForms w-100 rounded-2">
+                                            </textarea>
+                                            <label for="codProv" class="form-label mt-2 ">
+                                                    Adicional (CUARTA: OBJETO DEL CONTRATO): <span class="text-danger">*</span>
+                                                </label>
+                                                <textarea type="text" rows="10"
+                                                [(ngModel)]="_add_dis"
+                                                (keyup)="obtenerAdicional(_add_dis)"
+                                                class="form-control inpForms w-100 rounded-2">
+                                            </textarea>
+                                        </div>
+                                    </section>
+                                    <section class="w-100 d-flex flex-column sect mt-2">
+                                        <!-- <small class="text-secondary" ></small> -->
+                                            <div class="mb-3 w-100">
+                                                <label for="codProv" class="form-label ">
+                                                    QUINTA: OBLIGACIONES DE EL CONTRATISTA.- <span class="text-danger">*</span>
+                                                </label>
+                                                <textarea type="text" rows="10"
+                                                        [(ngModel)]="_antecedentes"
+                                                        (keyup)="obtenerObligContra(_obligaciones_contrat)"
+                                                        class="form-control inpForms w-100 rounded-2">
+                                                </textarea>
+                                            </div>
+
+                                    </section>
+                                </section>
+                            </div>    
+                        </mat-tab>
+                        <mat-tab label="Espaciados">
+                            <div class="d-flex flex-column">
+                                <section class="mt-2">
+                                    <div class="mb-3 w-100">
+                                        <label for="codProv" class="form-label ">
+                                            Margen inferior <span class="text-secondary"> (CUARTA...) </span>
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number"
+                                               [(ngModel)]="_marginbott_Cuarta"
+                                               (keyup)="obtenerMargenCuarta(_marginbott_Cuarta)"
+                                               (change)="obtenerMargenCuarta(_marginbott_Cuarta)"
+                                               class="form-control">
+                                    </div>
+                                </section>
+                                <section class="mt-2">
+                                    <div class="mb-3 w-100">
+                                        <label for="codProv" class="form-label ">
+                                            Margen inferior <span class="text-secondary"> (QUINTA...) </span>
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="number"
+                                               [(ngModel)]="_margintop_2dapagina"
+                                               (keyup)="obtenerMargenQuinta(_margintop_2dapagina)"
+                                               (change)="obtenerMargenQuinta(_margintop_2dapagina)"
+                                               class="form-control">
+                                    </div>
+                                </section>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+                <section class="contratos-edit d-flex flex-column p-4">
+                    <div>
+                        <button (click)="downloadPDF(nombrecliente+'_'+fechacontrato)" mat-raised-button class="warn">
+                            <mat-icon>picture_as_pdf</mat-icon> Generar PDF
+                        </button>
+                    </div>
+                    <div class=" m-2 p-4" #pdfContent>
+                        <div>
+                            <div class="m-3 p-3 ">
+                                <h1 style="text-align: center;" >
+                                    <strong>
+                                        CONTRATO DE PRESTACIÓN DE SERVICIOS PARA
+                                        MANTENIMIENTO DE EQUIPOS DE CONTEO
+                                        {{subj}} {{article}} {{nombrecliente | uppercase}}
+                                    </strong>
+                                </h1>
+                            </div>
+                            <h4 style="text-align: justify;" class="mt-3"  >
+                                En la ciudad de {{nombreCanton}} con la fecha de {{fechacontrato | date: 'dd-MM-YYYY' }}, comparecen a la celebración del presente
+                                contrato, por una parte, la {{nombrecliente | uppercase}} Ltda. Con número de RUC:
+                                {{ruc}}, a quien se le llamará “{{tag | uppercase}}”, representada por su Gerente y representante legal
+                                el {{replegal}}, y; por otra parte, comparece la Empresa CASH MACHINES
+                                SERVICE CIA. LTDA. CASHMACHSERV, representada por el Ing. Daniel Enrique Dávila Carriel, con
+                                RUC No. 0992687452001 a quien en adelante se le denominará “El Contratista”. El objeto es celebrar el
+                                presente contrato de prestación de servicios profesionales estipulado bajo las siguientes cláusulas:
+                            </h4>
+                            <h4>
+                                <strong>PRIMERA: ANTECEDENTES. -</strong>
+                                <span>
+                                    {{_antecedentes}}
+                                </span>
+                            </h4>
+                            <h4>
+                                Tiene entre sus objetivos fundamentales contribuir a mejorar las condiciones de vida de sus socios a través
+                                de la prestación de servicios financieros inclusivos y de calidad.
+                            </h4>
+                            <h4>
+                                {{tag | uppercase}} requiere que se efectue el mantenimiento de equipos de conteo; y luego de revisar las
+                                ofertas presentadas ha decidido contratar los servicios de la Empresa CASH MACHINES SERVICE CIA. LTDA.
+                                CASHMACHSERV.
+                            </h4>
+                            <h4>
+                                <strong>SEGUNDA: DOCUMENTOS HABILITANTES. -</strong>
+                                <span>
+                                    Forman parte integrante de este contrato los siguientes
+                                    documentos:
+                                </span>
+                            </h4>
+                            <h4>
+                                <ol>
+                                    <li>Documentos de Homologación a Proveedores.</li>
+                                    <li>Nombramiento vigente de Representante Legal de “El Contratista”</li>
+                                </ol>
+                            </h4>
+                            <h4>
+                                <strong>TERCERA: FUNDAMENTO LEGAL.- </strong>
+                                <span>
+                                    El presente contrato se basa en las pertinentes disposiciones del Código
+                                    Civil.
+                                </span>
+                            </h4>
+                            <div [ngStyle]="{'margin-bottom': _marginbott_Cuarta+'px'}" >
+                                <h4>
+                                    <strong>CUARTA: OBJETO DEL CONTRATO.- </strong>
+                                    <span>
+                                        Por medio de este documento {{article}} {{nombrecliente}} {{_cuartaObjeto}}
+                                    </span>
+                                </h4>
+                            </div>
+                            <div class="w-100 d-flex justify-content-center" >
+                                    <table class="p-2" style="border: solid 1px gray;" >
+                                        <thead style="border: solid 1px gray;">
+                                            <th>TIPO</th>
+                                            <th>CANTIDAD</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="border: solid 1px gray;" *ngFor=" let maq of listMaqAgregadas " >
+                                                <td style="border: solid 1px gray;">
+                                                    <div class="p-3">
+                                                        {{maq.nombretipo}}
+                                                    </div>
+                                                </td>
+                                                <td style="border: solid 1px gray;">
+                                                    <div class="p-3">
+                                                        {{maq.cantidad}}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                            <h4>{{_add_dis}}</h4>
+                        </div>
+                        <div [ngStyle]="{'margin-top': _margintop_2dapagina + 'px'}" >
+                            <h4>
+                                <strong>QUINTA: OBLIGACIONES DE EL CONTRATISTA.- </strong>
+                                <span>
+                                    {{_obligaciones_contrat}} {{tag}}
+                                </span>
+                            </h4>
+                            <h4>
+                                <ol>
+                                    <ul *ngFor="let obcon of obligacionesContratistaLista; let i = index;">
+                                        <strong>{{i+1}}.-</strong> {{ obcon.description }}
+                                    </ul>
+                                </ol>
+                            </h4>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+
+</div>

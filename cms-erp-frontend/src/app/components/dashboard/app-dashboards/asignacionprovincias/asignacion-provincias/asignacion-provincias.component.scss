@@ -1,0 +1,80 @@
+.usuario {
+
+    width: 280px;
+    // margin: 10px;    
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 3;
+    box-shadow:  3px 2px 6px rgba($color: #000000, $alpha: 0.4);   
+    background-color: rgba($color: #2b2b2b, $alpha: 1.0);
+    color: rgb(210, 210, 210);
+    
+}
+
+.perfil{
+    border: solid 5px white;
+    box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.4);
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: rgba($color: #969696, $alpha: 1.0);
+    border-radius: 10px;
+    
+}
+
+.userspan {
+    border-bottom: solid 1px rgb(180, 180, 180);
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.provincias {
+    z-index: 1;
+    width: 200px;
+    height: 80%;  
+    background-color: #3b4039;
+    color: yellow;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    
+
+}
+
+.data-box {
+    width: 350px;
+    min-height: 300px;
+    border: solid 1px gray;
+    max-height:  85vh;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.data-box-g {
+    width: 240px;
+    min-height: 300px;
+    border: dashed 1px gray;
+    max-height:  85vh;
+    border-radius: 10px;
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+
+.buton-data {
+    color: white !important;
+}
+
+.block-data {
+    border-bottom:  solid 1px gray;
+    margin-top: 5px;
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
+
+.block-data:hover {
+    transition: ease all 0.5s;
+    background-color: #d6d6d6;
+}
+

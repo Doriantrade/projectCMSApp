@@ -1,0 +1,11 @@
+/* Estilos para el contenedor principal para sobreescribir cualquier background heredado del dialog de Angular Material */
+:host {
+  display: block;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modal-content {
+  border: none;
+}

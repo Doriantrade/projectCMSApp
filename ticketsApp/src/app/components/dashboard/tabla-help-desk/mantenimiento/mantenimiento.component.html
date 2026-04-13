@@ -1,0 +1,145 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loader"></span>
+    </div>
+</div>
+
+<form [formGroup]="resumenMantenimientoRegisterForm" (ngSubmit)="onSubmit()" class="d-flex flex-column w-100">
+    <div class="row mb-3 align-items-center">
+        <div class="col-12 col-lg-6 d-flex align-items-center mb-3 mb-lg-0">
+            <label for="codResuMante" class="form-label text-secondary me-2 flex-shrink-0" style="min-width: 120px;">
+                <span>Motivo de visita:</span>
+            </label>
+            <select class="form-control shadow-sm" (change)="validacionRep(codResuMante.value)" id="codResuMante"
+                formControlName="codResuMante" #codResuMante (change)="validateDatoSelect()">
+                <option [value]="resManten.codigo" *ngFor="let resManten of listaResumenMantenimiento">
+                    {{ resManten.nombre | uppercase }}
+                </option>
+            </select>
+        </div>
+        <div class="col-12 col-lg-6 d-flex align-items-center mb-3 mb-lg-0">
+            <label for="estadoEquip" class="form-label text-secondary me-2 flex-shrink-0" style="min-width: 120px;">
+                <span>Estado de equipo:</span>
+            </label>
+            <select class="form-control shadow-sm" id="estadoEquip" formControlName="estadoEquip" #estadoEquip>
+                <option [value]="estadoEq.codigo" *ngFor="let estadoEq of listaEstadoEquipo">
+                    {{ estadoEq.nombre | uppercase }}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3 align-items-center">
+        <div class="col-12 col-md-6 d-flex align-items-center mb-3 mb-md-0">
+            <label for="contadorFinal" class="form-label text-secondary me-2 flex-shrink-0" style="min-width: 120px;">
+                <span>Contador Final:</span>
+            </label>
+            <input type="number" id="contadorFinal" min="0" formControlName="contadorFinal"
+                class="form-control shadow-sm" (keyup)="quitZeroInput('contadorFinal')"
+                (blur)="validateRangoContadores()" style="width: 200px;">
+        </div>
+        <div class="col-12 col-md-6 d-flex align-items-center">
+
+
+            <div class="col-12 col-md-6 d-flex align-items-center">
+                <label for="valor" class="form-label text-secondary me-2 flex-shrink-0" style="min-width: 120px;">
+                    <span>Valor:</span>
+                </label>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">$</span>
+                <input type="number" id="valor" min="0" style="text-align: right;" formControlName="valor"
+                    class="form-control shadow-sm" style="width: 80px;">
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex">
+            <label for="solucionImplementada" class="form-label text-secondary me-2 flex-shrink-0"
+                style="min-width: 150px;">
+                <span>
+                    Solución implementada:
+                </span>
+            </label>
+            <textarea class="form-control shadow-sm" formControlName="solucionImplementada" #solucionImplementada
+                id="solucionImplementada"></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-12 d-flex">
+            <label for="observacion" class="form-label text-secondary me-2 flex-shrink-0" style="min-width: 150px;">
+                <span>Observación:</span>
+            </label>
+            <textarea class="form-control shadow-sm" formControlName="observacion" #observacion placeholder="..."
+                rows="1" id="observacion"></textarea>
+        </div>
+    </div>
+
+    <hr *ngIf="show_rep_menu">
+
+    <div class="table-responsive-lg animate__animated animate__fadeIn" *ngIf="show_rep_menu">
+        <table class="table mt-1 table-warning table-hover table-bordered table-sm align-middle shadow">
+            <thead class="bg-primary text-light">
+                <tr>
+                    <th></th>
+                    <th class="p-1" [title]="'Cantidad en stock.'">
+                        Cant
+                    </th>
+                    <th class="p-1">
+                        Nombre Repuesto
+                    </th>
+                    <th>I.V.A.</th>
+                    <th>Precio U.</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="cursor: pointer;" *ngFor="let repuestos of listaEquiposRepuestos; let i = index;">
+                    <td>
+                        <div (click)="eliminarRepuAsign(i)" class="d-flex justify-content-center align-items-center">
+                            <mat-icon>delete</mat-icon>
+                        </div>
+                    </td>
+                    <td>
+                        <strong> {{ repuestos.cantDespacho }} </strong>
+                    </td>
+                    <td> {{ repuestos.nombreRep }} </td>
+                    <td style="background-color: rgb(255, 200, 0) !important; text-align: right;">
+                        {{ repuestos.ivAvalor | number: '1.2-2' }}
+                    </td>
+                    <td style="background-color: rgb(255, 200, 0) !important; text-align: right;">
+                        {{ (repuestos.totalPVP - repuestos.ivAvalor) | number: '1.2-2' }}
+                    </td>
+                    <td style="background-color: rgb(118, 179, 176) !important; text-align: right;">
+                        {{ repuestos.totalPVP }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr *ngIf="show_rep_menu">
+
+    <div class="row" *ngIf="show_rep_menu">
+        <div class="col-12 d-flex justify-content-start p-2 animate__animated animate__fadeIn">
+            <button type="button" class="btn btn-outline-primary d-flex align-items-center btn-sm"
+                (click)="openDataRepuestosDialog()">
+                <mat-icon>shelves</mat-icon> Agregar repuestos
+            </button>
+        </div>
+    </div>
+
+    <hr>
+    <!--  REVISAR BIEN ESTA VALIDACION [disabled]="listaEquiposRepuestos.length === 0" -->
+    <div class="btn-settings mt-1 mb-3 w-100 d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary d-flex align-items-center">
+            <mat-icon>save</mat-icon>
+            &nbsp;&nbsp;
+            <span>Guardar</span>
+        </button>
+    </div>
+
+</form>

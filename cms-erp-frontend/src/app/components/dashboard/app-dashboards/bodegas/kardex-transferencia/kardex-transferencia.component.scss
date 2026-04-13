@@ -1,0 +1,59 @@
+li {
+    padding: 7px;
+    border-bottom: dashed 1px gray;
+    cursor: pointer;
+    transition: ease all 1s;
+}
+
+li:hover{
+    transition: ease all 0.5s;
+    transform: scale(1.05);
+    border-radius: 7px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.movimientos {
+    background-color: rgb(246, 245, 244);
+    width: 300px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.observacioncabera {
+    border: solid 1px  gray;
+    border-radius: 5px;
+    padding: 15px;
+
+}
+
+.work-area {
+    // border: solid 2px gray;
+    padding: 35px;
+    border-radius: 4px;
+}
+
+tr, td, th {
+    border: solid 1px gray;
+}
+
+.line {
+    margin-top: 45px;
+    border-top: solid 2px gray;
+    width: 200px;
+    height: 2px;
+}
+
+.footer {
+    padding: 10px;
+    // margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+:host ::ng-deep .mat-radio-button {
+    margin-right: 15px !important;
+}
+
+// .table-container {
+//     height: 1000px; /* Establece la altura máxima en píxeles */
+//     page-break-inside: avoid; /* Evita que la tabla se divida entre páginas */
+//   }

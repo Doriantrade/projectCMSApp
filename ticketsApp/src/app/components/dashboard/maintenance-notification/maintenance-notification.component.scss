@@ -1,0 +1,94 @@
+.notification-card {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 320px;
+    overflow: hidden;
+    border-left: 5px solid; // Color set dynamically
+    font-size: 0.9rem;
+    pointer-events: auto; /* Ensure updated to capture clicks */
+}
+
+.notification-header {
+    padding: 8px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        opacity: 0.8;
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.notification-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .tech-info {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+        
+        .tech-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #eee;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #333;
+        }
+    }
+
+    .ticket-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            color: #555;
+            
+            strong {
+                color: #333;
+            }
+        }
+    }
+}
+
+.notification-footer {
+    padding: 8px 10px;
+    background: #f9f9f9;
+    text-align: center;
+
+    .btn-verify {
+        background: #0d6efd;
+        color: white;
+        border: none;
+        width: 100%;
+        border-radius: 4px;
+        transition: background 0.2s;
+        
+        &:hover {
+            background: #0b5ed7;
+        }
+    }
+}

@@ -1,0 +1,148 @@
+
+<div class="module-workarea w-100 p-4 m-1">
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+         <mat-icon>{{modulo.icono}}</mat-icon>
+         <span class="fs-5">{{modulo.nombre}}</span>
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between align-items-center w-100">
+
+        <div class="categorias-productos w-75 p-2">
+            <div class="grupo d-flex justify-content-start " >            
+                <div class="prod-tipos">
+                    <span class="d-flex align-items-center p-3 fs-5">
+                        <mat-icon>point_of_sale</mat-icon> Tipo de máquinas:
+                        &nbsp; 
+                        <span class="text-primary">
+                            <strong>({{tipoMaquinaLista.length}})</strong>
+                        </span> : 
+                    </span>
+                    <ul class="p-0">
+                        <li *ngFor="let tipomaquina of tipoMaquinaLista" 
+                            class="tipomaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active': elementoActivo === tipomaquina }"
+                            (click)="elementoActivo = tipomaquina; enviarAlDataListen(tipomaquina)">
+                            {{ tipomaquina.nombre }} <mat-icon>chevron_right</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grupo p-1 animate__animated animate__fadeInLeft" *ngIf="_view_grupo" >
+                    <span class="d-flex align-items-center p-3">
+                        Marca: <strong class="text-primary"> {{maquina | uppercase}} </strong>
+                    </span>
+                    <ul class="p-0">
+                        <li *ngFor="let grupo of grupolista" 
+                            class="modelomaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active1': modeloActivo === grupo }"
+                            (click)="modeloActivo = grupo;
+                            getSubgrupos(grupo.codmarca)">
+                            {{grupo.nombremarca}}
+                            <mat-icon>chevron_right</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+                <div class="grupo p-1 animate__animated animate__fadeInLeft" *ngIf="_view_grupo" >
+                    <span class="d-flex align-items-center p-3">
+                        Modelo:
+                         <strong class="text-primary"> {{modelo | uppercase}} </strong>
+                    </span>
+                    <ul class="p-0">
+                        <li *ngFor="let sgrupo of sgrupolista" (click)="obtenerCodigos(sgrupo);obtenerImagen()"
+                            class="marcamaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active2': marcaActiva === sgrupo }"
+                            (click)="marcaActiva = sgrupo">
+                            {{ sgrupo.nombremodelo }} <mat-icon>chevron_right</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-center align-items-center flex-column shadow p-4">
+            <div class="imagen" [ngStyle]="{'background-image': 'url('+_IMGE+')', 'background-size': '100% 100%'}"></div>
+            <div class="w-100" *ngIf="pMod <= 3">
+                <div class="input-group">
+                    <input type="file" 
+                           class="form-control" (change)="encodeImageFileAsURL(); onFileSelected($event); validarImagen()"
+                           id="fileUp2" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                           <button class="btn btn-outline-secondary"
+                                   type="button"
+                                   [disabled]="_validate_img"
+                                   id="inputGroupFileAddon04"
+                                   (click)="guardarImagenProdcuto('Maquinaria')">
+                                   Button
+                           </button>
+                 </div>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <div class="d-flex justify-content-between align-items-center w-100">
+
+        <div class="categorias-productos d-flex justify-content-between w-100 p-2">
+            <div class="grupo d-flex justify-content-start " >            
+                <div class="prod-tipos">
+                    <span class="d-flex align-items-center p-3 fs-5">
+                        <mat-icon>point_of_sale</mat-icon> Tipo de repuestos 
+                        &nbsp; 
+                        <span class="text-primary">
+                            <strong>({{listaTipoRepuestos.length}})</strong>
+                        </span> : 
+                    </span>
+                    <ul class="p-0">
+                        <!-- <li *ngFor="let tipomaquina of tipoMaquinaLista" 
+                            class="tipomaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active': elementoActivo === tipomaquina }"
+                            (click)="elementoActivo = tipomaquina; enviarAlDataListen(tipomaquina)">
+                            {{ tipomaquina.nombre }} <mat-icon>chevron_right</mat-icon>
+                        </li> -->
+                        <li *ngFor="let marcaRep of listaTipoRepuestos" 
+                            class="marcamaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active2': marcaActiva === marcaRep }"
+                            (click)="marcaActiva = marcaRep; obtenerModeloMarcaRepuestos(marcaRep.id)">
+                            {{ marcaRep.nombreMarcaRep }} <mat-icon>chevron_right</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+                 <div class="grupo p-1 animate__animated animate__fadeInLeft" *ngIf="_view_modelo_marca_rep" >
+                    <span class="d-flex align-items-center p-3">
+                        Marca Repuesto: 
+                        <!-- <strong class="text-primary"> {{maquina | uppercase}} </strong> -->
+                    </span>
+                    <ul class="p-0">
+                        <li *ngFor="let modelo of listaModeloMarcaRepuestos" 
+                            class="modelomaquina d-flex justify-content-between"
+                            [ngClass]="{ 'active1': modeloActivo === modelo }"
+                            (click)="modeloActivo = modelo;
+                            getCodecModeloRepuestos(modelo.id)">
+                            {{modelo.nombreModeloRep}}
+                            <mat-icon>chevron_right</mat-icon>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        
+        <div class="d-flex justify-content-center align-items-center flex-column shadow p-4">
+            <div class="imagen" [ngStyle]="{'background-image': 'url('+_IMGE_REP+')', 'background-size': '100% 100%'}"></div>
+            <div class="w-100" *ngIf="pMod <= 3">
+                <div class="input-group">
+                    <input type="file" class="form-control" (change)="encodeImageFileAsURLRep(); onFileSelectedRepuestos($event);"
+                           id="fileUp3" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                           <button class="btn btn-outline-secondary" type="button" 
+                                [disabled]="_validate_img_rep" id="inputGroupFileAddon04" (click)="guardarImagenRepuesto('Repuestos')">
+                                Button
+                           </button>
+                 </div>
+            </div>
+            <!-- <app-image-control [datalisten]="maquinariaModel"></app-image-control> -->
+        </div>
+
+    </div>
+
+</div>

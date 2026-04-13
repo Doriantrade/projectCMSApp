@@ -1,0 +1,103 @@
+
+
+<!-- <div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="mini-module-workarea p-4 w-100" style="height: 550px !important;"> 
+
+    <section class="head">
+
+        <h3 class="d-flex text-secondary  ">
+            <span> Asignar máquinas a 
+                <span class="text-primary" >
+                {{nombreTecnico}}
+                </span>
+            </span>
+         </h3>
+
+    </section>
+
+    <hr style="border: solid 1px gray;" >
+
+
+<section class="d-flex justify-content-evenly " >  
+
+    <div class="maquinasasign">
+        <section class="filtros mt-2 mb-2">
+            <small class="text-secondary">
+                Total de máquinas listas para asignar:
+                <strong class="text-primary">
+                   ( {{listaAgenciaMaquina.length}} )
+                </strong>
+            </small>
+            <div class="mb-2 d-flex">
+              <input class=" w-100 form-control rounded-pill"
+                     fxFlex="auto" type="text" style="z-index: 9999999;"
+                     [(ngModel)]="searchTerm"
+                     (keyup)="filterMaqSinAsignar()" 
+                     #input placeholder="Búsqueda de máquinas sin asignamiento....">
+            </div>        
+        </section>
+        <div class="bodymaqasign">
+            <div *ngFor="let maquina of listaAgenciaMaquina"
+                  class="mod d-flex justify-content-between"
+                  (click)="guardarMantenimiento(maquina)" >
+                  <div>
+                    <small class="text-secondary">N. Serie.: </small>  {{maquina.nserie}}      
+                  </div>
+                  <div>
+                    <small class="text-secondary">Marca.:    </small>  {{maquina.nombremarca}} 
+                  </div>
+                  <div>
+                    <small class="text-secondary">Modelo.:   </small>  {{maquina.nombremodelo}}
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="maquinasasign">
+        <section class="filtros mt-2 mb-2">
+            <small class="text-secondary">
+                Total de máquinas asigndas a este técnico:
+                <strong class="text-primary">
+                   ( {{listaMaquinariaAsignada.length}} )
+                </strong>
+            </small>
+            <div class="mb-2 d-flex">
+              <input class=" w-100 form-control rounded-pill" style="z-index: 9999999;"
+                     fxFlex="auto" type="text"
+                     [(ngModel)]="searchTermAs"
+                     (keyup)="filterMaqAsignar()"
+                     #input placeholder="Búsqueda de máquinas asignadas...">
+            </div>        
+        </section>
+        <div class="bodymaqasign">
+            <div *ngFor="let maquinAsign of listaMaquinariaAsignada"
+                  class="modd d-flex justify-content-between"
+                  (dblclick)="eliminarMantenimiento(maquinAsign.idmantenimiento)">
+                <div>
+                    <small class="text-secondary">
+                        N. Serie.:
+                    </small>
+                    {{maquinAsign.nserie}}
+                </div>
+                <div>
+                    <small class="text-secondary">
+                        Marca.:
+                    </small>
+                    {{maquinAsign.marca}}
+                </div>
+                <div>
+                    <small class="text-secondary">
+                        Modelo.:
+                    </small>
+                    {{maquinAsign.modelo}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</div> -->

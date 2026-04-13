@@ -1,0 +1,47 @@
+:host ::ng-deep .mat-tab-label {
+    background-color: green;
+    border: solid 2px white;
+    border-bottom: solid 2px rgb(255, 213, 0) ;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+.mat-tab-label:active {
+    border-bottom: solid 2px rgb(255, 213, 0) !important;
+}
+
+.contratos-crea {
+    border: solid 1px gray;
+    width: 450px;
+    height: 95%;
+    overflow-y: auto;
+}
+
+.contratos-edit {
+    border: solid 1px gray;
+    width: 75%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.des {
+    border-bottom: solid 1px gray;
+    padding: 7px;
+    word-wrap: break-word;
+}
+
+.sect {
+    background-color: rgb(220, 220, 220);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.footer {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: solid 5px gray;
+    border-bottom: solid 5px gray;
+}

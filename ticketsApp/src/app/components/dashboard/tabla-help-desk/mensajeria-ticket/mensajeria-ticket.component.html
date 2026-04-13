@@ -1,0 +1,105 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+      <span class="spinner"></span>
+    </div>
+</div>
+<!-- <audio #audioPlayer src="../../../../../assets/audio/msj_sound.mp3" >
+</audio> -->
+<div class="messenger">  
+    <div class="box-messenger" #messageContainer>
+        <div class="msj-box m-1" 
+             *ngFor="let mensaje of listaMensajes; let i = index" 
+             [style]="'background: ' + mensaje.color + ';' "
+             [id]="'msj-'+mensaje.idmensaje">
+             
+             <div class="img-ctrl mb-2">
+                <img [src]="mensaje.urlImagen" [alt]="mensaje.urlImagen" *ngIf="mensaje.typeMediaFile" class="imagen-mensajeria">
+                <div class="p-2 w-100 rounded-pill d-flex justify-content-center align-item-end fs-6" *ngIf="!mensaje.typeMediaFile" style="border: groove 2px rgb(72, 72, 72);">
+                    <!-- <a [href]="mensaje.urlImagen" download target="_blank"  class="d-flex align-item-center" style="color: yellowgreen;" >
+                        <mat-icon>cloud_download</mat-icon> &nbsp;&nbsp; <span> Descargar aquí... </span>
+                    </a> -->
+                    <a [href]="'http://192.168.55.242:5075/api/Imagen/download/' + mensaje.idRequerimiento + '/' + mensaje.file" download download target="_blank"  class="d-flex align-item-center" style="color: yellowgreen;">
+                        Descargar aquí...
+                    </a>
+                </div>
+             </div>
+
+             <div class=" d-flex align-items-center">
+                <div class="delbtn" (click)="eliminarMensaje(mensaje, i)" *ngIf=" mensaje.coduser == usercodec">
+                   <mat-icon>delete</mat-icon>
+                </div>
+                <div class="d-flex justify-content-between align-items-center p-2 m-1 rounded-pill shadow-sm"
+                     style="background-color: rgba(0, 0, 0, 0.163);">
+                     <span>{{ mensaje.usuario }}</span>
+                     &nbsp;
+                     &nbsp;
+                     <span>
+                         <small>{{mensaje.fechaemit | date: 'short'}}</small>
+                     </span>
+                     &nbsp;
+                     &nbsp;                
+                     <button type="button" 
+                            class="btn btn-primary text-light btn-sm ms-2"
+                            (click)="openDataEquiposDialog(mensaje)"
+                            style="height: 31.46px;" *ngIf="mensaje.typeMediaFile"
+                            >
+                            <mat-icon style="font-size: 15pt;">zoom_in</mat-icon>
+                    </button>
+                </div>
+             </div>
+             <div class="mt-2 d-flex justify-content-between align-items-end">                
+                 <div>
+                     {{mensaje.mensaje}}
+                 </div>
+                 &nbsp;
+                 &nbsp;
+                 <div>
+                     <span *ngIf="mensaje.estado == 'NL'"
+                           [style]="'color: ' + mensaje.colorIcono + ';'">
+                           <mat-icon>check</mat-icon>
+                     </span>
+                     <span *ngIf="mensaje.estado == 'L'"
+                           [style]="'color: ' + mensaje.colorIcono + ';'">
+                           <mat-icon>done_all</mat-icon>
+                     </span>
+                 </div>
+             </div> 
+        </div>
+    </div>
+    <div class="imgPrev" *ngIf="imagePreview">
+        <img [src]="imagePreview" width="200">
+        <button type="button" 
+                class="btn btn-primary text-light btn-sm ms-2"
+                (click)="openDataEquiposDialog(imagePreview)"
+                style="height: 31.46px; position: absolute; right: 7px;">
+                <mat-icon style="font-size: 15pt;">zoom_in</mat-icon>
+        </button>
+    </div>
+    <div class="tip-message">
+        <form [formGroup]="messengerForm" class="mb-2" (ngSubmit)="onSubmit()">
+            <div class="w-100 d-flex justify-content-between align-items-center mb-2">
+                <input type="file" class="form-control form-control-sm" (change)="handleFileInput($event)" #imgMsjSend id="imgMsjSend" formControlName="imgMsjSend">
+                <button type="button" class="btn btn-danger btn-sm ms-2" (click)="clearFileInput()" style="height: 31.46px;"><mat-icon style="font-size: 15pt;" >delete</mat-icon></button>
+            </div>
+            <textarea formControlName="msj" 
+                      placeholder="Escribe un mensaje..."
+                      #msj
+                      id="msj"
+                      class="form-control"
+                      rows="4"
+                      (click)="actualizarMensajeEstado(50);">
+            </textarea>
+            <button class="btn btn-warning shadow d-flex align-item-center"
+                    *ngIf="_cli_view"
+                    id="btn-ico2">
+                <mat-icon>gavel</mat-icon>
+                Finalizar
+            </button>
+            <button class="btn-ico" id="btn-ico">
+                <mat-icon>send</mat-icon>
+            </button>
+        </form>
+    </div>
+
+    
+</div>

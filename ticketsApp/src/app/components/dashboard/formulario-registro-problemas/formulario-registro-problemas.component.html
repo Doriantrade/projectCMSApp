@@ -1,0 +1,230 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loader"></span>
+    </div>
+</div>
+
+<div class="formulario" style="height: 90vh; overflow-x: auto;">
+    <div class="title-form" >
+        <h1 class="d-flex justify-content-between align-items-center" >
+            <span>
+                <mat-icon>confirmation_number</mat-icon>
+                <span> Registro de Ticket </span>
+            </span>
+            <span class="text-primary"> Mantenimiento Correctivo  </span>
+        </h1>
+        <span></span>
+    </div>
+    <hr>    
+    <div class="d-flex">
+        <!-- <div class="nav-side">
+            <div class="btn-menu" 
+                 *ngFor="let tipoRequerimiento of lstaTipoRequerimientos"
+                 (click)="selectedTipoRequerimiento = tipoRequerimiento; _show_form = true;"
+                 [ngClass]="{'active': selectedTipoRequerimiento === tipoRequerimiento}">
+                 <div class="p-2" (click)="selectTipoRequerimiento(tipoRequerimiento);">
+                      {{ tipoRequerimiento.nombre }}
+                 </div>
+            </div>
+        </div> -->
+        <div class="p-2 w-100"   >
+            <!-- <span class="d-flex align-items-center text-secondary" *ngIf="_show_form == true"> 
+                <mat-icon>info</mat-icon> <span> Escoge el tipo de requerimiento a continuación ingresa los datos en el formulario. </span>    
+             </span> -->
+            <form [formGroup]="registerTroubleForm" *ngIf="_show_form" (ngSubmit)="onSubmit()" class="d-flex flex-wrap animate__animated animate__fadeIn justify-content-between">
+                <div class="mb-3">
+                    <label for="agencia" class="form-label text-secondary d-flex align-items-center">
+                        <mat-icon>factory</mat-icon> Seleccionar {{_data_label}}:
+                        &nbsp;
+                        <strong>( {{listaAgencias.length}} )</strong>
+                    </label>
+                    <select name="agencia"
+                            class="form-control"
+                            id="agencia"
+                            formControlName="agencia"
+                            (change)="obtenerAsignacionMaquinariaAgencia()"
+                            #agencia>
+                            <option [value]="agencia.codagencia"
+                                    *ngFor="let agencia of listaAgencias">
+                                    {{ agencia.nombre | uppercase }}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="codprov"
+                           class="form-label text-secondary d-flex align-items-center">
+                           <mat-icon>explore</mat-icon> Seleccionar provincia:
+                    </label>
+                    <select name="codprov"
+                            class="form-control"
+                            id="codprov"
+                            formControlName="codprov"
+                            #codprov>
+                            <option [value]="prov.codigo"
+                                    *ngFor=" let prov of listaProvincias">
+                                    {{ prov.nombre | uppercase }}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="codprov"
+                           class="form-label text-secondary d-flex align-items-center">
+                           <mat-icon>explore</mat-icon> Seleccionar canton:
+                    </label>
+                    <select name="codcan"
+                            class="form-control"
+                            id="codcan"
+                            formControlName="codcan"
+                            #codcan>
+                            <option [value]="canton.codigo"
+                                    *ngFor="let canton of listaCantones">
+                                    {{ canton.nombre | uppercase }}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="espacioSirve" 
+                           class="form-label text-secondary d-flex align-items-center">
+                           <mat-icon> picture_in_picture_large </mat-icon> Espacio al que sirve:
+                    </label>
+                    <select name="" class="form-control"
+                            id="espacioSirve"
+                            formControlName="espacioSirve"
+                            #espacioSirve>
+                            <option *ngFor="let item of espacioSirveList"
+                                    [value]="item.cod">
+                                    {{item.nombre}}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3 mt-2 table-responsive-md animate__animated animate__fadeIn w-100">
+                    <section class="filtros  mb-2">
+                        <!-- <input type="text" class="form-control" > -->
+                        <small class="text-secondary">
+                            Cantidad de equipos registrados
+                            <strong class="text-primary">
+                               ( {{listaEquipos.length}} )
+                            </strong>
+                        </small>
+                        <div class="mb-2 d-flex">
+                          <input class=" w-100 form-control rounded-pill shadow-sm"
+                                 fxFlex="auto" type="text"
+                                 (keyup)="applyFilter($event)" 
+                                 #input placeholder="Búsqueda de equipos registrados....">
+                        </div>
+                
+                    </section>
+                    <table class="table table-bordered shadow-sm align-middle table-warning table-hover table-striped-columns">
+                        <thead class="bg-black text-light">
+                            
+                                <th class="p-1"></th>
+                                <th class="p-1">N. Serie</th>
+                                <th class="p-1">Tipo</th>
+                                <th class="p-1">Marca</th>
+                                <th class="p-1">Modelo</th>
+                            
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let equipo of listaEquipos" (click)="seleccionarEquipo(equipo)">
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <input type="radio" name="equipoSeleccionado" class="form-check-input" [checked]="equipoSeleccionado === equipo">
+                                    </div>
+                                </td>
+                                <td>{{ equipo.nserie }}</td>
+                                <td>{{ equipo.tipomaquina }}</td>
+                                <td>{{ equipo.nombremarca }}</td>
+                                <td>{{ equipo.nombremodelo }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex align-items-center text-secondary" *ngIf="listaEquipos.length == 0">
+                        <mat-icon>info</mat-icon> 
+                        &nbsp;
+                        <span>No hay equipos en la lista asignada.</span>
+                    </div>
+                </div>
+                <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex flex-column w-50 mt-4">
+                        <div class="w-100" >                            
+                            <label for="mensajeDelProblema" 
+                                   class="form-label text-secondary d-flex align-items-center">
+                                   <mat-icon>list_alt</mat-icon> Descripción del problema:
+                            </label>
+                            <textarea id="mensajeDelProblema"
+                                      formControlName="mensajeDelProblema"
+                                      #mensajeDelProblema
+                                      class="form-control"
+                                      (input)="validarLenghtMsjProblema()"
+                                      rows="3">
+                            </textarea>
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                              <small class="text-secondary mt-1">
+                                <strong>{{ mensajeDelProblema.value.length }}/1000 caracteres</strong>
+                              </small>
+                              <div class="progress shadow-sm" 
+                                   style="width: 100px; margin-left: 10px; border: groove 1px white;">
+                                   <div [ngStyle]="getProgressBarStyle()" class="progress-bar"></div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="w-100 mt-2" >
+                            <label for="observacion" class="form-label text-secondary d-flex align-items-center">
+                                <mat-icon>book_mark</mat-icon> Código del problema:
+                             </label>
+                            <textarea formControlName="observacion"
+                                      #observacion
+                                      class="form-control"
+                                      rows="3"
+                                      id="observacion"
+                                      (input)="validarLenghtObservacion()">
+                            </textarea>
+                            <div class="d-flex justify-content-between align-items-center mt-1">
+                                <small class="text-secondary mt-1">
+                                    <strong>
+                                        {{ observacion.value.length }}/300 caracteres
+                                    </strong>
+                                </small>
+                                <div class="progress shadow-sm"
+                                     style="width: 100px; margin-left: 10px; border: groove 1px white;"
+                                     >
+                                     <div [ngStyle]="getProgressBarStyleObs()"
+                                          class="progress-bar">
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="" style="width: 35%;" >
+                        <div class=" shadow-sm upload-container bg-light">
+                            <h2 class="d-flex align-items-center text-dark"><mat-icon>photo</mat-icon> Subir Imagen</h2>
+                            <hr>
+                            <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+                            <div *ngIf="imagePreview" class="image-preview mt-3">
+                              <img [src]="imagePreview" alt="Vista previa de la imagen" style="width: 100%; height: auto;" />
+                            </div>                        
+                            <!-- <button class="btn btn-outline-success w-100 mt-3" (click)="onUpload()">Subir Imagen</button> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btnSettings w-100 mt-4 d-flex justify-content-end"
+                     style="border-top: solid 1px rgb(176, 174, 174);" >
+                     <button type="button"
+                             (click)="cancelBtn()"
+                             class="btn btn-danger m-2 d-flex align-items-center">
+                             <mat-icon>cancel</mat-icon>
+                     </button>
+                     <button type="submit"
+                             class="btn btn-warning m-2 d-flex align-items-center">
+                             <mat-icon>done</mat-icon>
+                             <span>{{ action_button }} Ticket</span>
+                     </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

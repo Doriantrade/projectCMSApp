@@ -1,0 +1,225 @@
+<div class="spinner-overlay"
+         *ngIf="_show_spinner">
+        <div class="spinner-container">
+          <mat-spinner></mat-spinner>
+        </div>
+</div>
+
+
+
+
+<div class="module-workarea p-4 mt-1" style="display: flex !important; justify-content: space-between; " >
+
+    <div class="w-25 h-100  bg-secondary p-3 rounded-1 d-flex align-content-center justify-content-center ">    
+        <app-image-control class="animate__animated animate__fadeInUp"
+                           [datalisten]="usuarioDato">
+        </app-image-control>    
+    </div>
+    <div class="w-75 p-4" >
+        <div class="text-secondary d-flex align-item-center m-0 p-0">
+             <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > {{modulo.nombre}} </span>
+        </div>
+        <hr>
+        <div class="form-section">
+        <form [formGroup]="userForm" class="mb-2" (ngSubmit)="onSubmit()">
+           <div class=" d-flex flex-wrap justify-content-between " >
+           <div class="mb-3 col-4 ">
+               <label for="Nombre" class="form-label text-secondary  ">
+                   Nombres:
+               </label>
+               <input type="text" class="form-control" formControlName="Nombre" #Nombre id="Nombre" placeholder="José Carlos">
+           </div>
+           <div class="mb-3 col-4 ">
+               <label for="Apellido" class="form-label text-secondary ">
+                   Apellidos:
+               </label>
+               <input type="text" class="form-control" formControlName="Apellido" #Apellido id="Apellido" placeholder="Mora Cedeño">
+           </div>
+           <div class="mb-3 col-1 ">
+               <label for="Cedula" class="form-label text-secondary ">
+                   Edad:
+               </label>
+               <input type="number" class="form-control" formControlName="Edad" #Edad id="Edad" placeholder="21">
+           </div>
+           </div>
+           <div class=" d-flex flex-wrap justify-content-between  ">
+           <div class="mb-3 col-5 ">
+               <label for="Email" class="form-label text-secondary">
+                   Email:
+               </label>
+               <input type="email" class="form-control" formControlName="Email" #Email id="Email" placeholder="name@example.com">
+           </div>
+           <div class="mb-3 col-2 ">
+               <label for="Cedula" class="form-label text-secondary">
+                   Cédula:
+               </label>
+               <input type="text" class="form-control" formControlName="Cedula" #Cedula id="Cedula" placeholder="099988555">
+           </div>
+           
+           <div class="mb-3 col-4">
+               <label for="Contrasenia" class="form-label text-secondary">
+                   Contraseña: 
+                   <span [class]="colortext" >
+                        <!-- <strong> {{pass}} </strong> -->
+                        <small>{{descrip}}</small>
+                   </span>
+               </label>
+               <input type="text" [class]="colortext + ' form-control'" (keyup)="viewpass()"  formControlName="Contrasenia" #Contrasenia id="Contrasenia" placeholder="***">
+           </div>
+           </div>
+           <div class=" d-flex flex-wrap justify-content-between ">
+           <div class="mb-3 col-3  ">
+               <label for="Cargo" class="form-label text-secondary"  >
+                   Cargo:
+               </label>
+               <select class="inpForms form-select   w-100" *ngIf="select"
+                       formControlName="Cargo" #Cargo id="Cargo" aria-label="">
+                       <option *ngFor="let cargo of cargoLista" [value]="cargo.codigo">{{cargo.nombre | titlecase }}</option>
+               </select> 
+               <input type="text" class="form-control" disabled [value]="nombrecargo" *ngIf="read" [title]="nombrecargo">
+           </div>
+           <div class="mb-3 col-4 ">
+               <label for="Estado" class="form-label text-secondary">
+                   Estado del trabajador:
+               </label>
+               <select class="inpForms form-select w-100" *ngIf="select"
+                       formControlName="Estado" #Estado id="Estado" aria-label="">
+                       <option *ngFor="let estadoTrabajador of estadoTrabajadorLista" [value]="estadoTrabajador.codigo" >
+                           {{estadoTrabajador.nombre | titlecase }}                                
+                       </option>
+               </select>
+
+               <input type="text" class="form-control" disabled [value]="estadotrabajador" *ngIf="read" [title]="estadotrabajador">
+           </div>
+           <div class="mb-3 col-2">
+               <label for="CodEstadoCivil" class="form-label text-secondary">
+                   Estado Civil:
+               </label>
+               <select class="inpForms form-select   w-100"
+                       formControlName="CodEstadoCivil" #CodEstadoCivil id="CodEstadoCivil" aria-label="">
+                       <option *ngFor="let ecivil of estadoCivilLista" [value]="ecivil.codigo" >
+                           {{ecivil.nombre | titlecase }}                                
+                       </option>
+               </select>
+           </div>
+           <div class="mb-3 col-2">
+               <label for="CodSexo" class="form-label text-secondary">
+                   Sexo:
+               </label>
+               <select class="inpForms form-select   w-100"
+                       formControlName="CodSexo" #CodSexo id="CodSexo" aria-label="">
+                       <option *ngFor="let sexo of sexoLista" [value]="sexo.codigo" >
+                           {{sexo.nombre | titlecase }}                                
+                       </option>
+               </select>
+           </div>
+           </div>
+           <div class="d-flex flex-wrap justify-content-between" >
+           <div class="mb-3 col-3  ">
+               <label for="CodProvincia">Provincia</label>
+               <select class="inpForms form-select   w-100" 
+                       formControlName="CodProvincia" #CodProvincia 
+                       (change)="getCantones()"
+                       id="CodProvincia" aria-label="">
+                       <option *ngFor="let provincia of provinciaLista"                                     
+                               [value]="provincia.codigo">
+                               {{provincia.nombre | titlecase }}                                
+                       </option>
+               </select>
+           </div>
+
+           <div class="mb-3 col-3  ">
+               <label for="CodCanton">Cantón</label>
+               <select class="inpForms form-select   w-100"
+                       formControlName="CodCanton" #CodCanton id="CodCanton" aria-label="">
+                       <option *ngFor="let canton of cantonLista" [value]="canton.codigo" >
+                           {{canton.nombre | titlecase }}                                
+                       </option>
+               </select>
+           </div>
+           <div class="mb-3 col-5">
+               <label for="Direccion" class="form-label m-0 text-secondary">
+                   Dirección:
+               </label>
+               <input type="text" class="form-control" formControlName="Direccion" #Direccion id="Direccion" placeholder="Callejo 5 y peatonal ...">
+           </div>
+           </div>
+           <div class="d-flex flex-wrap justify-content-between">
+           <div class="mb-3">
+               <label for="CodDepartamento">Departamento:</label>
+               <select class="inpForms form-select   w-100" *ngIf="select"
+                       formControlName="CodDepartamento" #CodDepartamento id="CodDepartamento" aria-label="">
+                       <option *ngFor="let departamento of departamentoLista" [value]="departamento.codigo" >
+                           {{departamento.nombre | titlecase }}                                
+                       </option>
+               </select>
+
+               <input type="text" class="form-control" disabled [value]="departamentonombre" *ngIf="read" [title]="departamentonombre">
+
+           </div>
+
+           <div class="mb-3">
+               <label for="Tipo">Tipo:</label>
+               <select class="inpForms form-select   w-100" *ngIf="select"
+                       formControlName="Tipo" #Tipo id="Tipo" aria-label="">
+                       <option *ngFor="let tipo of tipoLista"
+                               [value]="tipo.codigo" >
+                           {{tipo.nombre | titlecase }}                                
+                       </option>
+               </select>
+
+               <input type="text" class="form-control" disabled [value]="nombretipo" *ngIf="read" [title]="nombrecargo">
+           </div>
+           <div class="mb-3">
+               <label for="Codcaracteristicas"  >Habilidades:</label>
+               <select class="inpForms form-select   w-100"
+                       formControlName="Codcaracteristicas" #Codcaracteristicas id="Codcaracteristicas" aria-label="">
+                       <option *ngFor="let capacidades of capacidadesLista" [value]="capacidades.codigo" >
+                           {{capacidades.nombre | titlecase }}                                
+                       </option>
+               </select>
+           </div>
+           </div>
+           <div class="d-flex flex-wrap justify-content-between" >
+               <div class="mb-3 col-4">
+                   <label for="CodCanton">Movilidad:</label>
+                   <select class="inpForms form-select   w-100"
+                           formControlName="Movilidad" #Movilidad id="Movilidad" aria-label="">
+                           <option *ngFor="let movil of moviLista"
+                                   [value]="movil.codigo" >
+                                   {{ movil.nombre | titlecase }}
+                           </option>
+                   </select>
+               </div>
+               <div class="mb-3 col-2 ">
+                   <label for="CodCanton">Tipo de Licencia:</label>
+                   <select class="inpForms form-select   w-100"
+                           formControlName="CodLicencia" #CodLicencia id="CodLicencia" aria-label="">
+                           <option *ngFor="let licencia of licenciaLista"
+                                   [value]="licencia.codigo" >
+                                   {{ licencia.nombre | titlecase }}
+                           </option>
+                   </select>
+               </div>
+               <div class="mb-3 col-3 ">
+                   <label for="Cedula" class="form-label text-secondary">
+                       Telf:
+                   </label>
+                   <input type="text" class="form-control" formControlName="Telf" #Telf id="Telf" placeholder="098212252">
+               </div>
+               <div class="floating-button">
+                   <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()" >
+                       <mat-icon>cancel</mat-icon>
+                   </button>
+                   <button *ngIf="pMod <= 3" type="submit" mat-raised-button color="primary" [disabled]="_show_btn" >
+                       <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}} {{modulo.nombre}}
+                   </button>
+
+               </div>
+           </div>
+       </form>
+
+
+   </div>
+</div>
+</div>

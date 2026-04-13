@@ -1,0 +1,204 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+  <div class="spinner-container">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+<div class="headermodal d-flex align-items-center fs-4 mb-3 " >
+
+  <mat-icon class=" text-warning " >directions_alt</mat-icon><span> Asignación de provincias y cantones a cubrir para los <span class="text-info" > técnicos </span> </span>
+
+</div>
+<hr>
+<div class="workarea d-flex justify-content-between ">
+
+<div class="table-responsive">
+  <section class="filtros  mb-2">
+      <!-- <input type="text" class="form-control" > -->
+      <small class="text-light">
+          Cantidad de provincias del Ecuador registradas: 
+          <strong class="text-primary">
+             ( {{listProvincias.length}} )
+          </strong>
+      </small>
+      <div class="mb-2 d-flex">
+        <input class=" w-100 form-control rounded-pill"
+               fxFlex="auto" type="text"
+               (keyup)="applyFilter($event)" 
+               #input placeholder="Búsqueda de provincias registradas....">
+      </div>        
+
+  </section>
+  <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100" >
+
+      <ng-container matColumnDef="cod">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Cod.
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.codigo}}
+          </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NombreProvincia"> 
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Nombre Provincia
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.nombre}}
+          </td>
+      </ng-container>   
+      <ng-container matColumnDef="action"> 
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <button  mat-mini-fab color="warn" (click)="getCantones(row); provCodSel = row.codigo; " class="d-flex align-items-center  justify-content-center "  >
+              <mat-icon> chevron_right </mat-icon>
+            </button>
+          </td>
+      </ng-container>   
+   
+
+      <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          Datos no encontrados...
+        </td>
+      </tr>
+  </table>
+  <mat-paginator [length]="100"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 aria-label="Selecciona página">
+</mat-paginator>    
+</div>
+
+
+<div class="table-responsive">
+  <section class="filtros  mb-2">
+      <!-- <input type="text" class="form-control" > -->
+      <small class="text-light">
+          Cantidad de cantones registrados para la provincia del <strong> {{_prov_sel | uppercase }}: </strong>
+          <strong class="text-primary">
+             ( {{listCantones.length}} )
+          </strong>
+      </small>
+      <div class="mb-2 d-flex">
+        <input class=" w-100 form-control rounded-pill"
+               fxFlex="auto" type="text"
+               (keyup)="applyFilterCantones($event)" 
+               #input placeholder="Búsqueda de cantones registrados....">
+      </div>        
+
+  </section>
+  <table mat-table [dataSource]="dataSourceCantones" class="mtTable shadow" matSort class="w-100" >
+
+      <ng-container matColumnDef="cod">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Cod.
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.codigo}}
+          </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NombreProvincia"> 
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Nombre Provincia
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{row.nombre}}
+          </td>
+      </ng-container>   
+
+      <ng-container matColumnDef="action"> 
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            <button  mat-mini-fab color="primary" [disabled]="_dis_button"  (click)="asignarTodosCantones()" class="d-flex align-items-center justify-content-center">
+              <mat-icon> save </mat-icon>
+            </button>  
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <button  mat-mini-fab color="warn"  (click)="cantCodSel= row.codigo; validacionRep();" class="d-flex align-items-center justify-content-center">
+              <mat-icon> done </mat-icon>
+            </button>
+          </td>
+      </ng-container>   
+   
+
+      <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+  
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">
+          Datos no encontrados...
+        </td>
+      </tr>
+  </table>
+  <mat-paginator [length]="100"
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 25, 100]"
+                 aria-label="Select page">
+</mat-paginator>    
+</div>
+
+<div id="ficha" >
+  <span style="cursor: pointer; position: absolute; top: 125px; z-index: 10;" (click)="funcHTML('usuario')" > <mat-icon>{{_func}}</mat-icon> </span>
+  <div id="usuario" class="usuario detalle d-flex flex-column ">
+    <div  class="w-100 d-flex justify-content-center mb-2 " *ngIf="_user" >
+        <div class="perfil" [ngStyle]="{'background-image': 'url('+data.imagenPerfil+')', 'background-size': '100% 110%'}" ></div>
+    </div>
+    <span class="userspan    " *ngIf="_user" >
+       <span class="text-warning" > Nombres:       </span> 
+        <span> {{  data.nombre | uppercase }} {{  data.apellido | uppercase }} </span>
+    </span>
+    <!-- <span class="userspan    " > <span class="text-warning" > Cargo:        </span> 
+        <span> {{  data.nombreCargo }} </span>
+    </span>
+    <span class="userspan    " > <span class="text-warning" > Departamento: </span> 
+        <span> {{  data.nombreDepartamento }} </span>
+    </span> -->
+    <span class="userspan    " *ngIf="_user" > <span class="text-warning" > Licencia:     </span> 
+        <span> {{  data.nombreLicencia }} </span>
+    </span>
+    <span class="userspan    " *ngIf="_user" > <span class="text-warning" > Movilidad:    </span> 
+        <span> {{  data.nombreMovilidad }} </span>
+    </span>
+</div>
+<div class="provincias"  >
+  <div class="d-flex justify-content-between">
+    <div class="bg-warning p-2 rounded-2 text-black" style="cursor: pointer;" (click)="op.show($event)">
+      Provincias asignadas: ({{cantprov}})
+      <p-overlayPanel #op>
+        <ol>
+          <li *ngFor="let provincias of cantidadprovincias" >
+            {{provincias.provinciaAsignadas}}
+          </li>
+        </ol>
+      </p-overlayPanel>
+    </div>
+    <div>
+      <button (click)="eliminarTodasProvincias()" mat-mini-fab color="warn">
+        <mat-icon> delete_all</mat-icon>
+      </button>
+    </div>
+  </div>
+    <div class="bodyprov" id="bodyProv">
+
+      <ul class="p-0">
+        <li *ngFor="let prov of listtecnicoProvincia" class="liprov d-flex p-0 justify-content-between align-items-center" >
+          <span> {{prov.nombreProvincia}} ({{prov.nombreCanton}})</span>
+          <span (click)="eliminarProvincia(prov.id)" > <mat-icon class="colordel" > disabled_by_default </mat-icon> </span>
+        </li>
+      </ul>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>

@@ -1,0 +1,144 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="mini-module-workarea p-4 w-100" style="height: 650px !important;"> 
+
+    <section class="head">
+
+        <h3 class="d-flex text-secondary  ">
+            <span>
+                Asignar parámetros para el cronograma.
+            </span>
+        </h3>
+
+    </section>
+
+    <hr style="border: solid 1px gray;" >
+    <div class="d-flex justify-content-between">
+        <div class="box">
+              <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+                <mat-step [stepControl]="firstFormGroup">
+                  <!-- <form [formGroup]="firstFormGroup">
+                    <ng-template matStepLabel>Fill out your name</ng-template>
+                    <mat-form-field>
+                      <mat-label>Name</mat-label>
+                      <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form> -->
+                </mat-step>
+                <mat-step [stepControl]="secondFormGroup">
+                  <!-- <form [formGroup]="secondFormGroup">
+                    <ng-template matStepLabel>Fill out your address</ng-template>
+                    <mat-form-field>
+                      <mat-label>Address</mat-label>
+                      <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                             required>
+                    </mat-form-field>
+                    <div>
+                      <button mat-button matStepperPrevious>Back</button>
+                      <button mat-button matStepperNext>Next</button>
+                    </div>
+                  </form> -->
+                </mat-step>
+                <mat-step>
+                  <ng-template matStepLabel>Done</ng-template>
+                  <p>You are now done.</p>
+                  <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-button (click)="stepper.reset()">Reset</button>
+                  </div>
+                </mat-step>
+              </mat-stepper>
+
+            <!-- 
+            <div class="table-responsive w-100">
+                <section class="filtros  mb-2">
+                    <small class="text-secondary">
+                        Cantidad de agencias registradas 
+                        <strong class="text-primary">
+                           ( {{listAgencias.length}} )
+                        </strong>
+                    </small>
+                    <div class="mb-2 d-flex">
+                        <input class=" w-100 form-control rounded-pill"
+                               fxFlex="auto" type="text"
+                               (keyup)="applyFilter($event)"
+                               #input placeholder="Búsqueda de agencias registradas...">
+                    </div>    
+                </section>
+
+                <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100" >
+                
+                    <ng-container matColumnDef="nombreCliente" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Nombre Cliente
+                        </th>
+                        <td style="cursor: pointer;" mat-cell *matCellDef="let row">
+                            <div class="p-2">{{row.nombreCliente}}</div>
+                        </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="nombre" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Nombre Agencia
+                        </th>
+                        <td style="cursor: pointer;" mat-cell 
+                            *matCellDef="let row" 
+                            [matTooltip]="'Provincia: '+row.provincia + ' - Cantón: ' + row.canton + ' - Dirección: ' + row.campoB"
+                            >
+                          {{row.nombre}}
+                        </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="mantenimiento" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Mantenimiento
+                        </th>
+                        <td style="cursor: pointer;" mat-cell 
+                            *matCellDef="let row" 
+                            >
+                          {{row.mantenimiento}}
+                        </td>
+                    </ng-container>
+                
+                    <ng-container matColumnDef="action" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            
+                        </th>
+                        <td style="cursor: pointer;" mat-cell 
+                            *matCellDef="let row" >
+                            <button mat-mini-fab color="warn" class="d-flex align-items-center justify-content-center">
+                                <mat-icon>done</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+                
+                    <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">
+                        Datos no encontrados...
+                      </td>
+                    </tr>
+                </table>
+
+                <mat-paginator [length]="100"
+                               [pageSize]="5"
+                               [pageSizeOptions]="[5, 10, 25, 100]"
+                               aria-label="Select page">
+
+            </mat-paginator>     
+            </div>-->
+        </div>
+        <div class="box">
+
+        </div>
+    </div>
+</div>

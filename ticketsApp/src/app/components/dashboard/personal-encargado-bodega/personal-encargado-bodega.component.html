@@ -1,0 +1,145 @@
+<div class="d-flex flex-column p-2">
+    <div class="header p-2">
+        <span class="fs-4">
+            <strong>> Asignar usuario encargado de bodega</strong>
+        </span>
+    </div>
+    <hr>
+    <div class="body">
+        <form [formGroup]="asignacionForm">
+            <div class="row g-3 align-items-end">
+                <!-- Select de Usuario -->
+                <div class="col-md-3">
+                    <label for="usuarioSelect" class="form-label">Usuario Encargado</label>
+                    <select class="form-select" id="usuarioSelect" formControlName="usuario">
+                        <option value="">Seleccione encargado de bodega</option>
+                        <option *ngFor="let encargado of listaUsuarios" [value]="encargado.coduser">
+                            {{ encargado.nombre }}
+                        </option>
+                    </select>
+                    <div *ngIf="f['usuario'].invalid && (f['usuario'].dirty || f['usuario'].touched)" 
+                         class="text-danger mt-1">
+                        <small *ngIf="f['usuario'].errors?.['required']">
+                            Seleccione un usuario
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Select de Bodega -->
+                <div class="col-md-3">
+                    <label for="bodegaSelect" class="form-label">Bodega</label>
+                    <select class="form-select" id="bodegaSelect" formControlName="bodega">
+                        <option value="">Seleccione bodega</option>
+                        <option *ngFor="let bodega of listaBodegas" [value]="bodega.id">
+                            {{ bodega.nombrebodega }}
+                        </option>
+                    </select>
+                    <div *ngIf="f['bodega'].invalid && (f['bodega'].dirty || f['bodega'].touched)" 
+                         class="text-danger mt-1">
+                        <small *ngIf="f['bodega'].errors?.['required']">
+                            Seleccione una bodega
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Input de Archivo para Firma -->
+                <div class="col-md-4">
+                    <label for="firmaInput" class="form-label">Firma del Encargado</label>
+                    <input type="file" 
+                           class="form-control" 
+                           id="firmaInput" 
+                           (change)="onFileSelected($event)" 
+                           accept="image/*"
+                           #fileInput>
+                    <div class="text-danger mt-1">
+                        <small *ngIf="fileError">{{ fileError }}</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vista previa de la imagen -->
+            <div class="row mt-3" *ngIf="imagenFirmaBase64">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6 class="card-title mb-0">Vista previa de la firma</h6>
+                        </div>
+                        <div class="card-body text-center">
+                            <img [src]="imagenFirmaBase64" 
+                                 alt="Firma del encargado" 
+                                 class="img-thumbnail signature-preview"
+                                 style="max-height: 150px; max-width: 100%;">
+                            <div class="mt-2">
+                                <button type="button" 
+                                        class="btn btn-sm btn-outline-danger"
+                                        (click)="eliminarFirma()">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botón para guardar -->
+            <div class="d-flex justify-content-end mt-4">
+                <button type="button" 
+                        class="btn btn-primary px-4 d-flex align-items-center"
+                        (click)="submit()"
+                        [disabled]="asignacionForm.invalid || !imagenFirmaBase64">
+                        <mat-icon>{{ icon_action }}</mat-icon> {{ button_action }} Asignación
+                </button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <span>Usuario asignado actualmente:</span>
+        <div class="table-responsive mt-2" >
+            <table class="table table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th></th>
+                        <th>Usuario Asignado</th>
+                        <th>Bodega</th>
+                        <th>Fecha Asignación</th>
+                        <th>Creado por</th>
+                        <th>Firma</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="listaAsignacionUsuarioBodega.length==0">
+                    <tr>
+                        <span  class="text-secondary">
+                            No hay usuario asignado actualmente.
+                        </span>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr *ngFor="let item of listaAsignacionUsuarioBodega" >
+                        <td>
+                            <div>
+                                <button class="btn btn-sm btn-outline-danger"
+                                        (click)="eliminarAsignacion(item.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                                <button class="btn btn-sm btn-outline-primary"
+                                        (click)="catchData(item)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </div>
+                        </td>
+                        <td>{{ item.nombreUsuarioAsignado  }}</td>
+                        <td>{{ item.nombrebodega  }}</td>
+                        <td>{{ item.fecrea | date: "dd-MM-YYYY"  }}</td>
+                        <td>{{ item.nombreUsuarioCreador  }}</td>
+                        <td>
+                            <img [src]="item.urlImagenFirma" 
+                                 alt="Firma del encargado" 
+                                 class="img-thumbnail"
+                                 style="max-height: 100px; max-width: 200px;">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

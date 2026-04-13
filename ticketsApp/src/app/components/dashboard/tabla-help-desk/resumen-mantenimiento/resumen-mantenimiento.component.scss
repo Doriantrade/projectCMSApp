@@ -1,0 +1,15 @@
+.tabla {
+  max-height: 50vh;
+  overflow: auto;
+}
+.bordeTabla {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+.tabla thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}

@@ -1,0 +1,29 @@
+<div class="w-100 d-flex justify-content-between nav align-items-center">
+    <div class="user p-3 text-light fs-4 d-flex align-items-center">
+        Bienvenido, {{nombreUser | uppercase}}
+    </div>
+    <div class="d-flex">
+        <button class="m-1 btn btn-outline-warning d-flex align-items-center" (click)="openDataConfigDialog()"
+            *ngIf="_cli_view">
+            <mat-icon>settings</mat-icon>
+        </button>
+        <!-- 
+        <button class="m-1 btn btn-outline-warning d-flex align-items-center" (click)="openMaintenanceModal()">
+            <mat-icon>build</mat-icon> <span>Mantenimientos</span>
+        </button>
+        -->
+        <button [matMenuTriggerFor]="perfilMenu" class="m-1 btn btn-outline-warning d-flex align-items-center">
+            <mat-icon>person</mat-icon> <span>Perfil</span>
+        </button>
+        <mat-menu #perfilMenu="matMenu">
+            <button mat-menu-item (click)="openProfileModal()">
+                <mat-icon>lock</mat-icon>
+                <span>Cambiar contraseña</span>
+            </button>
+            <button mat-menu-item (click)="cerrarSesion()">
+                <mat-icon>logout</mat-icon>
+                <span>Cerrar sesión</span>
+            </button>
+        </mat-menu>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\USUARIO\Desktop\public-CMS</_PublishTargetUrl>
+    <History>True|2025-04-23T16:27:30.1504974Z||;True|2025-04-23T09:05:06.7494168-05:00||;True|2025-03-25T13:30:54.8182390-05:00||;True|2025-03-24T16:08:30.5062919-05:00||;True|2025-03-24T16:07:40.9596916-05:00||;True|2025-03-24T10:23:52.3865425-05:00||;True|2025-02-20T15:22:07.6372779-05:00||;True|2025-02-20T15:13:56.0222777-05:00||;True|2025-02-20T14:32:49.1899068-05:00||;True|2025-02-12T16:10:24.1372402-05:00||;True|2025-02-11T09:56:10.6226142-05:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,64 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="module-workarea p-4 w-100 text-dark">
+
+    <div class="title-header fs-5 d-flex justify-content-end">
+        <!-- <div class="col-2"> <span>Registro de marca para repuestos:</span> </div> -->
+        <div class="w-100 ">
+            <form [formGroup]="repuestosForm" class="mb-2 mt-2 d-flex align-items-end flex-wrap w-100" (submit)="submit()">
+                <div class="col d-flex align-items-center ">
+                    <label for="nombreRep" class="form-label  d-flex ">
+                        Nombre de la marca del repuesto: <span class="text-danger">*</span>
+                    </label>
+                    &nbsp;&nbsp;
+                    <input type="text" class="form-control w-50 shadow-sm"  
+                           formControlName="nombreRep" 
+                           #nombreRep id="nombreRep"
+                           placeholder="...">
+                           &nbsp;
+                           <button class="btn btn-danger btn-sm d-flex align-items-center" style="height: 38.5px;" > <mat-icon>cancel</mat-icon> </button>
+                           &nbsp;
+                           <button class="btn btn-outline-dark btn-sm d-flex align-items-center" style="height: 38.5px;" > <mat-icon>{{_icon_button}}</mat-icon> </button>
+                        </div>
+
+            </form>
+        </div>
+    </div>
+    <hr>
+    <div class="table-responsive" >
+        <ol class="d-flex justify-content-between flex-wrap">
+            <li *ngFor="let marca of marcaRepList; let i = index" class="m-2" style="padding: 10px; border-bottom: solid 1px gray;" >
+                
+                <span class="d-flex align-items-center">
+                    <div class="d-flex bg-warning rounded-start-pill p-2 shadow-sm ">
+                        <span style="cursor: pointer;" (click)="catchData(marca, i)">
+                            <div class="btn-ico">
+                                <mat-icon>edit</mat-icon>
+                            </div>
+                        </span>
+                        <span style="cursor: pointer;" (click)="eliminarRepuestos(marca, i)">
+                            <div class="btn-ico">
+                                <mat-icon>delete</mat-icon>
+                            </div>
+                        </span>
+                    </div>
+                    &nbsp;&nbsp; <strong> {{ marca.nombreMarcaRep | titlecase }} </strong>
+                </span>
+            </li>
+        </ol>
+    </div>
+    <div class="w-100 d-flex justify-content-end" >
+        <button class="d-flex align-items-center btn btn-warning" (click)="closeDialog()" > 
+            <mat-icon> 
+                done
+            </mat-icon>
+            &nbsp;&nbsp;
+            <span>Cerrar</span>    
+        </button>
+    </div>
+</div>
+

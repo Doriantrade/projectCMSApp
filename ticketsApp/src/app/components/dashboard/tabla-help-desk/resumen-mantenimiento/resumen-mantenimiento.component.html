@@ -1,0 +1,36 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+  <div class="spinner-container">
+    <span class="loader"></span>
+  </div>
+</div>
+<div class="tabla table-responsive">
+  <div class="bordeTabla">
+    <table class="table shadow table-bordered table-primary table-striped-columns">
+      <thead class="bg-primary text-light">
+        <th class="p-1">Fecha</th>
+        <th class="p-1">Motivo de visita</th>
+        <th class="p-1">Solución</th>
+        <th class="p-1">Estado equipo</th>
+        <th class="p-1">Valor</th>
+        <th class="p-1">Observación</th>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let ticketResumen of listaMantenimientosAgregados">
+          <tr>
+            <td>{{ ticketResumen.fecrea | date : "short" }}</td>
+            <td>{{ ticketResumen.motivoVisita }}</td>
+            <td>{{ ticketResumen.solucionImplementada }}</td>
+            <td>{{ ticketResumen.estadoNombre }}</td>
+            <td>{{ ticketResumen.valor | number : "1.2-2" }}</td>
+            <td>{{ ticketResumen.observacion }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="text-secondary d-flex align-items-center"
+  *ngIf="listaMantenimientosAgregados.length == 0">
+  <mat-icon>info</mat-icon>
+  <small>No hay mantenimientos asignados en este momento.</small>
+</div>

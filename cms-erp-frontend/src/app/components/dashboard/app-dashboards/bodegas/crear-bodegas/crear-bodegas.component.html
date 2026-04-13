@@ -1,0 +1,109 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+    <div class="d-flex justify-content-between flex-wrap " >
+        <div class="w-50 p-3">
+            <div class="text-secondary d-flex align-item-center m-0 p-0">
+                <mat-icon>add</mat-icon>
+                <span class="fs-5">Crear Bodega</span>
+            </div>
+            <hr>
+            <div class="form-section w-100">
+
+                <form [formGroup]="bodegaForm" style="width: 100%;" class="mb-2" (ngSubmit)="onSubmit()">
+
+                    <div class="mb-3 col-6  w-100">
+                        <label for="nombreBodega" class="form-label   ">
+                            Nombre de Bodega <span class="text-danger">*</span>
+                        </label>
+                        <input type="text" class="form-control w-100" 
+                               formControlName="nombrebodega" #nombreBodega id="nombrebodega" placeholder="Bodega 001">
+                    </div>
+                    <div class="mb-3 col-6 w-100">
+                        <label for="nombre" class="form-label">
+                            Descripción de la Bodega
+                        </label>
+                        <textarea class="form-control" rows="4"
+                               formControlName="descripcion" #descripcion id="descripcion" placeholder="En esta bodega vamos a añadir los productos que corresponden...">
+                        </textarea>
+                    </div>
+                    <div class="button-action">
+
+                        <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()" >
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                        <button *ngIf="pMod <= 3" type="submit" mat-raised-button color="primary">
+                            <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}}
+                        </button>
+        
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="w-50 p-3 rounded-2" style="background-color: rgba(223, 233, 244, 0.797);" > 
+            <div class="fs-3 d-flex align-items-center ">
+                <mat-icon>warehouse</mat-icon> Bodegas creadas
+            </div>
+                <section class="filtros mt-2 mb-2">
+                    <!-- <input type="text" class="form-control" > -->
+                    <small class="text-secondary">
+                        Cantidad de bodegas registradas 
+                        <strong class="text-primary">
+                           ( {{listBodegas.length}} )
+                        </strong>
+                    </small>
+                    <div class="mb-2 d-flex">
+                      <input class=" w-100 form-control rounded-pill"
+                             fxFlex="auto" type="text"
+                             [(ngModel)]="searchTerm"
+                             (keyup)="filterBodegas()" 
+                             #input placeholder="Búsqueda de bodegas registradas....">
+                    </div>        
+            
+                </section>
+            <hr>    
+            <div class="contain-bodegas" >
+            <ul>
+                <li *ngFor="let bodegas of filteredBodegas" class="m-3" style="list-style: none;" >
+                    <div class="d-flex justify-content-between  " >
+                    <div class="d-flex align-items-center">
+                        <span>
+                            <button mat-mini-fab (click)="catchData(bodegas)" style="background-color: rgb(51, 75, 112); color: white;" >
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-mini-fab (click)="eliminarBodegas(bodegas.id)" style="background-color: rgb(190, 37, 13); color: white;" >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                        <div class="d-flex flex-column" style="margin-left: 15px !important;">
+                            <div class="d-flex flex-column" style="font-size: 9pt !important; ">
+                                <small class="text-secondary d-flex align-items-center  "  >
+                                    ...asignado a: {{bodegas.nombre}} - {{bodegas.ruc}}
+                                    <!-- <span class="badge bg-warning text-dark ">{{bodegas.cantidadItems}}</span> -->
+                                </small>
+                            </div>
+                            <div class="fs-4 text-primary d-flex align-items-center  "  >{{bodegas.nombrebodega}} <span class="badge bg-warning text-dark ">{{bodegas.cantidadItems}}</span>  </div>
+                            <small class="text-secondary">{{bodegas.fecrea | date: 'dd-MM-yyyy'}}</small>
+                            
+                        </div>
+                        
+                    </div>
+                    <div>
+                        <button mat-raised-button 
+                                (click)="openDialog(bodegas)"
+                                style="background-color: steelblue;" >
+                            <mat-icon>villa</mat-icon>
+                        </button>
+                    </div>
+                    </div>
+                    <div class="m-3">
+                        {{bodegas.descripcion}}
+                    </div>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,168 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="mini-module-workarea p-4 w-100" style="height: 550px !important;">
+    <section class="head">
+        <h1 class="d-flex text-secondary  ">
+            <span > Ficha de datos a gestionar </span>
+        </h1>
+    </section>
+
+    <hr style="border: solid 1px gray;" >
+
+    <section class="d-flex justify-content-between w-100 " >  
+        <div>
+            <ul class="p-0">
+                <li>
+                    <small class="d-flex align-items-center" >
+                        <mat-icon>event</mat-icon> Día:
+                    </small>
+                    <br>
+                    <span>
+                        <strong>{{data.dia}}</strong> - <strong>{{data.mes}}</strong> - <strong>{{data.anio}}</strong>
+                    </span>
+                </li>
+                <li>
+                    <small class="d-flex align-items-center">
+                        <mat-icon>person</mat-icon>Nombre cliente:
+                    </small>
+                    <br>
+                    <span>
+                        <strong>{{data.nombreCliente}}</strong>
+                    </span>
+                </li>
+                <li>
+                    <small class="d-flex align-items-center">
+                        <mat-icon>villa</mat-icon>Nombre agencia:
+                    </small>
+                    <br>
+                    <span>
+                        <strong>{{data.nombreAgencia}}</strong>
+                    </span>
+                </li>
+                <li>
+                    <small class="d-flex align-items-center">
+                        <mat-icon>engineering</mat-icon>Nombre del técnico:
+                    </small>
+                    <br>
+                    <span>
+                        <strong>{{data.nombreTecnico}}</strong>
+                    </span>
+                </li>
+                <li>
+                    <small class="d-flex align-items-center">
+                        <mat-icon>point_of_sale</mat-icon>Máquinas a cargo:
+                    </small>
+                    <br>
+                    <span>
+                        <strong>{{data.maquinasmanuales}}</strong>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <div class="w-50">
+            <form [formGroup]="cronoForm" class="mb-2">
+                <div>
+                    <small class="text-secondary">
+                        Seleccionar el cliente a editar:
+                    </small>
+                    <p-autoComplete formControlName="codcliente"
+                                    #codcliente
+                                    (click)="limpiarAgencias()"
+                                    id="codcliente" 
+                                    [dropdown]="true"
+                                    [suggestions]="filteredcliente"
+                                    [placeholder]="data.nombreCliente"
+                                    (chage)="obtenerAgencias()"
+                                    (completeMethod)="filterCliente($event)"
+                                    [style]="{'width':'100%'}"
+                                    field="name">
+                    </p-autoComplete>
+                </div>
+                <div class="mt-2">
+                    <small class="text-secondary">
+                        Seleccionar la agencia a editar:
+                    </small>
+                    <p-autoComplete (click)="obtenerAgencias()" 
+                                [dropdown]="true"
+                                formControlName="codagencia"
+                                #codagencia
+                                [style]="{'width':'100%'}"
+                                id="codagencia" 
+                                [placeholder]="data.nombreAgencia"
+                                [suggestions]="filteredAgencias"
+                                (completeMethod)="filterAgencia($event)"
+                                field="name">
+                    </p-autoComplete>
+                </div>
+                <div class="mt-2">
+                    <small class="text-secondary">
+                        Seleccionar el usuario técnico:
+                    </small>
+                    <p-autoComplete formControlName="codusertecnico" 
+                                    #codusertecnico id="codusertecnico" 
+                                    [dropdown]="true"
+                                    [suggestions]="filteredusers"
+                                    [placeholder]="data.nombreTecnico"
+                                    (completeMethod)="filterUsuario($event)"
+                                    [style]="{'width':'100%'}"
+                                    field="name">
+                    </p-autoComplete>
+                </div>
+
+                <div class="mt-2 d-flex justify-content-between ">
+                    <div>
+                        <small class="text-secondary">
+                            Seleccionar el día a editar:
+                        </small>
+                        <select class="form-control"
+                                formControlName="ndia" 
+                                #ndia
+                                id="ndia">
+                                <option *ngFor="let x of resultado" [value]="x.numero">
+                                    {{x.numero}}-{{x.dia | titlecase}}
+                                </option>
+                        </select>
+                    </div>
+                    <div>
+                        <small class="text-secondary">
+                            Seleccionar el número de máquinas a editar:
+                        </small>
+                        <input type="number" class="form-control"
+                               style="text-align: center;"
+                               formControlName="nmaquinas" 
+                               #nmaquinas
+                               id="nmaquinas">
+                    </div>
+                </div>
+                <div class="mt-2 mb-2" >
+                    <textarea class="form-control" 
+                              formControlName="observacion"
+                              #observacion
+                              id="observacion"
+                              rows="3"
+                              placeholder="observacion">
+                    </textarea>
+                </div>
+                <div class="d-flex justify-content-between mt-3" >
+                    <button mat-raised-button
+                            type="number" 
+                            (click)="sendCrono(1)"
+                            color="primary">
+                            <mat-icon>sync_alt</mat-icon> Actualizar datos
+                    </button>
+                    <!-- <button mat-raised-button
+                            type="number"
+                            (click)="sendCrono(2)"
+                            color="accent">
+                            <mat-icon>add</mat-icon> Generar a partir de estos datos
+                    </button> -->
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>

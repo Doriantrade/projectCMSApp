@@ -1,0 +1,92 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="mini-module-workarea p-4 w-100" style="height: 550px !important;">
+
+    <section class="head">
+        <h3 class="d-flex text-secondary"  >
+            <span > Asignar máquinas a este contrato </span>
+        </h3>
+    </section>    
+    
+    <hr style="border: solid 1px gray;" >
+
+    <section class="w-100 " > 
+        
+        <form [formGroup]="maquinaForm" class="mb-2 d-flex flex-column w-100 "
+              (ngSubmit)="onSubmit()" >
+              <div class="d-flex" >
+                    <div class="d-flex flex-column w-50 datamaq">
+                        <div class="col- p-2">
+                            <label for="codtipomaquina" class="form-label text-dark">
+                                Tipo de Maquinaria:<span class="text-danger">*</span>
+                            </label>
+                            <div class="d-flex" >
+                                <select class="inpForms form-select w-100 text-dark"
+                                        (change)="validate()" formControlName="codtipomaquina" 
+                                        #codtipomaquina id="codtipomaquina"
+                                        aria-label="">
+                                        <option *ngFor="let tipomaquina of tipoMaquinaLista"
+                                                [value]="tipomaquina.codigo">
+                                                {{tipomaquina.nombre | titlecase }} - {{tipomaquina.codigo}}
+                                        </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <label for="codtipomaquina" class="form-label text-dark">
+                                Cantidad:<span class="text-danger">*</span>
+                            </label>
+                            <input type="number" (keyup)="validate()" (change)="validate()" min="0" class="form-control" formControlName="cantidad" #cantidad id="cantidad">
+                        </div>
+                        <button *ngIf="pMod <= 3" mat-raised-button type="submit" color="primary" [disabled]="_dis_btn" >
+                            <mat-icon>add</mat-icon> Agregar
+                        </button>
+                    </div>
+                    <div class="w-50 datamaq">
+                        <div class="text-dark "> Maquinarias pre-agregadas para el contrato: </div>
+                        <ol class="text-dark p-0 mt-2" >
+                            <li *ngFor=" let lista of listMaquinasContratos; let i = index"
+                                class="d-flex justify-content-between p-2" style="border-bottom: solid 1px gray;" >
+                                <div class="d-flex justify-content-start align-items-center ">
+                                    <div class="del d-flex align-items-center " (click)="eliminarItem(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </div>
+                                    <strong>{{ lista.nombretipo }}</strong>
+                                </div> -
+                                <div> 
+                                    <small class="text-secondary" >
+                                        cantidad:  
+                                    </small>
+                                    <strong> {{lista.cantidad}} </strong>
+                                </div>
+                            </li>
+                        </ol>
+                        <div class="bg-dark text-warning d-flex p-2 rounded-pill justify-content-between align-items-center">
+                            <span>
+                                TOTAL:
+                            </span>
+                            <span class="d-flex align-items-center" >
+                                <mat-icon>point_of_sale</mat-icon> 
+                                <strong class="fs-4">
+                                    {{sumatoriaCantMaquinas}}
+                                </strong>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </form>
+
+    </section>
+    <section class="d-flex justify-content-end " >
+        <button type="button" mat-raised-button 
+                (click)="closeDialog()"
+                color="accent" class="d-flex align-items-center" >
+            <mat-icon>table</mat-icon> Agregar al contrato
+        </button>
+    </section>
+
+</div>

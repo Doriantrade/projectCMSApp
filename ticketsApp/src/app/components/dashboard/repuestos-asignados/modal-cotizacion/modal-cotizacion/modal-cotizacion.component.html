@@ -1,0 +1,45 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loaderReportes"></span>
+        <span style="color: white; font-weight: bold; margin-top: 10px;">{{ mensajeSpinner }}</span>
+    </div>
+</div>
+
+<div class="dash-modal d-flex flex-wrap">
+
+    <div class="p-3" id="area-rep">
+        <div id="cotizacion" style="padding: 25px !important; width: 1280px !important; "></div>
+    </div>
+
+    <div style="position: fixed; bottom: 10px; ">
+
+        <div class="d-flex p-2"
+            style="background-color: rgb(219, 231, 236); border-radius: 10px; border-top: solid 1px white; border-right: solid 1px white; box-shadow: 10px -10px 25px rgba(0, 0, 0, 0.3);">
+            <form [formGroup]="dataNameForm" (ngSubmit)="onSubmit()" *ngIf="show_form">
+                <div class="m-1 d-flex align-items-center text-primary">
+                    <mat-icon>info</mat-icon> &nbsp; Edición de la cabecera para la cotización.
+                </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+                    <div class="m-1 shadow-sm">
+                        <input class="form-control form-control-sm" placeholder="Título" formControlName="tituloPres"
+                            #tituloPres (keyup)="onSubmit()" id="tituloPres">
+                    </div>
+                    <div class="m-1 shadow-sm">
+                        <input class="form-control form-control-sm" placeholder="REPRESENTANTE LEGAL"
+                            formControlName="repLegal" #repLegal (keyup)="onSubmit()" id="repLegal">
+                    </div>
+                    <div class="m-1 shadow-sm">
+                        <input class="form-control form-control-sm" placeholder="DIRIGIDO A..."
+                            formControlName="dirigido" #dirigido (keyup)="onSubmit()" id="dirigido">
+                    </div>
+                </div>
+            </form>
+            <div class="p-2 d-flex justify-content-end">
+                <button class="btn btn-warning d-flex align-items-center" type="button" (click)="descargarPDF()">
+                    <mat-icon>download</mat-icon> &nbsp; Descargar PDF
+                </button>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,67 @@
+.tipomaquina {
+    padding: 10px;
+    background-color: whitesmoke;
+    border-bottom: solid 1px gray;
+    list-style: none;
+    transition: ease all 2s;
+}
+
+.tipomaquina:hover {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: rgb(183, 223, 171);
+    border-radius: 5px;
+}
+
+.tipomaquina.active {
+    background-color: #95a3c7;
+    color: white;   
+}
+
+.marcamaquina {
+    padding: 10px;
+    background-color: whitesmoke;
+    border-bottom: solid 1px gray;
+    list-style: none;
+    transition: ease all 2s;
+}
+
+.marcamaquina:hover{
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: rgb(183, 223, 171);
+    border-radius: 5px;
+}
+
+.marcamaquina.active2 {
+    background-color: #95a3c7;
+    color: white;
+}
+
+.modelomaquina {
+    padding: 10px;
+    background-color: whitesmoke;
+    border-bottom: solid 1px gray;
+    list-style: none;
+    transition: ease all 2s;
+}
+
+.modelomaquina:hover {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: rgb(183, 223, 171);
+    border-radius: 5px;
+}
+
+.modelomaquina.active1 {
+    background-color: #95a3c7;
+    color: white;
+}
+
+.imagen {
+    width: 400px;
+    height: 50vh;
+    background-color: gray;
+    border: solid 5px whitesmoke;
+}
+

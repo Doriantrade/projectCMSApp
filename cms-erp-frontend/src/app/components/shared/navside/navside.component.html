@@ -1,0 +1,64 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="nav-side" [ngStyle]="{'width': _width_navside}" >
+
+    <section class="headNavSide d-flex align-items-center p-2 ">
+        <!-- Módulos del {{_tipo_persona}} -->
+        <div class="imagen" *ngIf="navsideState === 'open'">
+            <div class="imgTest rounded-2" [ngStyle]="{'background-image': 'url('+_IMGE+')'}" ></div>
+        </div>
+
+        <div class=" p-2 " *ngIf="navsideState === 'open'">
+            <div class="text-light">
+                <span *ngIf="_user" > 
+                    Bienvenido <span class="text-warning" > {{_username}} </span>
+                </span>
+            </div>
+            <div (click)="closeSession()"  *ngIf="_user"
+                 class="cerrar btn btn-outline-warning d-flex mt-2 align-items-center">
+                <mat-icon>close</mat-icon> Cerrar mi sesión
+            </div>
+        </div>
+    </section>
+    <mat-divider></mat-divider>
+    <div class="bodynavSide mt-2 p-1">
+        <ng-container *ngFor="let grupo of modulosAgrupados">
+            <!-- Group Header -->
+            <div *ngIf="navsideState === 'open'" class="grupo-header text-white px-0 mt-3 mb-1 d-flex align-items-center" style="font-size: 0.80rem; letter-spacing: 1px;">
+                <mat-icon style="font-size: 18px; width: 18px; height: 18px; margin-right: 8px;">{{ grupo.groupIcon }}</mat-icon>
+                {{ grupo.groupName | uppercase }}
+            </div>
+            
+            <div *ngFor="let modulos of grupo.modulos"
+                 class="nav w-100 mt-1 p-2"
+                 [matTooltip]="modulos.moduleName"
+                 matTooltipPosition="after"
+                 [ngStyle]="{'width': _width, 'border-right': 'solid 4px ' + modulos.color}" (click)="botonClick(modulos);">
+                <span class=" module d-flex justify-content-start align-items-center"    >
+                    <mat-icon [ngStyle]="{'font-size': _fontSize}" >
+                        {{modulos.icon}}
+                    </mat-icon>
+                    <span *ngIf="moduleName" class="ms-2">
+                        {{modulos.moduleName}}             
+                    </span>
+                </span>
+            </div>
+        </ng-container>
+        <hr>
+        <div  class="w-100 bg-dark text-light rounded-2 d-flex justify-content-center mt-2 p-2">
+            Versión V.1.0.8 - BETA
+        </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <div class="btnsplit d-flex align-items-center justify-content-center"
+         (click)="constrolNavside()"
+         (dblclick)="hideNavsideCompletely()" id="btnsplit" >
+        <mat-icon>{{_icon}}</mat-icon>
+    </div>
+</div>
+
+

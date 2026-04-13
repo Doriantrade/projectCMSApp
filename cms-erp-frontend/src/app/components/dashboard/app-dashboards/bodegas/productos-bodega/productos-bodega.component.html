@@ -1,0 +1,369 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="d-flex" >
+<div class="w-50 p-2" *ngIf="_boxa">
+<div class="w-100 p-3 rounded-2" 
+     style="background-color: rgba(223, 233, 244, 0.797);" > 
+    <div class="fs-3 d-flex align-items-center ">
+        <mat-icon>conveyor_belt</mat-icon> Productos creados
+    </div>
+    <span class="text-secondary" > {{ detalle }} </span>
+</div>
+<div class="contain-bodegas" >
+    <div class="m-2 bg-secondary text-light p-2 rounded-pill 
+                d-flex justify-content-between align-items-center">
+       <span>
+            Maquinarias
+            <strong class="text-warning">
+                ({{maquinariaLista.length}})
+            </strong>
+       </span>
+       <div class="d-flex">
+        <span class="spanbtn" (click)="selectTypeVieew(1)" >
+            <mat-icon>view_list</mat-icon>
+        </span>
+        <span class="spanbtn" (click)="selectTypeVieew(0)">
+            <mat-icon>view_sidebar</mat-icon>
+        </span>
+       </div>
+    </div>
+    
+    <section class="filtros mt-2 mb-2">
+        <div class="mb-2 d-flex">
+            <input class=" w-100 form-control rounded-pill"
+                   fxFlex="auto" type="text"
+                   [(ngModel)]="searchMTerm"
+                   (keyup)="filterMaquinarias()"
+                   #input placeholder="Búsqueda de maquinarias...">
+        </div>
+    </section>
+    <ul *ngIf="_show_img">
+        <li *ngFor="let maquinaria of maquinariaLista" class="m-3" style="list-style: none;">
+
+            <div class="producto shadow rounded-2 p-3 d-flex " >
+                <div>
+                <label for="fileUp" id="imageUp" class="d-flex justify-content-center">
+                    <div class="imagen-container shadow" [ngStyle]="{'background-image': 'url('+maquinaria.imagen+')', 'background-size': '100% 100%'}"></div>
+                </label>
+                </div>
+                <div class="p-3">
+                <div class="d-flex flex-column ">
+                    <small>Nombre:</small>
+                    <span class="fs-5 text-primary"> {{maquinaria.nombremaquina}} </span>
+                </div>
+                <div class="d-flex">
+                    <div class="d-flex flex-column p-2 ">
+                        <div class="d-flex flex-column ">
+                            <small>Tipo de Maquina:</small>
+                            <span class="text-secondary"> {{maquinaria.nombretipomaquina}} </span>
+                        </div>
+                        <div class="d-flex flex-column ">
+                            <small>Marca:</small>
+                            <span class="text-secondary"> {{maquinaria.nombremarca}} </span>
+                        </div>
+                        <div class="d-flex flex-column ">
+                            <small>Modelo:</small>
+                            <span class="text-secondary"> {{maquinaria.nombremodelo}} </span>
+                        </div>                    
+                        <div class="d-flex flex-column ">
+                            <small>Contador:</small>
+                            <span class="text-secondary"> {{maquinaria.contador}} </span>
+                        </div>
+                    </div> 
+                    <div class="d-flex flex-column p-2">
+                        <div class="d-flex flex-column ">
+                            <small>N. Serie:</small>
+                            <span class="text-secondary"> {{maquinaria.nserie}} </span>
+                        </div>
+                        <div class="d-flex flex-column ">
+                            <small>N. Inventario:</small>
+                            <span class="text-secondary"> {{maquinaria.ninventario}} </span>
+                        </div>
+                        <div class="d-flex flex-column ">
+                            <small>Codigo B.P.:</small>
+                            <span class="text-secondary"> {{maquinaria.codigobp}} </span>
+                        </div>
+                    </div>
+                </div>
+                <div>              
+
+                </div>
+                <button mat-raised-button  color="primary" [disabled]="_btn_add" (click)="guardarAsignacion(maquinaria)" class="d-flex align-items-center " >
+                    <span>Añadir item a bodega</span> <mat-icon> chevron_right </mat-icon>
+                </button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="table table-responsive" *ngIf="_show_table">
+
+        <table class="table table-primary table-hover table-striped w-100"  >
+            <thead>
+                <th>T. Maquina</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Contador In,</th>
+                <th>Contador Fin,</th>
+                <th>N. Serie</th>
+            <th>N. Inv</th>
+            <th>C.B.P.</th>
+        </thead>
+        <tbody>
+            <tr style="cursor: pointer;" *ngFor="let maquinaria of maquinariaLista" (click)="guardarAsignacion(maquinaria)">
+                <td>{{maquinaria.nombretipomaquina}}</td>
+                <td>{{maquinaria.nombremarca}}</td>
+                <td>{{maquinaria.nombremodelo}}</td>
+                <td>{{maquinaria.contadorinicial}}</td>
+                <td>{{maquinaria.contadorfinal}}</td>
+                <td>{{maquinaria.nserie}}</td>
+                <td>{{maquinaria.ninventario}}</td>
+                <td>{{maquinaria.codigobp}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+</div>
+<div [class]="_width_boxb +' p-2 h-100 '" style="transition: ease all 0.5s;" >
+
+<div class="w-100 p-3 rounded-2" 
+     style="background-color: rgba(223, 233, 244, 0.797);" > 
+    <div class="fs-3 d-flex align-items-center ">
+        <mat-icon>warehouse</mat-icon> Bodegas creadas
+    </div>
+    <section class="filtros mt-2 mb-2" *ngIf="_img_bodegas" >
+        <!-- <input type="text" class="form-control" > -->
+        <small class="text-secondary">
+            Cantidad de bodegas registradas 
+            <strong class="text-primary">
+               ( {{filteredBodegas.length}} )
+            </strong>
+        </small>
+        <div class="mb-2 d-flex">
+          <input class=" w-100 form-control rounded-pill"
+                 fxFlex="auto" type="text"
+                 [(ngModel)]="searchTerm"
+                 (keyup)="filterBodegas()" 
+                 #input placeholder="Búsqueda de bodegas registradas....">
+        </div>        
+
+    </section>
+    <section class="filtros mt-2 mb-2" *ngIf="_view_palets">
+        
+        <small class="text-secondary">
+            Cantidad de maquinarias registradas a esta bodega
+            <strong class="text-primary">
+               ( {{listaMaquinaBodegas.length}} )
+            </strong>
+        </small>
+        <div class="mb-2 d-flex">
+            <input class="w-100 form-control rounded-pill"
+                   fxFlex="auto" type="text"
+                   (keyup)="filterMaquinariasBodegas(input.value)"
+                   #input placeholder="Búsqueda de maquinarias registradas en esta bodega...">
+          </div>
+          
+          
+    </section>
+
+    <hr>    
+    
+    <div class="contain-bodegas" >
+        <form [formGroup]="maquinabodegaForm" class="mb-2" (ngSubmit)="onSubmit()"  *ngIf="_img_bodegas">
+            <div class="mb-3 d-flex justify-content-lg-around align-items-end flex-wrap">                
+                <div class="bodegas" *ngFor="let bodegas of filteredBodegas; let i = index" [id]="'contain'+bodegas.id"    >
+                    <label [for]="bodegas.id" style="cursor: pointer;" (dblclick)="obtenerItems()" >
+                        <div class="title-bodega d-flex justify-content-center ">
+                          <input style="position: absolute; top: 8px; left: 8px;"
+                                class="form-check-input" type="radio" (change)="validationBodehaExist()"
+                                 name="nombre" [id]="bodegas.id"
+                                 [value]="bodegas" formControlName="nombre" 
+                                 #nombre id="nombre">
+                                 <span style="text-align: center;" >
+                                   {{bodegas.nombrebodega | uppercase}} - {{bodegas.cantidadItems}}
+                                 </span>
+                        </div>                      
+                        <img [src]="bodegas.url" width="100%">                       
+                    </label>
+                </div>
+            </div>
+        </form>
+        <div class="d-flex">
+        <div class="details-palets animate__animated animate__fadeInleft " *ngIf="_view_details_palets">
+            <div *ngFor="let maquina of listMaquinaUnit" >
+                <div>
+                    <label for="fileUp" id="imageUp" style="cursor: none !important;" class="d-flex justify-content-center">
+                        <div class="imagen-container shadow" style="cursor: none !important;" [ngStyle]="{'background-image': 'url('+maquina.imagen+')', 'background-size': '100% 100%'}"></div>
+                    </label>
+                </div>                
+                <div class="textdetail d-flex flex-column" >
+                    <small>Nombre:</small><span>{{maquina.nombremaquina}}</span>
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>Marca:</small><span>{{maquina.nombremarca}}</span>
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>Modelo:</small><span>{{maquina.nombremodelo}}</span>
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>N. Serie:</small><span>{{maquina.nserie}}</span>
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>Contador Inicial:</small><span>{{maquina.contadorinicial}}</span>  
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>Contador Final:</small><span>{{maquina.contadorfinal}}</span>
+                </div>
+                <div class="textdetail  w-100 d-flex justify-content-between">
+                    <small>Fecha de Ingreso:</small>
+                    <span>{{maquina.feccrea | date: 'dd-MM-yyyy'}}</span>
+                </div>
+                <div class="" >
+                    <small>Observación:</small>
+                      
+                    <span>{{maquina.observacion}}</span>  
+                </div>
+                <div class="mt-4">
+                    <button mat-raised-button color="warn" class="w-100" (click)="verDetallePalets(maquina, 2)">
+                        <mat-icon>visibility_off</mat-icon>Cerrar detalle
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column w-100" >
+            <div *ngIf="_view_palets" class="animate__animated animate__fadeInLeft d-flex  justify-content-between " >
+                <strong> Has entrado a la bodega <span class="text-primary" > {{bodegaselect | uppercase}} </span></strong>
+                <div>
+                    <button mat-raised-button color="warn" [disabled]="_dis_button_transfer" (click)="addAllPretrenasfer()">
+                        <mat-icon>calendar_view_month</mat-icon> Añadir todo a Pre-transferencia
+                    </button>
+                    <button mat-raised-button color="primary"  (click)="modoTransferencia()"  >
+                        <mat-icon [matBadge]="itemsBodegaTransferencia.length" matBadgePosition="after" matBadgeColor="warn" > pallet </mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="d-flex w-100" >
+                <div class="cajas-contenido w-100"   *ngIf="_view_palets">
+                    
+                        <div class="p-2 m-1  cajas animate__animated animate__fadeInUp"
+                             [ngStyle]="{'border': _border_cajas}" 
+                             *ngFor="let item of listaMaquinaBodegas; let i = index"
+                             (contextmenu)="openMenu($event, item)"
+                             (click)="ProcesoTransdferenciaBod(item.codmaquinaria, 1)"
+                             >
+                                <div class="notebox d-flex flex-column"  >
+                                        <small class="text-secondary">Nombre: </small>
+                                          
+                                        <span class="text-primary">  {{item.nombremaquina}}</span>
+                                          
+                                        <small class="text-secondary">N.Serie: </small>
+                                          
+                                        <span class="text-primary">{{item.nserie}}</span>
+                                        <div class="d-flex justify-content-between " style="font-size: 7pt;">
+                                            <small class="text-secondary">Marca: </small>                                            
+                                            <span class="text-primary">{{item.nombremarca}}</span>
+                                            <small class="text-secondary">Modelo: </small>                                            
+                                            <span class="text-primary">{{item.nombremodelo}}</span>
+                                        </div>
+                                          
+                                </div>
+
+                                <mat-menu-trigger #myTrigger="matMenuTrigger" [matMenuTriggerFor]="myMenu" *ngIf="item.menuAbierto"></mat-menu-trigger>
+                                
+                                <mat-menu #myMenu="matMenu">
+                                    <button mat-menu-item (click)="verDetallePalets( item, 1)" >
+                                        <mat-icon>visibility</mat-icon>Ver Detalle
+                                    </button>
+                                    <button mat-menu-item (click)="eliminarItemBodega(item)">
+                                        <mat-icon>turn_slight_left</mat-icon>Dejar fuera
+                                    </button>
+                                    <button mat-menu-item color="warn" (click)="modoTransferencia()" >
+                                        <mat-icon>alt_route</mat-icon>Transferir
+                                    </button>
+                                </mat-menu>                                
+                        </div>
+                        
+                </div>
+                
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class=" transfer-mod p-4 animate__animated animate__fadeInRight " *ngIf="_show_transfer" >    
+    
+    <form [formGroup]="bodegasFormTransfer" class="w-100">
+        <div class="mb-3 col-3 w-100 ">
+            <label for="bodegasalida" class="form-label text-secondary">
+                <mat-icon>call_split</mat-icon>  Bodega de salida:
+            </label>
+            <input type="text" class="form-control w-100 text-primary " readonly
+            formControlName="bodegasalida" #bodegasalida id="bodegasalida">
+        </div>
+        <div class="mb-3 col-3 w-100 ">
+            <label for="bodegaentrada" class="form-label text-secondary">
+               <!-- <mat-icon>reply</mat-icon> -->
+                Escoger bodega de entrada:
+            </label>
+            <select class="inpForms form-select w-100"
+                    formControlName="bodegaentrada"
+                    #bodegaentrada id="bodegaentrada"
+                    (change)="validationTransfrBod()"
+                    aria-label="">
+                    <option *ngFor="let bodega of filteredBodegas"
+                            [value]="bodega.id">
+                            {{bodega.nombrebodega | titlecase }}
+                    </option>
+            </select>
+        </div>
+        <div class="listatransfer w-100" >
+            <div class="listatransfer w-100 bg-primary text-light p-2 rounded-1" >
+                En pre-transferencia tienes
+                <span class="text-warning">
+                    <strong> ({{itemsBodegaTransferencia.length}}) </strong>
+                </span>
+                producto(s) por transferir.
+            </div>
+            <div class="mt-2 mb-2 d-flex">
+                <input class="w-100 form-control rounded-pill"
+                       fxFlex="auto" type="text"
+                       formControlName="pretransferencia"
+                       #pretransferencia id="pretransferencia"
+                       (keyup)="filterMaquinariasPreransfer()"
+                       placeholder="Búsqueda de maquinarias en pre-transferencia...">
+            </div>
+        <div class="lista-productos" >
+            <ol class="p-0 mt-2">
+                <li style="border-bottom: solid 1px gray;" class="p-2 d-flex align-items-center" *ngFor="let itemtransfer of itemsBodegaTransferencia">
+                    <span class="text-danger" style="cursor: pointer;" (click)="ProcesoTransdferenciaBod (itemtransfer.codmaquinaria,0)" >
+                        <mat-icon>cancel</mat-icon></span>
+                    <span>
+                        {{itemtransfer.nombremaquina}} 
+                          
+                        <small class="text-secondary" >{{itemtransfer.nserie}}</small>
+                    </span>
+                </li>
+            </ol>
+        </div>
+        </div>
+        <div class="d-flex w-100">
+            <button mat-raised-button class="w-25" color="warn" (click)="closeTransfer()">
+                <mat-icon>cancel</mat-icon>
+            </button>
+            <button mat-raised-button color="primary"
+                    (click)="ProcesoTransdferenciaBod ('MAQUINA',2)"
+                    class="w-75" [disabled]="_dis_button_transfer">
+                    <mat-icon>local_shipping</mat-icon>
+                    Transferir
+            </button>
+        </div>
+
+    </form>
+</div>
+</div>
+

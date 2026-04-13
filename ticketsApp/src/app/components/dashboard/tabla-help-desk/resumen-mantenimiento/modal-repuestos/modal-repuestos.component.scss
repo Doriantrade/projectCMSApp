@@ -1,0 +1,28 @@
+.tabla {
+  margin-top: 10px;
+  height: 60vh;
+  overflow-y: auto;
+}
+.bordeTabla {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: auto;
+}
+.tabla thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: rgb(17, 107, 180);
+  color: white;
+}
+
+.page-link {
+  cursor: pointer;
+  user-select: none;
+}
+
+.page-item.disabled .page-link {
+  pointer-events: none;
+  opacity: 0.6;
+}

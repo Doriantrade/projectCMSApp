@@ -1,0 +1,59 @@
+<div style="background-color: whitesmoke; height: 100vh; width: 100%; border-radius: 5px;" class="p-3">
+    <div class="text-secondary d-flex align-items-center fs-4">
+        <mat-icon>checklist</mat-icon>  &nbsp; <span> Items a dar de baja: <strong class="text-danger"> ( {{data.length}} ) </strong> </span>
+    </div>
+    <hr>
+    <div class="table-responsive">
+        <table class="table table-warning table-bordered table-striped border-primary">
+            <thead class="bg-danger text-light">
+                <th>#</th>
+                <th>Código repuesto</th>
+                <th>Nombre</th>
+                <th>cantidad</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let downList of data; let i = index;">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ downList.codRep }}</td>
+                    <td>{{ downList.name }}</td>
+                    <td>{{ downList.cantidad }}</td>
+                    <td><mat-icon>{{ downList.icon }}</mat-icon></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-100 mb-2">
+        <form [formGroup]="modalForm" class="w-100">
+            <div class="d-flex w-100 flex-column">
+                <label>Observación:</label>
+                <textarea rows="4" class="form-control-lg" placeholder="...Ingrese una observación..."
+    formControlName="observacion" required></textarea>
+<small class="text-danger" *ngIf="f['observacion'].touched && f['observacion'].errors">
+    La observación es requerida (mínimo 5 caracteres)
+</small>
+                <!-- Mensaje de validación -->
+                <small class="text-danger" *ngIf="modalForm.get('observacion')?.invalid && modalForm.get('observacion')?.touched">
+                    La observación es requerida
+                </small>
+            </div>
+        </form>
+    </div>
+
+    <div class="w-100 d-flex justify-content-end">
+        <button class="btn btn-outline-dark d-flex align-items-center" (click)="closeDialog( 0 )">
+            <mat-icon>cancel</mat-icon>
+            &nbsp;
+            <span>cancelar</span>
+        </button>
+        &nbsp;
+        <button class="btn btn-outline-danger d-flex align-items-center" 
+        (click)="eliminarCabCotiza()"
+        [disabled]="modalForm.invalid">
+        <mat-icon>delete_sweep</mat-icon>
+        &nbsp;
+        <span>Dar de baja</span>
+    </button>
+    </div>
+</div>

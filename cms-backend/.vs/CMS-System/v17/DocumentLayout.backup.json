@@ -1,0 +1,258 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\macmobilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\macmobilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\modulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\modulocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\models\\cmsdb2024context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\models\\cmsdb2024context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\models\\macmobiluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\models\\macmobiluser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\usuarioportalticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\usuarioportalticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\asignacionmobiltecnicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\asignacionmobiltecnicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\models\\asignacionmobiltecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\models\\asignacionmobiltecnico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\models\\settingsgeolocalizacionmobil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\models\\settingsgeolocalizacionmobil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\geolocalizaciondatahub\\geolocalizaciondatahub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\geolocalizaciondatahub\\geolocalizaciondatahub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|c:\\users\\usuario\\desktop\\app-mobil-cms-2025\\cms-proyect-back1\\cms-system\\cms-system\\controllers\\geolocalizaciondatahub\\dto\\geolocalizaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{91DCD415-F772-4C17-816D-F5FFC885FC4A}|CMS-System\\CMS-System.csproj|solutionrelative:cms-system\\controllers\\geolocalizaciondatahub\\dto\\geolocalizaciondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 292,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModuloController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\ModuloController.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\ModuloController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\ModuloController.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\ModuloController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAuwEsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T20:53:23.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "cmsDb2024Context.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\cmsDb2024Context.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Models\\cmsDb2024Context.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\cmsDb2024Context.cs",
+              "RelativeToolTip": "CMS-System\\Models\\cmsDb2024Context.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T20:32:53.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\UserController.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\UserController.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwEUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-06T19:51:52.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\appsettings.json",
+              "RelativeDocumentMoniker": "CMS-System\\appsettings.json",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\appsettings.json",
+              "RelativeToolTip": "CMS-System\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-06T19:51:19.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MacMobilUser.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\MacMobilUser.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Models\\MacMobilUser.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\MacMobilUser.cs",
+              "RelativeToolTip": "CMS-System\\Models\\MacMobilUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-27T16:53:13.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Program.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Program.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Program.cs",
+              "RelativeToolTip": "CMS-System\\Program.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAD0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T14:22:25.107Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MacMobileController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\MacMobileController.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\MacMobileController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\MacMobileController.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\MacMobileController.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAEwHcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-19T20:47:12.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AsignacionMobilTecnico.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\AsignacionMobilTecnico.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Models\\AsignacionMobilTecnico.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\AsignacionMobilTecnico.cs",
+              "RelativeToolTip": "CMS-System\\Models\\AsignacionMobilTecnico.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T14:38:43.1Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AsignacionMobilTecnicoController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\AsignacionMobilTecnicoController.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\AsignacionMobilTecnicoController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\AsignacionMobilTecnicoController.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\AsignacionMobilTecnicoController.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwEgAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-02T20:51:05.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "CMS-System\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\WeatherForecast.cs",
+              "RelativeToolTip": "CMS-System\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T18:47:14.745Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SettingsGeoLocalizacionMobil.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\SettingsGeoLocalizacionMobil.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Models\\SettingsGeoLocalizacionMobil.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Models\\SettingsGeoLocalizacionMobil.cs",
+              "RelativeToolTip": "CMS-System\\Models\\SettingsGeoLocalizacionMobil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-03T14:59:40.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GeolocalizacionDto.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\GeolocalizacionDataHub\\dto\\GeolocalizacionDto.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\GeolocalizacionDataHub\\dto\\GeolocalizacionDto.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\GeolocalizacionDataHub\\dto\\GeolocalizacionDto.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\GeolocalizacionDataHub\\dto\\GeolocalizacionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T14:27:21.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UsuarioPortalTicketController.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\UsuarioPortalTicketController.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\UsuarioPortalTicketController.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\UsuarioPortalTicketController.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\UsuarioPortalTicketController.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwA4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T15:01:21.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GeolocalizacionDataHub.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\GeolocalizacionDataHub\\GeolocalizacionDataHub.cs",
+              "RelativeDocumentMoniker": "CMS-System\\Controllers\\GeolocalizacionDataHub\\GeolocalizacionDataHub.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\app-mobil-cms-2025\\CMS-Proyect-Back1\\CMS-System\\CMS-System\\Controllers\\GeolocalizacionDataHub\\GeolocalizacionDataHub.cs",
+              "RelativeToolTip": "CMS-System\\Controllers\\GeolocalizacionDataHub\\GeolocalizacionDataHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAUAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-24T14:25:05.598Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

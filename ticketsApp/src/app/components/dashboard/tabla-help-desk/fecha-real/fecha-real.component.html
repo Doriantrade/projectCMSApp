@@ -1,0 +1,135 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loader"></span>
+    </div>
+</div>
+
+
+<form [formGroup]="dateTimeRegisterForm" (ngSubmit)="onSubmit()" class="d-flex flex-column w-100">
+
+    <div class="d-flex w-100">
+        <div class="d-flex">
+            <label for="fecreaRealIni" 
+                   style="width: 280px !important;"
+                   class="form-label text-secondary d-flex align-items-center">
+                   <mat-icon>calendar_month</mat-icon> <span> Fecha inicial: </span>
+            </label>
+            <input type="date"
+                   formControlName="fecreaRealIni"
+                   #fecreaRealIni
+                   (change)="validateFecha()"
+                   (keyup)="validateFecha()"
+                   id="fecreaRealIni"
+                   class="form-control form-control-sm">
+        </div>
+        &nbsp;
+        &nbsp;
+        <div class="d-flex">
+            <label for="horaInicialReal" style="width: 280px !important;"
+                   class="form-label text-secondary d-flex align-items-center">
+                <mat-icon>schedule</mat-icon> <span> Hora inicial: </span>
+            </label>
+            <input type="time" 
+                   formControlName="horaInicialReal"
+                   #horaInicialReal id="horaInicialReal"
+                   class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="mt-3 d-flex w-100">
+        <div class="d-flex">
+            <label for="fecreaRealFin" style="width: 280px !important;"
+                   class="form-label text-secondary d-flex align-items-center">
+                   <mat-icon>calendar_month</mat-icon>
+                   <span> Fecha final: </span>
+            </label>
+            <input type="date"
+                   (change)="validateFecha()"
+                   (keyup)="validateFecha()"
+                   formControlName="fecreaRealFin"
+                   #fecreaRealFin
+                   id="fecreaRealFin"
+                   class="form-control form-control-sm">
+        </div>
+        &nbsp;        &nbsp;
+        <div class="d-flex">
+            <label for="horaFinalReal" style="width: 280px !important;" class="form-label text-secondary d-flex align-items-center">
+                <mat-icon>schedule</mat-icon>
+                <span> Hora final: </span>
+            </label>
+            <input type="time"
+                   formControlName="horaFinalReal"
+                   #horaFinalReal
+                   id="horaFinalReal"
+                   class="form-control form-control-sm">
+        </div>
+    </div>
+    <div class="d-flex mt-2">
+        <textarea class="form-control"
+                  formControlName="observacion"
+                  #observacion
+                  rows="2"
+                  id="observacion"
+                  placeholder="Observación de mantenimiento...">
+        </textarea>
+    </div>
+    <div class="table-responsive-lg w-100">
+        <div class="bg-warning p-2 mt-2 rounded-top-2 w-25" > 
+            Técnicos asignados al mantenimiento.
+        </div>
+        <table class="table table-warning table-bordered shadow-sm align-middle table-hover shadow">
+            <thead class="bg-warning">
+                <th></th>
+                <th></th>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Teléfono</th>
+                <th>Provincia</th>
+            </thead>
+            <tbody>
+                <tr *ngIf="listaTecnicosRecibidos.length == 0" >
+                    <small class="text-secondary p-2" style="background-color: transparent !important;" > No hay técnicos registrados... </small>
+                </tr>
+                <tr *ngFor="let tecnicos of listaTecnicosRecibidos; let i = index;">
+                    <td (click)="deleteTecnicoAsign(tecnicos, i)" style="cursor: pointer;" >
+                        <div class="d-flex justify-content-center align-items-center">
+                            <mat-icon>delete</mat-icon>
+                        </div>
+                    </td>
+                    <td>
+                        <img [src]="tecnicos.imagenPerfil || '../../../../assets/user-default/defect-user.png'" width="40px" alt="Sin imagen">
+                    </td>
+                    <td>
+                        {{ tecnicos.cedula }}
+                    </td>
+                    <td>
+                        {{ tecnicos.nombre }} {{ tecnicos.apellido }}
+                    </td>
+                    <td>
+                        {{ tecnicos.telf }}
+                    </td>
+                    <td>
+                        {{ tecnicos.nombreProvincia }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-settings mt-3 w-100 d-flex justify-content-between w-100">
+        <button class="btn btn-outline-dark d-flex align-items-center" type="button" (click)="openDataTecnicosDialog()">
+            <mat-icon>
+                person_add
+            </mat-icon>
+            <span> Agregar técnico </span>
+        </button>
+        <button class="btn btn-outline-primary d-flex align-items-center">
+            <mat-icon>
+                event_available
+            </mat-icon>
+            <span>
+                TERMINAR LA ASIGNACIÓN DEL TÉCNICO
+            </span>
+        </button>
+    </div>
+
+</form>
+

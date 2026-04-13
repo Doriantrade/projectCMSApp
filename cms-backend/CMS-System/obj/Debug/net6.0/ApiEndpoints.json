@@ -1,0 +1,1849 @@
+[
+  {
+    "ContainingType": "CMS_System.Controllers.fileController.AnyFilesController",
+    "Method": "DescargarArchivo",
+    "RelativePath": "api/AnyFiles/fysicfile/{nombreArchivo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nombreArchivo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsesorClienteController",
+    "Method": "guardarAsignacionAsesor",
+    "RelativePath": "api/Asesor/guardarAsignacionAsesor",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Asesorcliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionProvinciasController",
+    "Method": "eliminarTecnicoProvincia",
+    "RelativePath": "api/asignacionProvincias/eliminarTecnicoProvincia/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionProvinciasController",
+    "Method": "eliminarTecnicoProvinciaPorUsuario",
+    "RelativePath": "api/asignacionProvincias/eliminarTecnicoProvinciaPorUsuario/{codUser}/{codCia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codUser",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codCia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionProvinciasController",
+    "Method": "obtenerTecnicoProvincia",
+    "RelativePath": "api/asignacionProvincias/obtenerTecnicoProvincia/{ccuser}/{ccia}/{type}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ccuser",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "type",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionProvinciasController",
+    "Method": "saveAsignacion",
+    "RelativePath": "api/asignacionProvincias/saveAsignacion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Asignacionprovincias",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ProdBodAsigController",
+    "Method": "eliminarItemBodega",
+    "RelativePath": "api/AsignarProductoBodega/eliminarItemBodega/{codbod}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codbod",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ProdBodAsigController",
+    "Method": "guardarProductoBodega",
+    "RelativePath": "api/AsignarProductoBodega/guardarProductoBodega",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Prodbodegasigna",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ProdBodAsigController",
+    "Method": "obtenerItemsBodega",
+    "RelativePath": "api/AsignarProductoBodega/obtenerItemsBodega/{codbod}/{estado}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codbod",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estado",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AuditoriaApp.AuditAppController",
+    "Method": "GuardarConsumo",
+    "RelativePath": "api/AuditApp/GuardarConsumo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.AuditApp",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.BodegasController",
+    "Method": "EditarBodegas",
+    "RelativePath": "api/Bodegas/EditarBodegas/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Bodegas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.BodegasController",
+    "Method": "eliminarBodegas",
+    "RelativePath": "api/Bodegas/eliminarBodegas/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.BodegasController",
+    "Method": "guardarBodegas",
+    "RelativePath": "api/Bodegas/guardarBodegas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Bodegas",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.BodegasController",
+    "Method": "obtenerBodegas",
+    "RelativePath": "api/Bodegas/obtenerBodegas/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "EditarAgencia",
+    "RelativePath": "api/ClienteAgencia/EditarAgencia/{codagencia}/{ccia}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codagencia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Agencia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "EditarCliente",
+    "RelativePath": "api/ClienteAgencia/EditarCliente/{codcli}/{ccia}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcli",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "eliminarAgencia",
+    "RelativePath": "api/ClienteAgencia/eliminarAgencia/{codagencia}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codagencia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "eliminarClientes",
+    "RelativePath": "api/ClienteAgencia/eliminarClientes/{codcli}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcli",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "guardarAgencia",
+    "RelativePath": "api/ClienteAgencia/guardarAgencia",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Agencia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "guardarCliente",
+    "RelativePath": "api/ClienteAgencia/guardarCliente",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Cliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "obtenerAgencias",
+    "RelativePath": "api/ClienteAgencia/obtenerAgencias/{codcia}/{fil}/{prov}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "fil",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "prov",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "obtenerAgenciasMaquinarias",
+    "RelativePath": "api/ClienteAgencia/obtenerAgenciasMaquinarias/{ccli}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ccli",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ClientesAgenciasController",
+    "Method": "obtenerClientes",
+    "RelativePath": "api/ClienteAgencia/obtenerClientes/{ccia}/{tp}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tp",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ContratosController",
+    "Method": "GuardarContratos",
+    "RelativePath": "api/Contratos/GuardarContratos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Contrato",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ContratosController",
+    "Method": "obtenerContratos",
+    "RelativePath": "api/Contratos/obtenerContratos/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.cronograma_build.detalleCronogramaUnitController",
+    "Method": "DetalleUnitCrono",
+    "RelativePath": "api/CronoDetalleUnit/DetalleUnitCrono/{tipo}/{crono}/{mes}/{dia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tipo",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "crono",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "mes",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dia",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "CalculoAsignacionCronograma",
+    "RelativePath": "api/Cronograma/CalculoAsignacionCronograma/{codFecuency}/{codcrono}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codFecuency",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcrono",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "DeleteCronograma",
+    "RelativePath": "api/Cronograma/DeleteCronograma/{codcrono}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcrono",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "EditarCrono",
+    "RelativePath": "api/Cronograma/EditarCrono/{codcrono}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcrono",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Cronograma",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "GuardarCrono",
+    "RelativePath": "api/Cronograma/GuardarCrono",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Cronograma",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "ObtenerCronograma",
+    "RelativePath": "api/Cronograma/ObtenerCronograma/{codcia}/{an}/{me}/{loc}/{tp}/{userTecnic}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "an",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "me",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "loc",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tp",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "userTecnic",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.CronogramaController",
+    "Method": "ObtenerCronogramaMobilTecnico",
+    "RelativePath": "api/Cronograma/ObtenerCronogramaMobilTecnico/{ctecnic}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ctecnic",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.DataMasterController",
+    "Method": "GetDataMaster",
+    "RelativePath": "api/DataMaster/GetDataMaster/{mast}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "mast",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.DataMasterController",
+    "Method": "ObtenerDatamasterGrupo",
+    "RelativePath": "api/DataMaster/ObtenerDatamasterGrupo/{grupo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grupo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.DataMasterController",
+    "Method": "ObtenerDatamasterSubGrupos",
+    "RelativePath": "api/DataMaster/ObtenerDatamasterSubGrupos/{grupo}/{sgrupo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "grupo",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "sgrupo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.EmpresaController",
+    "Method": "obtenerEmpresa",
+    "RelativePath": "api/Empresa/obtenerEmpresa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.GarantiasController",
+    "Method": "EditarGarantia",
+    "RelativePath": "api/Garantias/EditarGarantia/{codgarantia}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codgarantia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Garantias",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.GarantiasController",
+    "Method": "GuardarGarantias",
+    "RelativePath": "api/Garantias/GuardarGarantias",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Garantias",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.GarantiasController",
+    "Method": "obtenerGarantias",
+    "RelativePath": "api/Garantias/obtenerGarantias/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "crearCarpeta",
+    "RelativePath": "api/Imagen/crearCarpeta/{nombre}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Archivo",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "nombre",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "EditarImagen",
+    "RelativePath": "api/Imagen/EditarImagen/{codbinding}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codbinding",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.ImgFile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "GetImageControl",
+    "RelativePath": "api/Imagen/GetImageControl/{route}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "route",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "GuardarImagenEntidad",
+    "RelativePath": "api/Imagen/GuardarImagenEntidad",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.ImgFile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "obtenerImagen",
+    "RelativePath": "api/Imagen/obtenerImagen/{cbinding}/{tp}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cbinding",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tp",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ImagenController",
+    "Method": "saveImagen",
+    "RelativePath": "api/Imagen/saveImagen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.ImgFile",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.LocalidadController",
+    "Method": "MainLocalidad",
+    "RelativePath": "api/localidad/MainLocalidad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.loginController",
+    "Method": "Login",
+    "RelativePath": "api/login/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userInfo",
+        "Type": "cmsDb2024_System.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MantenimientoController",
+    "Method": "eliminarMantenimiento",
+    "RelativePath": "api/Mantenimiento/eliminarMantenimiento/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MantenimientoController",
+    "Method": "guardarMantenimiento",
+    "RelativePath": "api/Mantenimiento/guardarMantenimiento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Mantemaqcro",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MantenimientoController",
+    "Method": "ObtenerMantenimientoCrono",
+    "RelativePath": "api/Mantenimiento/ObtenerMantenimientoCrono/{cagencia}/{m}/{a}/{l}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cagencia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "m",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "a",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "l",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionMaquinariaAgenciaController",
+    "Method": "elimianarAsignacionmaquinacliente",
+    "RelativePath": "api/MaquinaAgencia/elimianarAsignacionmaquinacliente/{cprod}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cprod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionMaquinariaAgenciaController",
+    "Method": "GuardarMaquinaAgencia",
+    "RelativePath": "api/MaquinaAgencia/GuardarMaquinaAgencia",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Asignacionmaquinacliente",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.AsignacionMaquinariaAgenciaController",
+    "Method": "obtenerAsignacionmaquinacliente",
+    "RelativePath": "api/MaquinaAgencia/obtenerAsignacionmaquinacliente/{cagencia}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cagencia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "EditarMaquinaria",
+    "RelativePath": "api/Maquinaria/EditarMaquinaria/{codmaquina}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codmaquina",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Maquinaria",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "eliminarMaquinaria",
+    "RelativePath": "api/Maquinaria/eliminarMaquinaria/{codmaquina}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codmaquina",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "GuardarImagenProductos",
+    "RelativePath": "api/Maquinaria/GuardarImagenProductos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CMS_System.Controllers.fileController.IMGProd",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "GuardarMaquinaria",
+    "RelativePath": "api/Maquinaria/GuardarMaquinaria",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Maquinaria",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "obtenerMaquinaria",
+    "RelativePath": "api/Maquinaria/obtenerMaquinaria/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "obtenerMaquinariaHistorico",
+    "RelativePath": "api/Maquinaria/obtenerMaquinariaHistorico/{codmaquina}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codmaquina",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "obtenerMaquinariaIMG",
+    "RelativePath": "api/Maquinaria/obtenerMaquinariaIMG",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "ObtenerMaquinasSinBodega",
+    "RelativePath": "api/Maquinaria/ObtenerMaquinasSinBodega/{codcia}/{option}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "option",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.MaquinariaController",
+    "Method": "ObtenerMaquinaUnit",
+    "RelativePath": "api/Maquinaria/ObtenerMaquinaUnit/{tpmaq}/{mar}/{mod}/{tip}/{codmaquina}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tpmaq",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "mar",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "mod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tip",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "codmaquina",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ModuloController",
+    "Method": "EditarPermisosModulos",
+    "RelativePath": "api/modulos/EditarPermisosModulos/{permmod}/{codmod}/{userCod}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "permmod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codmod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "userCod",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ModuloController",
+    "Method": "GetModulos",
+    "RelativePath": "api/modulos/GetModulos/{userCod}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCod",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ProdRepAsignaController",
+    "Method": "GuardarRepbodasigna",
+    "RelativePath": "api/Repbodasigna/GuardarRepbodasigna",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Repbodasigna",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "EditarMarcaRepuestos",
+    "RelativePath": "api/Repuestos/EditarMarcaRepuestos/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.MarcaRepuestos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "EditarRepuestos",
+    "RelativePath": "api/Repuestos/EditarRepuestos/{codrep}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codrep",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Repuestos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "DeleteMarcaRepuestos",
+    "RelativePath": "api/Repuestos/EliminarMarcaRepuestos/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "eliminarRepuestos",
+    "RelativePath": "api/Repuestos/eliminarRepuestos/{usc}/{codrep}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usc",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codrep",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "GuardarMarcaRepuestos",
+    "RelativePath": "api/Repuestos/GuardarMarcaRepuestos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.MarcaRepuestos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "guardarRepuestos",
+    "RelativePath": "api/Repuestos/guardarRepuestos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Repuestos",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "ObtenerMarcaRepuetos",
+    "RelativePath": "api/Repuestos/ObtenerMarcaRepuetos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "ObtenerModeloMarcaRepuetos",
+    "RelativePath": "api/Repuestos/ObtenerModeloMarcaRepuetos/{idMarcaRep}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idMarcaRep",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.RepuestosController",
+    "Method": "obtenerRepuestos",
+    "RelativePath": "api/Repuestos/obtenerRepuestos/{usc}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "usc",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "CliBodegAsign",
+    "RelativePath": "api/Transferencias/CliBodegAsign/{ccli}/{cmaq}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ccli",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "cmaq",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "guardarDetalleTransaciion",
+    "RelativePath": "api/Transferencias/guardarDetalleTransaciion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Entytrandet",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "invmov",
+    "RelativePath": "api/Transferencias/invmov",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "obtenerDetalleTrans",
+    "RelativePath": "api/Transferencias/obtenerDetalleTrans/{codcabe}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcabe",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "ProcesoTransdferenciaBod",
+    "RelativePath": "api/Transferencias/ProcesoTransdferenciaBod",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "CMS_System.Controllers.TransferenciasProd.Transferencia",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.TransferenciasProd.TransfereciasController",
+    "Method": "repoOrdenTransferProd",
+    "RelativePath": "api/Transferencias/repoOrdenTransferProd/{ccia}/{ccab}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccab",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "CrearCuentas",
+    "RelativePath": "api/User/CrearCuentas/{userCod}/{ccia}/{tcuenta}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "tcuenta",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "CrearCuentasHelpDesk",
+    "RelativePath": "api/User/CrearCuentasHelpDesk/{codCliente}/{codCia}/{R}/{Nombre}/{Apellido}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codCliente",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codCia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "R",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Nombre",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "Apellido",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "EditarUsuario",
+    "RelativePath": "api/User/EditarUsuario/{coduser}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "coduser",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "eliminarUsuario",
+    "RelativePath": "api/User/eliminarUsuario/{userCod}/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCod",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "GetUser",
+    "RelativePath": "api/User/GetUser/{userCod}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userCod",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "guardarUsuario",
+    "RelativePath": "api/User/guardarUsuario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Usuario",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "ObtenerCuentaUsuario",
+    "RelativePath": "api/User/ObtenerCuentaUsuario/{coduser}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "coduser",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "ObtenerTecniCrono",
+    "RelativePath": "api/User/ObtenerTecniCrono/{idlocalidad}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idlocalidad",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.UserController",
+    "Method": "ObtenerUsuariosExec",
+    "RelativePath": "api/User/ObtenerUsuariosExec/{codcia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.VersionamientoController",
+    "Method": "obtenerVersionamiento",
+    "RelativePath": "api/versionamiento/obtenerVersionamiento/{version}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "version",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.VersionamientoController",
+    "Method": "obtenerVersionCMS",
+    "RelativePath": "api/versionamiento/obtenerVersionCMS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "ActualizarAgenciaEstado",
+    "RelativePath": "api/Zonificacion/ActualizarAgenciaEstado/{estado}/{cAgencia}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estado",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "cAgencia",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "eliminarDataCardinal",
+    "RelativePath": "api/Zonificacion/eliminarDataCardinal/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "guardarZonificacion",
+    "RelativePath": "api/Zonificacion/guardarZonificacion",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "cmsDb2024_System.Models.Cardinal",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "ObtenerAgenciasGeneral",
+    "RelativePath": "api/Zonificacion/ObtenerAgenciasGeneral/{codcia}/{ccli}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codcia",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "ccli",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "ObtenerAgenciasLocalidad",
+    "RelativePath": "api/Zonificacion/ObtenerAgenciasLocalidad/{codlocal}/{codzone}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codlocal",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "codzone",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.ZonificacionController",
+    "Method": "ObtenerAgenciaZonificada",
+    "RelativePath": "api/Zonificacion/ObtenerAgenciaZonificada/{codzone}/{codcli}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codzone",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "codcli",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CMS_System.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[CMS_System.WeatherForecast, CMS-System, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

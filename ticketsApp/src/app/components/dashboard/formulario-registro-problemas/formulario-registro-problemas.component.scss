@@ -1,0 +1,74 @@
+.formulario {
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px;
+    height: 100%;
+    background: rgba(239, 239, 239, 0.9); // Fondo semitransparente
+    border-radius: 10px; // Bordes redondeados
+    padding: 20px; // Espaciado interno
+    backdrop-filter: blur(30px); // Desenfoque para efecto "glass"
+    -webkit-backdrop-filter: blur(30px); // Soporte para navegadores Webkit
+    border: 1px solid rgba(255, 255, 255, 0.3); // Borde semi-transparente
+    
+    // Opcional: Sombra sutil
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: groove 2px rgb(210, 210, 210);
+}
+
+.nav-side {
+    background-color: rgba(62, 62, 62, 0.877);
+    border-radius: 5px;
+    color: white;
+    padding: 5px;
+    box-shadow: 5px 5px 5px rgba(55, 55, 55, 0.21);
+    height: 75vh;
+    overflow-y: auto;
+    border: groove 2px rgb(174, 174, 174);
+}
+
+.upload-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .image-preview {
+    margin-top: 20px;
+  }
+  
+
+
+.btn-menu {
+    margin: 5px;
+    border-bottom: solid 1px gray;
+    cursor: pointer;
+    transition: ease all 1s;
+    
+    &:hover {
+        color: #444;
+        background-color: orange;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        box-shadow: 5px 5px 10px rgba(62, 62, 62, 0.877);
+    }
+
+    &.active {
+        color: #444;
+        background-color: orange;
+        border-bottom-right-radius: 15px;
+        border-top-right-radius: 15px;
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+        box-shadow: 5px 5px 10px rgba(62, 62, 62, 0.877);
+    }
+}
+
+
+li {
+    border-bottom: dashed 1px gray;
+}

@@ -1,0 +1,17 @@
+.imagen-container {
+
+    width: 230px;
+    height: 255px;
+    background-color: gray;
+    border-radius: 5px;
+    border: solid 5px white;
+    transition: ease all 1s;
+
+}
+
+
+.imagen-container:hover {
+    transition: ease all 1s;
+    background-color: rgb(59, 136, 110);
+    cursor: pointer;
+}

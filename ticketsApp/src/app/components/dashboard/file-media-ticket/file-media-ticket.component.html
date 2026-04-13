@@ -1,0 +1,178 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+  <div class="spinner-container">
+    <span class="loader"></span>
+  </div>
+</div>
+
+<form [formGroup]="fileMediaRegisterForm" class="d-flex flex-column w-100">
+  <div class="d-flex flex-column">
+    <div class="mb-3 p-2 rounded-2 shadow-sm d-flex justify-content-between align-items-center"
+      style="border: groove 2px white; background-color: rgb(227, 242, 217)">
+      <div class="w-50">
+        <label class="form-label d-flex justify-content-start align-content-center" for="fileMediaReporteTecnico">
+          <mat-icon>picture_as_pdf</mat-icon>&nbsp;<span>Reporte técnico</span>
+        </label>
+        <input type="file" *ngIf="show_file_form" (click)="processChoice('REPTECFILE')"
+          class="form-control form-control-sm" id="fileMediaReporteTecnico"
+          (change)="onFileSelectedReporteTecnico($event); processChoice('REPTECFILE')"
+          formControlName="fileMediaReporteTecnico" #fileMediaReporteTecnico />
+      </div>
+      <button *ngIf="show_file_form" class="btn btn-warning d-flex align-items-center"
+        (click)="submitFileReporteTecnico()">
+        <mat-icon>done</mat-icon>&nbsp;<span>Enviar</span>
+      </button>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap">
+      <div class="filexBox m-1 d-flex shadow-sm flex-column justify-content-center align-items-center position-relative"
+        *ngFor="let reporteTecnico of listaReporteTecnico; let i = index" [style]="'background: beige;'"
+        [matTooltip]="reporteTecnico.fileUrl">
+        <div style="position: absolute; margin-left: 75px; top: 0px">
+          <button mat-icon-button aria-label="Opciones de archivo" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="eliminarArchivoMedia(reporteTecnico.id, i, 'REPTEC')">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+            <button mat-menu-item (click)="actualizarEstadoArchivosMedia(reporteTecnico.id, 1)"
+              *ngIf="reporteTecnico.show_multiply_options">
+              <mat-icon>task</mat-icon>
+              <span>Aprobar reporte tecnico</span>
+            </button>
+
+            <button mat-menu-item (click)="descargarArchivoMediaRTecnico(reporteTecnico.fileUrl, 'ReporteTecnico')">
+              <mat-icon>download</mat-icon>
+              <span>Descargar {{ reporteTecnico.fileUrl }} </span>
+            </button>
+          </mat-menu>
+        </div>
+        <img [src]="reporteTecnico.typeFile" [matMenuTriggerFor]="menu" width="50px" />
+        <div>
+          {{ reporteTecnico.fileUrl }}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column" *ngIf="_cli_view">
+    <div class="mb-3 p-2 rounded-2 shadow-sm d-flex justify-content-between align-items-center"
+      style="border: groove 2px white; background-color: rgb(255, 252, 210)">
+      <div class="w-50">
+        <label for="fileMediaCotizacionRep" class="form-label d-flex justify-content-start align-content-center">
+          <mat-icon>picture_as_pdf</mat-icon>
+          &nbsp;
+          <span>Cotización de Repuestos</span>
+        </label>
+        <input type="file" class="form-control form-control-sm" id="fileMediaCotizacionRep"
+          (click)="processChoice('COTIZAFILE')" (change)="onFileSelectedReporteCotizaciones($event)"
+          formControlName="fileMediaCotizacionRep" #fileMediaCotizacionRep *ngIf="show_file_form" />
+      </div>
+      <button class="btn btn-warning d-flex align-items-center" (click)="submitFilereporteCotizaciones()"
+        *ngIf="show_file_form">
+        <mat-icon>done</mat-icon>&nbsp;<span>Enviar</span>
+      </button>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap">
+      <div class="filexBox m-1 d-flex shadow-sm flex-column justify-content-center align-items-center position-relative"
+        *ngFor="let reporteCotiz of listaReporteCotizacion; let i = index"
+        [style]="'background: ' + reporteCotiz.colorEstado + ';'" [matTooltip]="reporteCotiz.fileUrl">
+        <div style="position: absolute; margin-left: 75px; top: 0px">
+          <button mat-icon-button aria-label="Opciones de archivo" [matMenuTriggerFor]="menu"
+            (click)="processChoice('COTIZAFILE')">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="eliminarArchivoMedia(reporteCotiz.id, i, 'COTIZA')"
+              *ngIf="reporteCotiz.show_multiply_options">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+            <button mat-menu-item (click)="actualizarEstadoArchivosMedia(reporteCotiz.id, 2)"
+              *ngIf="reporteCotiz.show_multiply_options && reporteCotiz.estadoCotizaCab > 0">
+              <mat-icon>
+                task
+              </mat-icon>
+              <span>
+                Aprobar cotización
+              </span>
+            </button>
+            <button mat-menu-item
+              (click)="openDataProcessDownCotizModal(reporteCotiz.id, i)"
+              *ngIf="reporteCotiz.estadoCotizaCab > 0">
+                <mat-icon>
+                  cancel
+                </mat-icon>
+                <span>
+                  Dar de baja a la cotización
+                </span>
+            </button>
+            <button mat-menu-item
+              (click)="descargarArchivoMediaRTecnico(reporteCotiz.fileUrl, 'Cotizaciones')">
+              <mat-icon>
+                download
+              </mat-icon>
+              <span>
+                Descargar {{ reporteCotiz.fileUrl }}
+              </span>
+            </button>
+          </mat-menu>
+        </div>
+        <img [src]="reporteCotiz.typeFile" [matMenuTriggerFor]="menu" width="50px"/>
+        <div>
+          {{ reporteCotiz.fileUrl }}
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column mt-2">
+    <div class="mb-3 p-2 rounded-2 shadow-sm d-flex justify-content-between align-items-center"
+      style="border: groove 2px white; background-color: rgb(224, 241, 255)">
+      <div class="w-50">
+        <label for="fileMediaCotizacionRep" class="form-label d-flex justify-content-start align-content-center">
+          <mat-icon>picture_as_pdf</mat-icon>
+          &nbsp;
+          <span>Nota de entrega de repuestos</span>
+        </label>
+        <input type="file" *ngIf="show_file_form" class="form-control form-control-sm" id="fileMediaNotaEntregaRep"
+          (click)="processChoice('NENTREGAFILE')" (change)="onFileSelectedNotaEntrega($event)"
+          formControlName="fileMediaNotaEntregaRep" #fileMediaNotaEntregaRep />
+      </div>
+      <button *ngIf="show_file_form" class="btn btn-warning d-flex align-items-center"
+        (click)="submitFileNotaEntrega()">
+        <mat-icon>done</mat-icon>&nbsp;<span>Enviar</span>
+      </button>
+    </div>
+    <div class="d-flex justify-content-start flex-wrap">
+      <div class="filexBox m-1 d-flex shadow-sm flex-column justify-content-center align-items-center position-relative"
+        *ngFor=" let reporteNotadeEntrega of listaReporteNotaEntrega; let i = index" [style]="'background: beige;'"
+        [matTooltip]="reporteNotadeEntrega.fileUrl">
+        <div style="position: absolute; margin-left: 75px; top: 0px">
+          <button mat-icon-button aria-label="Opciones de archivo" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="eliminarArchivoMedia(reporteNotadeEntrega.id, i, 'NOTENT')">
+              <mat-icon>delete</mat-icon>
+              <span>Eliminar</span>
+            </button>
+            <button mat-menu-item (click)="actualizarEstadoArchivosMedia(reporteNotadeEntrega.id, 3)"
+              *ngIf="reporteNotadeEntrega.show_multiply_options">
+              <mat-icon>task</mat-icon>
+              <span>Aprobar cotización</span>
+            </button>
+            <button mat-menu-item
+              (click)="descargarArchivoMediaRTecnico(reporteNotadeEntrega.fileUrl, 'Nota de Entrega')">
+              <mat-icon>download</mat-icon>
+              <span>Descargar {{ reporteNotadeEntrega.fileUrl }} </span>
+            </button>
+          </mat-menu>
+        </div>
+        <img [src]="reporteNotadeEntrega.typeFile" [matMenuTriggerFor]="menu" width="50px" />
+        <div>
+          {{ reporteNotadeEntrega.fileUrl }}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

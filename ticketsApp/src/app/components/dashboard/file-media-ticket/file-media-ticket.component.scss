@@ -1,0 +1,26 @@
+
+.filexBox {
+    padding: 10px;
+    border-radius: 10px;
+    border: solid 1px gray;
+    transition: ease all 0.5s;
+    margin-bottom: 10px;
+    width: 110px;
+    overflow: hidden;
+    text-align: center;
+    text-wrap: wrap;
+}
+
+.filexBox:hover {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    // background-color: rgb(228, 228, 228);
+}
+
+.filexBox div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+

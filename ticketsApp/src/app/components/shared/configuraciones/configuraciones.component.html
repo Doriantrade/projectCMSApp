@@ -1,0 +1,221 @@
+<div class="d-flex justify-content-between p-1 w-100" id="container_conf">
+<div class="nav-side bg-light p-3 mb-3 rounded shadow-sm w-25 m-1 h-100">
+    
+    <!-- AQUI CREAR UN MENU QUE GESTIONE LOS NGIF -->
+    <div class="nav-side bg-light p-3 mb-3 rounded shadow-sm">
+    
+    <nav class="nav flex-column">
+        <a class="nav-link d-flex align-items-center cursor-pointer 
+                  {{ dociess_show ? 'active text-primary bg-light' : 'text-dark' }}" 
+           (click)="showPanel('dociess')">
+            <mat-icon class="me-2">description</mat-icon>
+            Documentación IESS
+        </a>
+        
+        <a class="nav-link d-flex align-items-center cursor-pointer 
+                  {{ encargadoBodega_show ? 'active text-primary bg-light' : 'text-dark' }}" 
+           (click)="showPanel('bodega')">
+            <mat-icon class="me-2">person_pin</mat-icon>
+            Personal Encargado Bodega
+        </a>
+        
+        <a class="nav-link d-flex align-items-center cursor-pointer 
+                  {{ procesosMailing_show ? 'active text-primary bg-light' : 'text-dark' }}" 
+           (click)="showPanel('mailing')">
+            <mat-icon class="me-2">mail</mat-icon>
+            Configuración de Mailing
+        </a>
+    </nav>
+
+    </div>
+
+</div>
+
+<div style="background-color: whitesmoke; width: 100%; border-radius: 5px; overflow-y: auto;" class="p-3 w-75 m-1 h-100">
+    <div class="header d-flex align-items-center p-3">
+        <mat-icon class="fs-3 text-success">settings</mat-icon>        
+        <span class="fs-3 text-success"><strong> Configuraciones del sistema. </strong></span>
+    </div>
+    <hr>
+
+    <!-- visualizar docu  iess -->
+    <div class="panel-settings flex-grow-1 bg-white p-4 rounded shadow-sm mb-2"  *ngIf="dociess_show" >
+        <app-docu-iess></app-docu-iess>
+    </div>
+
+    <div class="panel-settings flex-grow-1 bg-white p-4 rounded shadow-sm" *ngIf="encargadoBodega_show" >
+        <app-personal-encargado-bodega></app-personal-encargado-bodega>
+    </div>
+
+    <div class="body d-flex justify-content-between flex-column flex-md-row" *ngIf=" procesosMailing_show " >
+        <!-- show_action_panel -->
+        <div *ngIf="true"  class="w-100 d-flex flex-column">
+        <div class="panel-settings flex-grow-1 bg-white p-4 rounded shadow-sm"
+             *ngIf="show_form_setts">
+            <!-- FORMULARIO REGISTRO EMAIL SETTS CLI -->
+            <form [formGroup]="EmailSettsRegisterForm" (ngSubmit)="onSubmit()">
+                <div class="row g-3">
+                    <!-- Primera fila -->
+                     <div>
+                        <label class="form-label">Proceso:</label>
+                        <select class="form-control"
+                        id="codecProcess"
+                        formControlName="codecProcess">
+                            <option *ngFor="let item of listItemProcessSendByEmail" 
+                                    [value]="item.codigo">
+                                    {{ item.nombre }}
+                            </option>
+                        </select>
+                     </div>
+                    <div class="col-md-6">
+                        <label for="profileName" 
+                               class="form-label">
+                               Nombre del perfil
+                        </label>
+                        <input type="text"
+                               class="form-control"
+                               id="profileName"
+                               formControlName="profileName"
+                               placeholder="Ej: General">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="subject" class="form-label">Asunto</label>
+                        <input type="text" class="form-control" id="subject" 
+                               formControlName="subject" placeholder="Asunto del correo">
+                    </div>
+                    
+                    <!-- Segunda fila -->
+                    <div class="col-md-6">
+                        <label for="fromAddress" class="form-label">
+                            Dirección remitente
+                        </label>
+                        <input type="email" class="form-control" id="fromAddress"
+                               formControlName="fromAddress" placeholder="correo@dominio.com">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label for="replyTo" class="form-label">Dirección de respuesta</label>
+                        <input type="email" class="form-control" id="replyTo"
+                               formControlName="replyTo" placeholder="correo@dominio.com">
+                    </div>
+                    
+                    <!-- Tercera fila -->
+                    <div class="col-12">
+                        <label for="recipients" class="form-label">Destinatarios</label>
+                        <input type="text" class="form-control" id="recipients"
+                               (input)="onRecipientsInput($event)"
+                               formControlName="recipients"
+                               id="recipients"
+                               placeholder="Escriba emails separados por comas">
+                        
+                        <!-- Contenedor de chips -->
+                        <div class="chips-container mt-2 d-flex flex-wrap gap-2">
+                          <div *ngFor="let email of emailChips; let i = index"
+                               class="chip badge bg-primary d-flex align-items-center">
+                            {{email}}
+                            <button type="button" class="btn-close btn-close-white ms-2" 
+                                    (click)="removeChip(i)" aria-label="Remove"></button>
+                          </div>
+                        </div>
+                        
+                        <div class="form-text">Escriba cada email y presione coma (,) para agregar</div>
+                      </div>
+                    
+                    <!-- Cuarta fila -->
+                    <div class="col-12">
+                        <label for="body" class="form-label">Cuerpo del mensaje</label>
+                        <textarea class="form-control" id="body" rows="5" 
+                                  formControlName="body" placeholder="Contenido del correo"></textarea>
+                    </div>
+                    
+                    <!-- Campos ocultos -->
+                    <input type="hidden" formControlName="usercrea">
+                    <input type="hidden" formControlName="codcli">
+                    <input type="hidden" formControlName="idconfig">
+                    
+                    <!-- Botones -->
+                    <div class="col-12 mt-4 d-flex justify-content-end gap-2">
+                        <button type="button"
+                                class="btn btn-danger d-flex align-items-center"
+                                (click)="limpiar()">
+                                <mat-icon>cancel</mat-icon>
+                        </button>
+                        <button type="submit" class="btn btn-primary d-flex align-items-center">
+                            <mat-icon> {{ btn_ico }} </mat-icon> <span> {{ btn_action }} configuración </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive p-3 shadow-sm" >
+            <div class="w-100  d-flex align-items-end p-2">
+                <form [formGroup]="exportdataform" class="w-75">
+                    <label for="" class="d-flex align-items-center">
+                        <mat-icon>search</mat-icon> <span> Busqueda rápida:  </span>
+                    </label>
+                    <input fxFlex="auto" 
+                           type="text"
+                           (keyup)="filterItemSettsEmail()"
+                           class="form-control rounded-pill"
+                           formControlName="filter"
+                           #filter
+                           placeholder="...búsqueda por asunto o perfil"
+                           id="filter">
+
+                </form>
+                <div class="btn btn-warning rounded-2 shadow-sm" (click)="show_form_setts = !show_form_setts;">
+                    <mat-icon>add</mat-icon>
+                </div>
+            </div>
+            <table class="table table-primary table-bordered table-sm table-hover table-striped">
+                <thead>
+                    <th></th>
+                    <th>Perfil</th>
+                    <th>Asunto</th>
+                    <th>Enviado desde</th>
+                    <th>Destinatarios</th>
+                    <th>Responder a</th>
+                    <th>Fecha Reg.</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listEmailCLiSetts; let i = index;">
+                        <td>
+                            <div class="d-flex">
+                                <div (click)="catchData(item)">
+                                    <mat-icon>edit</mat-icon>
+                                </div>
+                                <div (click)="eliminarSettingsEmailCli( item.id, i )">
+                                    <mat-icon>delete</mat-icon>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            {{ item.profileName }}
+                        </td>
+                        <td>
+                            {{ item.subject }}
+                        </td>
+                        <td>
+                            {{ item.fromAddress }}
+                        </td>
+                        <td>
+                            <span *ngFor="let email of item.recipients.split(',')" class="recipient-email">
+                              {{ email.trim() }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ item.replyTo }}
+                        </td>
+                        <td>
+                            {{ item.fecrea | date: 'short' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+
+</div>
+</div>

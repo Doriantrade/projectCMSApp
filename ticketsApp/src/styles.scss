@@ -1,0 +1,307 @@
+// Variable overrides first
+$primary: rgb(26, 94, 162);
+$enable-shadows: true;
+$prefix: "mo-";
+
+// Then import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100vh; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background: rgb(241,241,241);
+  background: linear-gradient(313deg, rgba(241,241,241,1) 0%, rgba(214,214,214,1) 100%); 
+      /* Asegúrate de que el contenedor tenga overflow-y: auto o scroll para que aparezca el scrollbar */
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px; /* Ancho del scrollbar vertical */
+        height: 10px; /* Alto del scrollbar horizontal (si lo hubiera) */
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; /* Color del fondo del track del scrollbar */
+        border-radius: 5px; /* Bordes redondeados del track */
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgb(16, 148, 71); /* ¡El color verde para el "pulgar" del scrollbar! */
+        border-radius: 5px; /* Bordes redondeados del pulgar */
+    }
+
+    /* Opcional: Estilo al pasar el ratón por encima del pulgar */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgb(10, 100, 48); /* Un verde un poco más oscuro al pasar el ratón */
+    }
+}
+
+.my-badge {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.37);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3760C9;
+  color: white;
+}
+
+.litle-title {
+  font-size: 9px;
+  color: rgb(72, 72, 72);
+}
+
+.img-icon {
+  width: 75px;
+  height: 75px;
+  border: solid 3px orange;
+  border-radius: 7px;
+}
+
+.dash-modal {
+  background-color: whitesmoke;
+  padding: 15px;
+  border-radius: 5px;
+  border: groove 2px gray;
+}
+
+.icon-alert {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  border-radius: 5px;
+  // border: solid 3px white;
+  // box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.5);
+}
+
+.module-work {
+  background-color: whitesmoke;
+  border: groove 1px white;
+  border-radius: 10px;
+  padding: 15px;
+}        
+
+
+.spinner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  left: -32px;
+  border-radius: 50%;
+  color: #fff;
+  background: currentColor;
+  box-shadow: 32px 0 , -32px 0 ,  64px 0;
+}
+
+.loader::after {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 10px;
+  background:#FF3D00;
+  animation: move 3s linear infinite alternate;
+}
+
+@keyframes move {
+  0% , 5% {
+    left: -32px;
+    width: 16px;
+  }
+  15% , 20% {
+    left: -32px;
+    width: 48px;
+  }
+  30% , 35%{
+    left: 0px;
+    width: 16px;
+  }
+  45% , 50%{
+    left: 0px;
+    width: 48px;
+  }
+  60% , 65%{
+    left: 32px;
+    width: 16px;
+  }
+  75% , 80% {
+    left: 32px;
+    width: 48px;
+  }
+  95%, 100% {
+    left: 64px;
+    width: 16px;
+  }
+}
+
+.btn-ico {
+  background-color: #444;
+  width: 45px;
+  height: 45px;
+  border: 1px solid whitesmoke;
+  border-radius: 100%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  transition: ease all 0.5s;
+  box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.5);
+}
+
+.btn-ico:hover { 
+  transition: ease all 0.5s;
+  background-color: rgb(255, 196, 0);
+  color: #444;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px rgba($color: #000000, $alpha: 0.0);
+}
+
+body *::-webkit-scrollbar {
+  width: 7px; 
+  height: 7px; 
+}
+
+body *::-webkit-scrollbar-track {
+  background: #cdae27; 
+}
+
+body *::-webkit-scrollbar-thumb {
+  background-color: #888; 
+  border-radius: 10px; 
+  border: 3px solid #f1f1f1; 
+}
+
+body *::-webkit-scrollbar-thumb:hover {
+  background: #ffc002 !important; 
+}
+
+body * {
+  scrollbar-width: thin; 
+  scrollbar-color: #888 #f1f1f1; 
+}
+
+// *::-webkit-scrollbar {
+//   width: 7px; 
+//   height: 7px; 
+// }
+
+// *::-webkit-scrollbar-track {
+//   background: #cdae27; 
+// }
+
+// *::-webkit-scrollbar-thumb {
+//   background-color: #888; 
+//   border-radius: 10px; 
+//   border: 3px solid #f1f1f1; 
+// }
+
+// *::-webkit-scrollbar-thumb:hover {
+//   background: #ffc002 !important; 
+// }
+
+
+// * {
+//   scrollbar-width: thin; 
+//   scrollbar-color: #888 #f1f1f1; 
+// }
+
+.delbtn {
+  background-color: rgba(0, 0, 0, 0.257);
+  transition: ease all 0.5s;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delbtn:hover {
+  background-color: rgb(226, 24, 24);
+  transition: ease all 0.5s;
+  color: white;
+  cursor: pointer;
+}
+
+.glass{
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border:1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+} 
+
+.edit_btn {
+  cursor: pointer;
+  transition: ease all 1s;
+}
+
+.edit_btn:hover {
+  transition: ease all 1s;
+  color: orangered;
+}
+
+.icon-perfil {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: #3760C9;
+  border: solid 3px rgb(206, 175, 39);
+  box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.5);
+}
+
+/* Estilos para el modal de zoom */
+.zoom-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.title-header {
+  background-color: #444;
+  color: white;
+  padding: 15px;
+  border-bottom: solid 5px rgb(255, 204, 0);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.zoomed-image {
+  width: 70vw; /* La imagen ocupará el 70% del ancho de la pantalla */
+  height: auto;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+}

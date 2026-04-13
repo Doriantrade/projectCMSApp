@@ -1,0 +1,70 @@
+.crono-header {
+    border: solid 1px gray;
+    padding: 15px;
+}
+
+.semana {
+    width: 100%;
+    height: 65vh;
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow-x: auto;
+    padding: 15px;
+    border: solid 2px gray;
+}
+
+.dia {
+    width: 220px;
+    height: 220px;
+    border: dashed 2px rgb(192, 192, 192);
+    background-color: rgb(241, 241, 241);
+    transition: ease all 0.5s;
+}
+
+.dia:hover{
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: rgb(184, 229, 216);
+    border-radius: 15px;
+    transform: scale(0.9);
+}
+
+.semanabox {
+    background-color: rgb(31, 113, 228);
+    color: white;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    // width: 78px;
+    
+}
+
+.diadata {
+    font-size: 10pt;
+    background-color: steelblue;
+    padding: 5px;
+    border-radius: 5px;
+    color: whitesmoke;
+}
+
+.crono-header {
+    background-color: rgb(225, 225, 225);
+}
+
+.close {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: orangered;
+    color: white;
+}
+
+.close:hover {
+    transition: ease all 0.5s;
+    background-color: rgb(255, 119, 0);
+}
+
+.asign {
+    padding: 5px;
+    border-bottom: solid 1px gray;
+}

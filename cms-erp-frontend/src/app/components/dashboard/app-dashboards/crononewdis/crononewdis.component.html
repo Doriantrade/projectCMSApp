@@ -1,0 +1,781 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="win-machine-detail p-3 rounded-3 shadow-lg " *ngIf="_show_historymaquine" cdkDrag >
+    <div class="w-100 d-flex justify-content-end   ">    
+    <button  class="btn btn-danger d-flex align-items-center " (click)="_show_historymaquine = false"  >
+        <mat-icon>cancel</mat-icon> salir
+    </button>
+    </div>
+    <app-machine-details-all [codprod]="this.codMachine" ></app-machine-details-all>
+</div>
+
+<div [class]="calssMenuFilter" (mouseover)="calssMenuFilter='filter-section rounded-2'" cdkDrag  [ngStyle]="{'width': _width_filter}"  >
+    
+    <div class="d-flex flex-column" >
+        <label class="d-flex align-items-center justify-content-between"> 
+            <div class="d-flex" >
+                <div class="d-flex align-items-center ">
+                    <mat-icon>settings</mat-icon>
+                    <span *ngIf="_show_filters">
+                        Filtros del cronograma
+                    </span> 
+                </div>
+                <div class="d-flex align-items-center">
+                    <span> <strong> ({{filteredCronos.length}}) </strong> </span>
+                </div>
+            </div>
+            <div class="filtersetts">
+                <div class="btnsetts p-1 text-light d-flex align-items-center justify-content-center"
+                     (click)="_show_filters = !_show_filters">
+                    <mat-icon>visibility</mat-icon>
+                </div>
+            </div>
+        </label>
+        <hr *ngIf="_show_filters" >
+        <!-- <input [(ngModel)]="filtroTecnico" (keyup)="filtrarElementosGeneral()" class="form-control" > -->
+        <div class="filter-controls" *ngIf="_show_filters">
+            <div class="d-flex flex-column mt-3">
+                <label for="tecnicossearch" class="d-flex justify-content-between" >
+                    <div> Filtrar por técnicos:</div>
+                    <div class="d-flex align-items-center">
+                        <span> <strong> ({{lisTecnicos.length}}) </strong> </span>
+                    </div>
+                </label>
+                <input class="form-control" id="tecnicossearch"
+                       [(ngModel)]="searchText"
+                       (input)="filterByTechnicianName()"
+                       placeholder="Buscar por nombre de técnico"
+                       >
+            </div>
+            <div class="d-flex flex-column mt-3">
+                <label for="ndias" class="d-flex justify-content-between">
+                    <div>Filtrar por numeración de días: </div>
+                    <div class="d-flex align-items-center">
+                        <span> <strong> ({{resultado.length}}) </strong>  </span>
+                    </div>
+                </label>
+                <select id="ndias" [(ngModel)]="selectedDay" (change)="filterByDay()" class="form-control">
+                    <option value="">Mostrar todo</option>
+                    <option *ngFor="let dia of resultado"
+                            [value]="dia.numero">
+                            {{dia.numero}} - {{dia.dia}}
+                    </option>
+                </select>
+            </div>
+            <div class="d-flex flex-column mt-3 mb-3">
+                <label for="ndias" class="d-flex justify-content-between">
+                    <div>Filtrar por días:</div>
+                    <div class="d-flex align-items-center">
+                        <span> <strong> ({{staticDias.length}}) </strong> </span>
+                    </div>
+                </label>
+                <select id="ndias" [(ngModel)]="selectedDay" (change)="filterByDay()" class="form-control">
+                    <option value="">Mostrar todo</option>
+                    <option  *ngFor="let dia of staticDias" [value]="dia">
+                        {{dia}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="d-flex align-items-end justify-content-between">
+<div class="d-flex align-items-end" >
+<form [formGroup]="localidadform">
+    <div class="d-flex flex-column">
+        <label for="localidad">
+            Elegir localidad:
+        </label>
+        <select (change)="obtenerLocalidadId();"
+                class="form-control"
+                (click)="obtenerLocalidadId();"
+                formControlName="localidad"
+                #localidad
+                id="localidad">
+                <option disabled>Localidad:</option>
+                <option *ngFor="let item of listaLocalidades"
+                        [value]="item.id">
+                        {{item.nombreLocalidad}}
+                </option>
+        </select>
+    </div>
+</form>
+<section class="meses" *ngIf="_dis_btn_setts">
+    <div class="btn-group" *ngFor="let mes of listmeses; let i = index" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="meses" [id]="mes.cod" [value]="mes.cod" [(ngModel)]="mesSeleccionado" autocomplete="off">
+      <label class="btn btn-outline-primary" [for]="mes.cod" (click)="diasdelMes(mes.cod);">
+        {{mes.nombre | titlecase}}
+      </label>
+    </div>
+  </section>
+</div>
+<div >
+
+    <form [formGroup]="viewtecnicosform">
+        <div class="form-check form-switch">
+            <input class="form-check-input"
+                   formControlName="tecnicoLocal"
+                   #tecnicoLocal
+                   id="tecnicoLocal"
+                   type="checkbox" 
+                   id="flexSwitchCheckChecked"
+                   (change)="diasdelMes(mes)"
+                   checked>
+                   <label class="form-check-label"
+                          for="flexSwitchCheckChecked">
+                          Técnicos por localidad
+                   </label>
+          </div>
+    </form>
+
+</div>
+</div>
+<hr>
+<p-splitter [style]="{ height: '78vh' }"
+            [panelSizes]="[20, 80]"
+            [minSizes]="[10, 0]" styleClass="mb-5">
+            <ng-template pTemplate>
+                     <p-splitter layout="vertical"
+                                 [panelSizes]="[33, 33, 33]">
+                                 <!-- <ng-template pTemplate>
+                                    <div class="flex align-items-center justify-content-center">
+                                        Requerimientos
+                                    </div>
+                                 </ng-template> -->
+                                 <ng-template pTemplate>
+                                    <div class="flex align-items-center p-2 justify-content-center" style="height: 75vh; overflow-y: auto;">
+                                        <div class="data-box-g d-flex shadow-lg flex-column p-2 m-2 rounded-2" style="border: dashed 1px gray;">                                            
+                                            <div class="title-data p-2 rounded-pill shadow-sm text-light d-flex justify-content-between" [ngStyle]="{'background-color': N}">
+                                                <div>Norte </div>
+                                                <div> <strong> ({{resultadosFiltradosNorte.length}}) </strong> </div>
+                                            </div>
+
+                                            <div class="m-1 p-2">
+                                                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                                                       [(ngModel)]="filtroTextoNorte"
+                                                       placeholder="Buscar agencias Norte por nombre"
+                                                       (ngModelChange)="filtrarElementosNorte()">
+                                            </div>
+
+                                            <div class="d-flex data-box-h flex-wrap justify-content-between">
+                                                <div class="block-data p-2 d-flex flex-column"
+                                                     *ngFor="let xnorte of resultadosFiltradosNorte"
+                                                     pDraggable
+                                                     (onDragStart)="dragStart(xnorte)"
+                                                     (onDragEnd)="dragEnd()">
+                                                     <div style="font-size: 9pt;"  class="d-flex justify-content-between align-items-center">
+                                                            <div class="icono"
+                                                                 [ngStyle]="{'background-image': 'url('+xnorte.imagen+')', 'background-size': '100% 100%'}">
+                                                            </div>
+                                                            <span class="p-1">
+                                                                {{xnorte.nombreAgencia}} 
+                                                                <span class="badge bg-warning text-dark fs-6">
+                                                                    {{xnorte.cantidadMaqIngre}}
+                                                                </span>
+                                                                <span class="badge text-light fs-6" 
+                                                                     [title]="xnorte.nombreFrecuencia" [style]="'background-color:' + xnorte.colorfrecuencia + ';'" >
+                                                                    {{xnorte.inifrecuencia}}
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                </div>
+
+                                                <p-scrollTop target="parent"
+                                                             styleClass="custom-scrolltop"
+                                                             [threshold]="100"
+                                                             icon="pi pi-arrow-up">
+                                                             </p-scrollTop>
+                                            
+                                            </div>
+
+                                        </div>
+                                        <div class="data-box-g d-flex shadow-lg flex-column p-2 m-2 rounded-2 " style="border: dashed 1px gray;">
+                                            <div class="title-data p-2 rounded-pill shadow-sm text-light d-flex justify-content-between" [ngStyle]="{'background-color': C}">
+                                               <div> Centro </div>
+                                               <div> <strong> ({{resultadosFiltradosCentro.length}}) </strong> </div>
+                                            </div>
+                                            <div class="m-1 p-2">
+                                                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                                                       [(ngModel)]="filtroTextoCentro"
+                                                       placeholder="Buscar agencias Centro por nombre"
+                                                       (ngModelChange)="filtrarElementosCentro()">
+                                            </div>
+                                            <div class="d-flex data-box-h flex-wrap justify-content-between">
+                                                <div class="block-data p-2 d-flex flex-column"
+                                                     *ngFor="let xcentro of resultadosFiltradosCentro"
+                                                     pDraggable (onDragStart)="dragStart(xcentro)" (onDragEnd)="dragEnd()"
+                                                     >
+                                                    <div style="font-size: 9pt;"  class="d-flex justify-content-between align-items-center" > 
+                                                        <div class="icono" [ngStyle]="{'background-image': 'url('+xcentro.imagen+')', 'background-size': '100% 100%'}"></div>
+                                                        <span class="p-1">
+                                                            {{xcentro.nombreAgencia}}
+                                                            <span class="badge bg-warning text-dark fs-6">
+                                                                {{xcentro.cantidadMaqIngre}}
+                                                            </span>
+                                                            <span class="badge text-light fs-6" [title]="xcentro.nombreFrecuencia" [style]="'background-color:' + xcentro.colorfrecuencia + ';'" >
+                                                                {{xcentro.inifrecuencia}}
+                                                            </span>
+                                                        </span>                                                        
+                                                    </div>                                                    
+                                                </div>
+                                                <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up"></p-scrollTop>
+                                            </div>
+                                        </div>
+                                        <div class="data-box-g d-flex shadow-lg flex-column p-2 m-2 rounded-2"
+                                             style="border: dashed 1px gray;">
+                                            <div class="title-data p-2 rounded-pill shadow-sm text-light d-flex justify-content-between"
+                                                 [ngStyle]="{'background-color': S}">
+                                                <div>Sur</div> 
+                                                <div> 
+                                                    <strong> ({{resultadosFiltradosSur.length}}) </strong>
+                                                </div>
+                                            </div>
+                                            <div class="m-1 p-2">
+                                                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                                                       [(ngModel)]="filtroTextoSur"
+                                                       placeholder="Buscar agencias Sur por nombre"
+                                                       (ngModelChange)="filtrarElementosSur()">
+                                            </div>
+                                            <div class="d-flex data-box-h flex-wrap justify-content-between">
+                                                <div class="block-data p-2 d-flex flex-column" 
+                                                     *ngFor="let xsur of resultadosFiltradosSur"
+                                                     pDraggable (onDragStart)="dragStart(xsur)" (onDragEnd)="dragEnd()">
+                                                    <div style="font-size: 9pt;"  class="d-flex justify-content-between align-items-center">
+                                                        <div class="icono"
+                                                             [ngStyle]="{'background-image': 'url('+xsur.imagen+')', 'background-size': '100% 100%'}">
+                                                        </div>
+                                                        <span class="p-1">{{xsur.nombreAgencia}}
+                                                            <span class="badge bg-warning text-dark fs-6">
+                                                                {{xsur.cantidadMaqIngre}}
+                                                            </span>
+                                                            <span class="badge text-light fs-6" [title]="xsur.nombreFrecuencia" [style]="'background-color:' + xsur.colorfrecuencia + ';'" >
+                                                                {{xsur.inifrecuencia}}
+                                                            </span>
+                                                        </span>
+                                                    </div>                                                    
+                                                </div>
+                                                <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up"></p-scrollTop>
+                                            </div>
+                                        </div>
+
+                                        <div class="data-box-g d-flex shadow-lg flex-column p-2 m-2 rounded-2 " style="border: dashed 1px gray;">
+                                            
+                                            <div class="title-data p-2 rounded-pill shadow-sm text-light d-flex justify-content-between" [ngStyle]="{'background-color': G}">
+                                                <div> General </div>
+                                                <div>
+                                                    <strong> ({{resultadosFiltradosGeneral.length}}) </strong>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="m-1 p-2">
+                                                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                                                       [(ngModel)]="filtroTextoGeneral"
+                                                       placeholder="Buscar agencias General por nombre"
+                                                       (ngModelChange)="filtrarElementosGeneral()">
+                                            </div>
+
+                                            <div class="d-flex data-box-h flex-wrap justify-content-between">
+                                                <div class="block-data p-2 d-flex flex-column"
+                                                     *ngFor="let xgeneral of resultadosFiltradosGeneral"
+                                                     pDraggable (onDragStart)="dragStart(xgeneral)" (onDragEnd)="dragEnd()">
+                                                    <div style="font-size: 9pt;" 
+                                                         class="d-flex justify-content-between align-items-center" >
+                                                         <div class="icono"
+                                                              [ngStyle]="{'background-image': 'url('+xgeneral.imagen+')', 'background-size': '100% 100%'}">
+                                                         </div>
+                                                         <span class="p-1">
+                                                             {{xgeneral.nombreAgencia}}
+                                                             <span class="badge bg-warning text-dark fs-6">
+                                                                {{xgeneral.cantidadMaqIngre}}
+                                                            </span>
+                                                            <span class="badge text-light fs-6" [title]="xgeneral.nombreFrecuencia" [style]="'background-color:' + xgeneral.colorfrecuencia + ';'" >
+                                                                {{xgeneral.inifrecuencia}}
+                                                            </span>
+                                                         </span>
+                                                    </div>
+                                                </div>
+                                                <p-scrollTop target="parent"
+                                                             styleClass="custom-scrolltop"
+                                                             [threshold]="100"
+                                                             icon="pi pi-arrow-up">
+                                                </p-scrollTop>
+                                            </div>
+                                        </div>
+                                        <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="10" icon="pi pi-arrow-up"></p-scrollTop>
+                                    </div>
+                                 </ng-template>
+                     </p-splitter>
+            </ng-template>
+            <ng-template pTemplate>
+                <section class="agenda w-100 p-3 m-2 rounded-2" [style]="'background:' + _background_crono" >
+                    <div id="listaDiv">
+                        <div *ngFor="let diaMes of filteredData; let di = index;"
+                             style="border-bottom: dashed 1px gray;"
+                             class="p-2">
+                            <div class="title-header d-flex align-items-center">
+                                <div class="d-flex align-items-center">
+                                  <h2 class="d-flex align-items-center">
+                                    <mat-icon>event</mat-icon>
+                                    {{diaMes.dia | titlecase}} -
+                                    <span class="text-secondary">
+                                        {{diaMes.numero}}
+                                    </span>
+                                  </h2>
+                                </div>
+                              </div>
+                              <div class="agenda-content mb-2">
+                                <div class="m-1 w-100 d-flex justify-content-start align-items-start"
+                                     *ngFor="let tecnico of diaMes.tecnicos; let xi = index"
+                                     pDroppable
+                                     (onDrop)="drop(diaMes, tecnico, tecnico)"
+                                     (dblclick)="pegarCrono(diaMes, tecnico)">
+                                     <div class="tecnicos-agenda p-2 w-25 m-1 rounded-2 d-flex justify-content-between align-items-center ">
+                                         <!-- <div class="icono"
+                                              [ngStyle]="{'background-image': 'url('+tecnico.imagenPerfil+')', 'background-size': '100% 100%'}">
+                                         </div> -->
+                                         <div class="d-flex justify-content-end align-items-end flex-column">
+                                             <span>{{ tecnico.nombre }} {{ tecnico.apellido }}</span> 
+                                             <small class="text-secondary">Teléfono: {{ tecnico.telf }}</small>
+                                         </div>
+                                     </div>
+                                     <div class="tecnic-work w-75 p-2 m-1 rounded-2">
+                                         <div class="d-flex justify-content-between flex-wrap">
+                                             <div *ngIf="tecnico.cronograma.length > 0"
+                                                  class="d-flex justify-content-between flex-wrap">
+                                               <div *ngFor="let cronograma of tecnico.cronograma;
+                                                            let i = index;" [id]="'crono-'+ di + '-' + xi + '-' +i"
+                                                     class="worker m-1 rounded-2 p-2 d-flex
+                                                            align-items-center 
+                                                            justify-content-between align-items-center">
+                                                     <div class="d-flex flex-column ">
+                                                         <div class="d-flex justify-content-start align-items-center " >
+                                                            <div class="icono"
+                                                                 style="width: 25px !important; height: 25px !important;"
+                                                                 [ngStyle]="{'background-image': 'url('+cronograma.imagen+')', 'background-size': '100% 100%'}">
+                                                            </div>
+                                                            <div class="m-0">
+                                                                {{ cronograma.nombreAgencia}}
+                                                            </div>
+                                                         </div>
+                                                         <div class="maqinariasign rounded-pill p-1 mt-1 mb-1 text-light shadow-sm d-flex align-items-center justify-content-between"
+                                                              [ngStyle]=" {'background-color': '#444', 'width': '75px'} " >
+                                                            <mat-icon style="width: 19px; height: 19px; font-size: 12pt;" >point_of_sale</mat-icon> 
+                                                            &nbsp; {{cronograma.maquinasMantenimiento}} / {{cronograma.cantidadMaqIngre}}
+                                                         </div>
+                                                         <div class="d-flex align-items-center ">
+                                                            <div>
+                                                                <small>
+                                                                    Mantenimiento: {{ cronograma.fechamantenimiento | date: 'dd-MMM-yyyy' }}
+                                                                </small>
+                                                            </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="btn-settings">
+
+                                                        <div class="action"
+                                                             (click)="copiarCrono(cronograma, 'crono-'+ di + '-' + xi + '-' +i)"
+                                                             title="Copiar esta asignación">
+                                                             <mat-icon>content_copy</mat-icon>
+                                                        </div>
+                                                        <div class="action"
+                                                             (click)="eliminarCrono( cronograma, tecnico )" title="Eliminar del cronograma" >
+                                                             <mat-icon>delete</mat-icon>
+                                                        </div>
+                                                        <div class="action"
+                                                             (click)="obtenerCronoUnit(cronograma.codcrono,  cronograma.codagencia, cronograma.mes, cronograma.dia); manteniminetocount = 0; selectAll= false;"
+                                                             title="Visualizar detalles y asignar mantenimiento"
+                                                             data-bs-toggle="offcanvas"
+                                                             data-bs-target="#offcanvasRight"
+                                                             aria-controls="offcanvasRight">
+                                                             <mat-icon>
+                                                                visibility
+                                                             </mat-icon>
+                                                        </div>
+                                                        <div class="action" (click)="openDialog(cronograma)" title="Opciones de asignación del cronograma">
+                                                           <mat-icon>chat</mat-icon>
+                                                        </div>
+                                                        <div class="action" [title]="'Frecuencia de mantenimiento: ' + cronograma.frecuencia" [style]="'color: whitesmoke; background-color:' + cronograma.colorfrecuencia+'; border-radius: 10px;'" >
+                                                            <strong>{{ cronograma.inifrecuencia }}</strong>
+                                                        </div>
+                                                         
+                                                     </div>
+
+                                                 </div>
+
+                                             </div>
+                                             
+                                         </div>
+                                         <div class=" d-flex  p-3 rounded-3 m-2 justify-content-start align-items-center " 
+                                                  style="background-color: rgba(0, 0, 0, 0.048);" >
+                                                <div class="m-1 d-flex align-items-center ">
+                                                    <small class="text-secondary">Total de maquinarias con mantenimiento finalzado:</small>&nbsp;
+                                                    <span class="fs-4" >
+                                                        <strong [ngStyle]="{color: tecnico.colorestadomaquinaria}" >
+                                                             {{tecnico.TotalMaquinasManuales}}
+                                                        </strong>
+                                                    </span>
+                                                </div> 
+                                                <div class="m-1 d-flex align-items-center">
+                                                    <small class="text-secondary" >Total maquinarias asignadas al técnico por el cronograma:</small> &nbsp;
+                                                    <span class="fs-4" >
+                                                        <strong  >{{tecnico.TotalMaquinasIngresadasManual}}</strong>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                     </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                      </div>
+                      <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="50" icon="pi pi-arrow-up"></p-scrollTop>
+                </section>                
+              </ng-template>
+</p-splitter>
+
+<div class="offcanvas offcanvas-end w-75" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <span id="offcanvasRightLabel " class="fs-4 d-flex align-items-center">
+        <mat-icon>list_alt</mat-icon>Mantenimiento y asignación de trabajo
+      </span>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-flex justify-content-between">
+      <section class="d-flex flex-column p-3 w-25 animate_animated animate_backInUp">
+        <div class="card shadow p-3">
+            <div class="d-flex align-items-center">
+                <mat-icon>person</mat-icon> Cliente
+            </div>
+            <hr>
+            <div>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Nombre:</small>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="icono" [ngStyle]="{'background-image': 'url('+modelUnitCronoDetalle.imagen+')', 'background-size': '100% 100%'}">
+                        </div>
+                        &nbsp;&nbsp;
+                        <strong class="spantext">
+                            {{modelUnitCronoDetalle.nombreCliente}}
+                        </strong>
+                    </div>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    
+                    <small class="text-secondary">R.U.C.:</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.ruc}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Rep. Legal:</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.replegal}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Persona encargada del Mantenimiento (agencia) :</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.nombreMantenimiento}}</strong>
+                </span>
+                <br>
+                <span class="d-flex flex-column">
+                    <small class="text-secondary">
+                        Email mantenimiento:
+                    </small>
+                    <strong class="spantext">
+                        {{ modelUnitCronoDetalle.correomantenimiento }}
+                    </strong>
+                </span>                
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Telf. Mantenimiento:</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.telfclimanteni}} <span class="text-secondary">(ext.{{modelUnitCronoDetalle.extension1}})</span> </strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Nombre de la persona encargada del pago (Agencia):</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.nombrePago}} </strong>
+                </span>
+                <br>
+                <span class="d-flex flex-column">
+                    <small class="text-secondary">Email pago:</small>
+                    <strong class="spantext">{{ modelUnitCronoDetalle.correopago }}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Telf. Pago:</small>
+                    <strong class="spantext">{{modelUnitCronoDetalle.telfpago}} <span class="text-secondary">(ext.{{modelUnitCronoDetalle.extension2}})</span> </strong>
+                </span>
+                <br>
+                <span class=" d-flex justify-content-between">
+                    <small class="text-secondary">Observación:</small>
+                    <strong class="spantext" >{{modelUnitCronoDetalle.observacion}} </strong>
+                </span>
+            </div>
+        </div>
+        <div class="card shadow mt-2 p-3">
+            <div class="d-flex align-items-center">
+                <mat-icon>villa</mat-icon> Agencia
+            </div>
+            <hr>
+            <div class="mt-3">
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Nombre:</small>
+                    <strong>{{modelUnitCronoDetalle.nombre}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Frecuencia:</small>
+                    <strong>{{modelUnitCronoDetalle.frecuencia}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Horario de atención:</small>
+                    <strong>{{modelUnitCronoDetalle.horarioatenciond}} - {{modelUnitCronoDetalle.horarioatencionhm}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Dirección:</small>
+                    <strong style="text-align: right;" >{{modelUnitCronoDetalle.direccionAgencia}}</strong>
+                </span>
+                <br>
+                <span class="d-flex justify-content-between">
+                    <small class="text-secondary">Cantidad de máquinas asignadas:</small>
+                    <strong>{{modelUnitCronoDetalle.maquinasReales}} <span style="font-size: 8pt;" class="text-secondary">{{modelUnitCronoDetalle.maquinasManuales}}</span> </strong>
+                </span>
+            </div>
+        </div>
+      </section>
+      <section class="p-3 w-75">
+        <div class="card shadow mt-2 p-3 w-100"  >
+            
+                <div class="d-flex align-items-center"  >
+                    <mat-icon>engineering</mat-icon> Técnico(s) asignado ({{resultadosFiltrados.length}})
+                </div>                    
+
+            <hr>
+            <!-- <input type="text" class="w-100" > -->
+            <div class="table-responsive-lg">
+                <table class="table table-primary align-middle">
+                    <thead class="table bg-primary text-light">
+                        <th>Nombre Técnico</th>
+                        <th>Lugar de residencia</th>
+                        <th>Licencia</th>
+                        <th>estado</th>
+                        <th title="Asignar máquina para manetenimiento" >Máquina Man...</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tecnicos of  resultadosFiltrados">
+                            <td>
+                                <div>
+                                    {{tecnicos.tecnico}}
+                                </div>
+                            </td>
+                            <td>
+                                {{tecnicos.residenciaProvinciaTecnico}} / <span class="text-secondary"> ({{tecnicos.residenciaCantonTecnico}}) </span>
+                            </td>
+                            <td>
+                                {{tecnicos.licenciaTecnico}}
+                            </td>
+                            <td>
+                                estado
+                            </td>
+                            <td>
+                                
+                                <button class="btn btn-warning shadow-sm d-flex align-items-center " (click)="_viewMantenim = !_viewMantenim; getTecnico(tecnicos) ">
+                                    <mat-icon>point_of_sale</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="datamantenimiento" *ngIf="_viewMantenim" (mouseleave)="_viewMantenim = false" >
+                                    <section class="filtros mt-2 mb-2 w-75">
+                                        <div class="mb-2 d-flex">
+                                          <input class=" w-100 shadow-sm form-control rounded-pill"
+                                                 fxFlex="auto" type="text"
+                                                 [(ngModel)]="filtroTexto"
+                                                 (keyup)="filtrarElementos()" 
+                                                 #input placeholder="Búsqueda de maquinaria para mantenimiento...">
+                                        </div>
+                                        <button class="btn btn-outline-dark d-flex align-items-center rounded-pill"
+                                                style="position: absolute; right: 15px; top: 25px;  " color="warn" (click)="_viewMantenim = false">
+                                                <mat-icon> cancel </mat-icon>
+                                        </button>
+                                    </section>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex justify-content-between align-items-end" style="cursor: pointer;">
+                                            <input class="form-check-input"
+                                                   style="width: 20px; height: 20px;"
+                                                   [(ngModel)]="selectAll" 
+                                                   type="checkbox"
+                                                   (change)="selectAllMachine()"
+                                                   value=""
+                                                   id="maquinas">
+                                                   &nbsp;&nbsp;
+                                                   <label for="maquinas">
+                                                    <span>
+                                                        Registrar todas las máquinas al técnico seleccionado ({{listaMaquinariaAsignadaGhost.length}})
+                                                    </span>
+                                                   </label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="data-check">
+                                    <div class="form-check d-flex  align-items-center " *ngFor="let maquina of listaMaquinariaAsignadaGhost">
+                                        <input class="form-check-input" type="checkbox" [value]="maquina.codmaquina" [id]="maquina.nserie"
+                                        style="width: 20px; height: 20px;"
+                                               [(ngModel)]="maquina.selected"
+                                               (change)="addMaquinaManetenimiento($event, maquina.codmaquina)">
+                                        <label class="form-check-label d-flex flex-column " [for]="maquina.nserie">
+                                            <div class="etiqueta animate__animated animate__backInLeft  rounded-pill text-secondary d-flex justify-content-start align-items-center" *ngIf=" maquina.show "  >
+                                                <div class="icono" [ngStyle]="{'background-image': 'url('+maquina.fotoperfil+')', 'background-size': '100% 100%'}"></div>
+                                                &nbsp;&nbsp;
+                                                <div>
+                                                    <strong> {{maquina.tecniconombre}} </strong>
+                                                </div>
+                                            </div>
+                                            <div class="p-2">
+                                                <span> <small class="text-secondary">N.serie: </small>
+                                                    {{maquina.nserie}}
+                                                </span>
+                                                /<span> <small class="text-secondary">Tipo Máquina: </small>
+                                                    {{maquina.tipomaquina}}
+                                                </span>
+                                                /<span> <small class="text-secondary">Marca: </small>
+                                                    {{maquina.nombremarca}}
+                                                </span> 
+                                                /<span> <small class="text-secondary">Modelo: </small>       
+                                                    {{maquina.nombremodelo}}
+                                                </span>
+                                            </div>
+                                        </label>                                       
+                                    </div>
+                                    </div>
+                                </div>
+                <div class="w-100 d-flex justify-content-end">
+                    <button mat-raised-button color="primary" (click)="guardarMantenimiento()">
+                        <mat-icon>done</mat-icon> Crear mantenimiento <strong> ({{manteniminetocount}}) </strong>
+                    </button>
+                </div>
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center " >
+                    <mat-icon>point_of_sale</mat-icon> Máquinas asignadas a esta agencia. ({{listaMantenimientoMaquinaGhost.length}})
+                </div>
+                <section class="filtros mt-2 mb-2 w-50">
+                    <div class="mb-2 d-flex">
+                      <input class=" w-100 shadow-sm form-control rounded-pill"
+                             fxFlex="auto" type="text"
+                             [(ngModel)]="filterMant"
+                             (keyup)="filterMantenimiento()"
+                             #input placeholder="Búsqueda de maquinaria para mantenimiento...">
+                    </div>
+                </section>
+            </div>
+            <hr>
+            {{listaMantenimientoMaquinaGhost}}
+            <div class="table-responsive-lg ">                    
+                <table class="table table-primary align-middle">
+                    <thead class="table bg-warning text-dark">
+                        <th>
+
+                        </th>
+                        <th>
+                            Técnico
+                        </th>
+                        <th>
+                            N. Serie
+                        </th>
+                        <th>
+                            Tip. Máquina
+                        </th>
+                        <th>
+                            Marca
+                        </th>
+                        <th>
+                            Modelo
+                        </th>
+                        <th>
+                            Cont. Inicial
+                        </th>
+                        <th>
+                            Cont. Final
+                        </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let mantenimiento of listaMantenimientoMaquinaGhost">
+                            <td>
+                                <button mat-mini-fab color="warn" (click)="eliminarMantenimiento( mantenimiento.idmantenimiento )"  >
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                            <td [title]="mantenimiento.nombreTecnico" style="cursor: pointer;" >
+                                <div class="icono" [ngStyle]="{'background-image': 'url('+mantenimiento.imagen+')', 'background-size': '100% 100%'}"></div>
+                            </td>
+                            <td  >
+                                <div>
+                                    <button class="btn btn-outline-primary d-flex "
+                                            (click)="obtenerCodMachine(mantenimiento.codmaquina); _show_historymaquine = !_show_historymaquine; ">
+                                        <mat-icon>
+                                            visibility
+                                        </mat-icon>
+                                        &nbsp;&nbsp;
+                                        {{mantenimiento.nserie}}
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{mantenimiento.nombretipomaquina}}
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{mantenimiento.nombremarca}}
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{mantenimiento.modelo}}
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{mantenimiento.contadorinicial}}
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    {{mantenimiento.contadorfinal}}
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+      </section>
+    </div>
+</div>
+<div class=" msjcopy fs-6 d-flex align-items-center animate__animated animate__bounceIn " *ngIf="copy" >
+     <div>
+        Estas copiando una asignación de la agencia &nbsp;&nbsp;
+     </div>
+
+     <div class="d-flex align-items-center">
+        <div class="icono"
+           [ngStyle]="{'background-image': 'url('+copyImagenAgencia +')', 'background-size': '100% 100%'}">
+        </div>
+        <strong>&nbsp; {{copyNombreAgencia}} &nbsp;&nbsp; </strong>
+     </div>
+     <div class="ml-2">
+        <button class="btn btn-danger d-flex align-items-center" (click)="cancelCopy()" > <mat-icon>cancel</mat-icon> Cancelar </button>
+     </div>
+</div>

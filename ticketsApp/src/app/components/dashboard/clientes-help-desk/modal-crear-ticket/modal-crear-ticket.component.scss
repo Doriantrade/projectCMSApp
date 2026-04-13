@@ -1,0 +1,24 @@
+.modal-container {
+    padding: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        color: #333;
+    }
+}
+
+.modal-body {
+    /* Adjust as needed */
+}

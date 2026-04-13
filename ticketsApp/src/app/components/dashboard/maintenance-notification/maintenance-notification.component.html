@@ -1,0 +1,32 @@
+<div class="notification-card animate__animated animate__bounceIn" [ngStyle]="{'border-left-color': getBorderColor()}">
+    <div class="notification-header" [ngStyle]="{'background-color': getBorderColor(), 'color': getTextColor()}">
+        <span class="status-name">{{ notification.nombreEstado }}</span>
+        <button type="button" class="close-btn" (click)="onClose()" [ngStyle]="{'color': getTextColor()}">&times;</button>
+    </div>
+    
+    <div class="notification-body">
+        <div class="tech-info">
+            <img [src]="notification.imagenPerfil" alt="Tech" class="tech-img">
+            <span class="tech-name">{{ notification.nombreTecnico }}</span>
+        </div>
+        
+        <div class="ticket-info">
+            <div class="info-row">
+                <strong>Ticket:</strong> <span>{{ notification.nserie }}</span>
+            </div>
+            <div class="info-row">
+                <strong>Equipo:</strong> <span>{{ notification.nombreTipoMaquina }}</span>
+            </div>
+            <div class="info-row">
+                <strong>Modelo:</strong> <span>{{ notification.nombreModelo }}</span>
+            </div>
+             <div class="info-row">
+                <strong>Marca:</strong> <span>{{ notification.nombreMarca }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-footer">
+        <button class="btn btn-sm btn-verify" (click)="onVerify()">Verificar estado mantenimiento</button>
+    </div>
+</div>

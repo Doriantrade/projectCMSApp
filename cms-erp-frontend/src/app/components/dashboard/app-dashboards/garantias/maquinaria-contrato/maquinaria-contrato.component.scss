@@ -1,0 +1,20 @@
+.datamaq {
+    border: solid 1px gray;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    height: 37vh;
+    overflow-y: auto;
+}
+
+.del {
+    cursor: pointer;
+    transition: ease all 0.5s;
+}
+
+.del:hover{
+    transition: ease all 0.5s;
+    background-color: orangered;
+    color: white;
+    border-radius: 5px;
+}

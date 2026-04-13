@@ -1,0 +1,37 @@
+
+
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+
+
+<div class="module-workarea w-100 p-4 m-1">
+
+        <div class="text-secondary d-flex align-item-center m-0 p-0">
+             <mat-icon>{{modulo.icono}}</mat-icon>
+             <span class="fs-5">{{modulo.nombre}}</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-start w-100">
+
+            <div class="configuracion-type" >
+                <div class="" >
+                    <span> Configuración de funcionalidades </span>
+                    <hr>
+                    <ol>
+                        <li class="options" *ngFor="let lista of _funcionalidad_list" (click)="cargarConfig(lista)" > 
+                            {{ lista.nombre }}    
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <app-asign-mod-user class="w-100" (data)="lista"></app-asign-mod-user>
+
+        </div>
+
+</div>
+

@@ -1,0 +1,73 @@
+.panel-option {
+    margin: 5px;
+    border-radius: 5px;
+    width: 25%;
+    padding: 10px;
+}
+
+.panel-settings {
+    margin: 5px;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px;
+}
+
+#container_conf {
+
+  height: 94vh;
+
+}
+
+
+.nav-link {
+  border-bottom: solid 1px gray;
+  cursor: pointer ;
+}
+
+.chips-container {
+    .chip {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.875rem;
+      border-radius: 1rem;
+      
+      .btn-close {
+        font-size: 0.6rem;
+        opacity: 1;
+      }
+      
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+  
+  /* Para hacer el input más intuitivo */
+  #recipients:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+  }
+
+  /* Estilo para la tabla */
+.table {
+  width: 100%;
+}
+
+
+/* Estilo para los correos dentro de la celda */
+.recipient-email {
+  display: block; /* Cada correo en una nueva línea */
+  margin-bottom: 4px; /* Espacio entre correos */
+}
+
+
+td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Para permitir múltiples líneas cuando sea necesario */
+td.multi-line {
+  white-space: normal;
+  word-wrap: break-word;
+}

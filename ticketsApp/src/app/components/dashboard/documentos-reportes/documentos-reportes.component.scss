@@ -1,0 +1,38 @@
+.type-head {
+    border: solid 1px gray;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+// .cont {
+//     // border: solid 1px gray;
+// }
+
+.item-head-data {
+    border: solid 1px gray;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+
+.list-obs {
+    border-bottom: solid 2px gray;
+    border-bottom: dashed 1px gray;
+    padding: 10px;
+    width: 100%;
+}
+
+.box-check {
+    width: 20px;
+    height: 20px;
+    border: solid 3px #444;
+}
+
+.firma-space {
+    height: 100px;
+}

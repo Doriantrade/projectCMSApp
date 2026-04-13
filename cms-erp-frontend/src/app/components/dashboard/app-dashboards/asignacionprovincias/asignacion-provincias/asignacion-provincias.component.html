@@ -1,0 +1,267 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="module-workarea p-4 ">
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > 
+           {{modulo.nombre}}
+        </span>
+    </div>
+    <hr>
+    <div class="form-section">
+        <span class="fs-6" >  Técnicos registrados en la plataforma: </span>
+        <div class=" d-flex justify-content-center" >
+            <div class="table-responsive w-100">
+                <section class="filtros  mb-2">
+                    <!-- <input type="text" class="form-control" > -->
+                    <small class="text-secondary">
+                        Cantidad de técnicos agregados 
+                        <strong class="text-primary">
+                           ( {{lisTecnicos.length}} )
+                        </strong>
+                    </small>
+                    <div class="mb-2 d-flex">
+                      <input class=" w-100 form-control rounded-pill"
+                             fxFlex="auto" type="text"
+                             (keyup)="applyFilter($event)" 
+                             #input placeholder="Búsqueda de usuarios registrados....">
+                    </div>        
+            
+                </section>
+                <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100" >
+        
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Nombres
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombre}} {{row.apellido}}
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="foto">
+                        <th mat-header-cell 
+                            *matHeaderCellDef
+                            mat-sort-header>
+                            Foto
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                            <div class="icono" [ngStyle]="{'background-image': 'url('+row.imagenPerfil+')', 'background-size': '100% 100%'}"></div>
+                        </td>
+                    </ng-container>
+                    <ng-container matColumnDef="nombreDepartamento">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Departamento
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombreDepartamento }}
+                        </td>
+                    </ng-container>   
+            
+                    <ng-container matColumnDef="nombreProvincia">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Lugar de residencia
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombreProvincia }} - ({{row.nombreCanton}})
+                        </td>
+                    </ng-container>   
+            
+                    <ng-container matColumnDef="nombreEstado">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Estado del trabajador
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombreEstado }}
+                        </td>
+                    </ng-container>   
+            
+                    <ng-container matColumnDef="nombreMovilidad">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Movilidad
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombreMovilidad }}
+                        </td>
+                    </ng-container>   
+            
+                    <ng-container matColumnDef="nombreLicencia">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Licencia
+                        </th>
+                        <td mat-cell *matCellDef="let row">
+                          {{row.nombreLicencia }}
+                        </td>
+                    </ng-container>   
+            
+                    <ng-container matColumnDef="provincia" *ngIf="_create_show" >
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Asignación
+                        </th>
+                        <td mat-cell *matCellDef="let row"  >
+                          <button class="btn btn-warning d-flex align-items-center " (click)="openDialog(row)" >
+                            <mat-icon>share_location</mat-icon>
+                            <span> Asignar Provincia </span>
+                          </button>
+                        </td>
+                    </ng-container>   
+            
+                    <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+                    <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+                
+                    <!-- Row shown when there is no matching data. -->
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="4">
+                        Datos no encontrados...
+                      </td>
+                    </tr>
+                </table>
+                <mat-paginator [length]="100"
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 25, 100]"
+                               aria-label="Select page">
+            </mat-paginator>    
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="module-workarea p-4 mt-3">
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0 justify-content-between ">
+        <div>
+            <mat-icon>{{modulo.icono}}</mat-icon>
+            <span class="fs-5" > 
+              Zonificación de Agencias
+            </span>
+        </div>
+        <div class="d-flex justify-content-end align-content-center">
+            <span class="p-1 d-flex align-items-center">Visualizando ahora</span>
+            <span class="p-1 text-primary d-flex align-items-center" > > </span>  
+            <span class="p-1 d-flex justify-content-start align-items-center">
+                <div class="icono" [ngStyle]="{'background-image': 'url('+_IMGE+')', 'background-size': '100% 100%'}"></div>
+                <span class="p-1" >
+                   <strong>{{clientesel}}</strong>
+                </span>
+            </span>
+        </div>
+    </div>
+    <hr>
+    <section class="d-flex justify-content-between" >
+        <div class="data-box d-flex shadow-lg flex-column p-2">
+            <form [formGroup]="clienteForm">
+                <div class="mb-3   ">
+                    <label for="codcliente" class="form-label d-flex justify-content-between">
+                        <span class="text-primary" > Escoge el Cliente </span> 
+                        <span> Agencias( {{resultadosFiltrados.length}} ) </span>
+                    </label>
+                    <select class="inpForms form-select w-100" (change)="validationCliente()"
+                            formControlName="codcliente" #codcliente id="codcliente" 
+                            aria-label="">
+                            <option *ngFor="let cliente of listaClientes" [value]="cliente.codcliente" >
+                                {{cliente.nombre | titlecase }} - {{ cliente.ruc }}                                
+                            </option>
+                    </select>
+                </div>
+            </form>
+            <div class="m-1 p-2">
+                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                       [(ngModel)]="filtroTexto"
+                       placeholder="Buscar agencias por nombre"
+                       (ngModelChange)="filtrarElementos()">
+            </div>
+            <div *ngFor="let agencia of resultadosFiltrados" class=" block-data d-flex justify-content-between p-2" >                
+                <div class="w-50" >
+                    <span> {{agencia.nombre}} </span>
+                    <br>
+                    <small class="text-secondary"> 
+                        {{agencia.nombreProvincia}}
+                    </small>
+                </div>
+                <div *ngFor="let xzone of listaZonificacion" 
+                     class="data-box-button d-flex justify-content-end w-25">
+                    <button class="buton-data" mat-mini-fab 
+                            [style.backgroundColor]="getColorForInitial(xzone.nombre[0])" 
+                            (click)="catchData(agencia, xzone.codigo); guardarZonificacion()">
+                            {{ xzone.nombre | slice:0:1 }}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="data-box-g d-flex shadow-lg flex-column p-2"  >
+            <div class="title-data p-2 rounded-pill shadow-sm text-light" [ngStyle]="{'background-color': N}">
+                Norte <strong> ({{resultadosFiltradosNorte.length}}) </strong>
+            </div>
+            <div class="m-1 p-2">
+                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                       [(ngModel)]="filtroTextoNorte"
+                       placeholder="Buscar agencias Norte por nombre"
+                       (ngModelChange)="filtrarElementosNorte()">
+            </div>
+            <div class="block-data p-2 d-flex flex-column" *ngFor="let xnorte of resultadosFiltradosNorte" (click)="eliminarDatCrono(xnorte.id)" >
+                <!-- <small class="text-success" style="text-align: right; font-size: 7pt;" >
+                    <strong>{{xnorte.nombreCliente}}</strong>
+                </small> -->
+                <span> {{xnorte.nombreAgencia}}</span>
+                <small class="text-secondary"> 
+                    {{xnorte.nombreProvincia}}
+                </small>
+            </div>
+        </div>
+        <div class="data-box-g d-flex shadow-lg flex-column p-2">
+            <div class="title-data p-2 rounded-pill shadow-sm text-light" [ngStyle]="{'background-color': C}">
+                Centro <strong> ({{resultadosFiltradosCentro.length}}) </strong>
+            </div>
+            <div class="m-1 p-2">
+                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                       [(ngModel)]="filtroTextoCentro"
+                       placeholder="Buscar agencias Centro por nombre"
+                       (ngModelChange)="filtrarElementosCentro()">
+            </div>
+            <div class="block-data p-2 d-flex flex-column" *ngFor="let xcentro of resultadosFiltradosCentro" (click)="eliminarDatCrono(xcentro.id)">
+                <span> {{xcentro.nombreAgencia}}</span>
+                <small class="text-secondary"> 
+                    {{xcentro.nombreProvincia}}
+                </small>
+            </div>
+        </div>
+        <div class="data-box-g d-flex shadow-lg flex-column p-2">
+            <div class="title-data p-2 rounded-pill shadow-sm text-light" [ngStyle]="{'background-color': S}">
+                Sur <strong> ({{resultadosFiltradosSur.length}}) </strong>
+            </div>
+            <div class="m-1 p-2">
+                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                       [(ngModel)]="filtroTextoSur"
+                       placeholder="Buscar agencias Sur por nombre"
+                       (ngModelChange)="filtrarElementosSur()">
+            </div>
+            <div class="block-data p-2 d-flex flex-column" *ngFor="let xsur of resultadosFiltradosSur" (click)="eliminarDatCrono(xsur.id)">
+                <span> {{xsur.nombreAgencia}}</span>
+                <small class="text-secondary"> 
+                    {{xsur.nombreProvincia}}
+                </small>
+            </div>
+        </div>
+        <div class="data-box-g d-flex shadow-lg flex-column p-2">
+            <div class="title-data p-2 rounded-pill shadow-sm text-light" [ngStyle]="{'background-color': G}">
+                General <strong> ({{resultadosFiltradosGeneral.length}}) </strong>
+            </div>
+            <div class="m-1 p-2">
+                <input type="text" class="form-control form-control-sm shadow rounded-pill"
+                       [(ngModel)]="filtroTextoGeneral"
+                       placeholder="Buscar agencias General por nombre"
+                       (ngModelChange)="filtrarElementosGeneral()">
+            </div>
+            <div class="block-data p-2 d-flex flex-column" *ngFor="let xgeneral of resultadosFiltradosGeneral" (click)="eliminarDatCrono(xgeneral.id)">
+                <span> {{xgeneral.nombreAgencia}}</span>
+                <small class="text-secondary"> 
+                    {{xgeneral.nombreProvincia}}
+                </small>
+            </div>
+        </div>
+    </section>
+
+</div>

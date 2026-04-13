@@ -1,0 +1,108 @@
+
+<section class="d-flex justify-content-between" >
+    <div class="box w-75" >
+    <div class="header d-flex justify-content-between p-3 "  >
+
+        <span class="fs-5" >
+            <span class="text-secondary" > N.Serie: </span>  <strong> {{nserie}} </strong>
+        </span> 
+        <span class="fs-5" >
+            <span class="text-secondary" > Marca: </span>  <strong> {{marca}} </strong>
+        </span> 
+        <span class="fs-5" >
+            <span class="text-secondary" > Modelo: </span>  <strong> {{modelo}} </strong>
+        </span> 
+
+    </div>
+    <hr>
+    <div class="body p-3 d-flex flex-column " >
+        <div class="w-100 d-flex justify-content-between align-items-center" >
+            <div class="w-50" >
+                <span class="text-secondary" > Agencia asignada: </span>
+                <span class="d-flex align-items-center ">
+                    <div class="icono m-2 "
+                        [ngStyle]="{'background-image': 'url('+imagenCliente+')', 'background-size': '100% 100%'}">
+                    </div>
+                    <div  class="m-2">
+                        <h4 class="m-0 d-flex flex-column"  > 
+                            <strong> {{nombreAgencia | uppercase}} </strong>
+                            <small class="text-secondary" >   
+                                {{ nombreCLiente | uppercase }}    
+                            </small>
+                        </h4>
+                    </div>
+                </span>
+            </div>
+            <div class="w-50" >
+                <section class="filtros  ">
+                    <div class="mb-2 d-flex">
+                      <input class=" w-100 shadow-sm form-control rounded-pill"
+                             fxFlex="auto" type="text"
+                             [(ngModel)]="filtroTexto"
+                             (keyup)="filtrarElementos()" 
+                             #input placeholder="Búsqueda del historial de mantenimiento...">
+                    </div>
+                </section>
+            </div>
+        </div>
+        <hr>
+        <div class="table-responsive w-100">
+
+            <table class="table-warning table-striped table-hover table-sm w-100" >
+
+                <thead class="bg-dark text-light " >
+                    <tr>
+                        <td>
+                            Nombre Técnico
+                        </td>
+                        <td title="Fecha de finalización del mantenimiento">
+                            Fec. Mant.
+                        </td>
+                        <td>
+                            Observación Técnica
+                        </td>
+                        <td title="Imagenes enviadas de los mantenimientos terminados">
+                            Img. Mant.
+                        </td>
+                        <td title="Imagenes enviadas de los repuestos requeridos para los mantenimientos" >
+                            Img. Rep. Req.
+                        </td>
+                    </tr>
+                </thead>
+                <tbody class="bg-warning"  >
+
+                    <tr *ngFor="let mantenimientos of listahistoricomaquinaria" >
+                        <td>{{ mantenimientos.nombreTecnico }}</td>
+                        <td>{{mantenimientos.feccrea | date: 'short' }}</td>
+                        <!-- <td>{{mantenimientos.feciniciomante}} - {{mantenimientos.fecfinmant}}</td> -->
+                        <td> 
+                                <!-- Observacion tecnica -->
+                                Sin ninguan observación tecnica falta app del celular.
+                        </td>
+                        <td>
+                            <div class="btn btn-sm btn-outline-dark w-100 d-flex justify-content-center align-items-center">
+                                <mat-icon>
+                                    image
+                                </mat-icon>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="btn btn-sm btn-outline-dark w-100 d-flex justify-content-center align-items-center">
+                                <mat-icon>
+                                    image
+                                </mat-icon>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    </div>
+    <div class="historialRequerimientos" >
+
+    </div>
+</section>
+

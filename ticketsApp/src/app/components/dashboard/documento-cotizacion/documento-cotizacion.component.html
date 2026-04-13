@@ -1,0 +1,280 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loader"></span>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between align-items-end">
+    <form [formGroup]="dataNameForm" (ngSubmit)="onSubmit()">
+        <div class="m-1 d-flex align-items-center text-primary">
+            <mat-icon>info</mat-icon> &nbsp; Edición de cabecera para la cotización.
+        </div>
+            <div class="d-flex justify-content-between">
+            <div class="m-1 shadow-sm">
+                <input class="form-control form-control-sm" 
+                       placeholder="Título"
+                       formControlName="tituloPres"
+                       #tituloPres
+                       (keyup)="onSubmit()"
+                       id="tituloPres">
+            </div>
+            <div class="m-1 shadow-sm">
+                <input class="form-control form-control-sm" 
+                       placeholder="REPRESENTANTE LEGAL"
+                       formControlName="repLegal"
+                       #repLegal 
+                       (keyup)="onSubmit()"
+                       id="repLegal">
+            </div>
+            <div class="m-1 shadow-sm">
+                <input class="form-control form-control-sm" 
+                       placeholder="DIRIGIDO A..."
+                       formControlName="dirigido"
+                       #dirigido
+                       (keyup)="onSubmit()"
+                       id="dirigido">
+            </div>
+        </div>
+    </form>
+    <div class="m-1">
+        <button class="btn btn-warning d-flex align-items-center"
+                [printSectionId]="'coti-'+padId" ngxPrint>
+                <mat-icon>download</mat-icon> &nbsp; Descargar PDF
+        </button>
+    </div>
+</div>
+<hr class="m-0">
+<div class="cont w-100 p-4" [id]="'coti-'+padId">
+    <div class="headc d-flex w-100">
+        <div class="type-head w-50">
+            
+            <img src="../../../../assets/logotipo/descarga.png"
+                 width="250px" height="110px">
+        </div>
+        <div class="type-head w-50">
+            <div class="d-flex flex-column" style="text-align: center;">                
+                <h2 class="m-0">
+                    <strong>COTIZACIÓN</strong>
+                </h2>
+                <hr class="m-1 p-0">
+                <h1 class="text-danger m-0"
+                    style="font-size: 25pt;">
+                    <strong>{{ padId }}</strong>
+                </h1>
+                <hr class="m-1 p-0">
+                <h4 class="m-0">
+                    <strong>CASH MACHINE SERVICE C. LTDA.</strong>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="head w-100 mt-3">
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>
+                    <span>
+                        {{ tituloCot | titlecase }}
+                    </span>
+                    <br>
+                    <span>
+                        <strong>{{ replegal | uppercase }}</strong>
+                    </span>
+                    <br>
+                    <span>
+                        <strong>{{ nombreCliente | uppercase }}</strong>
+                    </span>
+                </p>
+            </div>
+            <div>
+                <p> 
+                    <span> 
+                        <strong>Guayaquil, {{ fechaFormateada }}</strong> 
+                    </span> 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="head w-100 mt-2">
+        <span>
+            {{ textoCotizacion }} cotización de repuestos:
+        </span>
+    </div>
+    <div class="head w-100 mt-2">
+        <table class="table table-secondary table-bordered align-middle">
+            <thead class="bg-dark text-light">
+                <tr class="bg-dark text-light">
+                    <th style="font-size: 10pt !important;">
+                        SUCURSAL/AGENCIA
+                    </th>
+                    <th style="font-size: 10pt !important;">
+                        MARCA
+                    </th>
+                    <th style="font-size: 10pt !important;">
+                        MODELO
+                    </th>
+                    <th style="font-size: 10pt !important;">
+                        N. SERIE
+                    </th>
+                    <th style="font-size: 8pt !important;">
+                        N. BILLETES / <br>
+                        MONEDAS CONTADAS
+                    </th>
+                    <th style="font-size: 10pt !important;">
+                        INVENTARIO
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {{ nombreAgencia }}      
+                    </td>
+                    <td>
+                        {{ nombreMarcaEquipo }}  
+                    </td>
+                    <td>
+                        {{ nombreModeloEquipo }} 
+                    </td>
+                    <td>
+                        {{ nserie }}             
+                    </td>
+                    <td>
+                        {{ contadorfinal }}      
+                    </td>
+                    <td>
+                        {{ ninventario }}        
+                    </td>
+                </tr>
+            </tbody>
+        </table>  
+    </div>
+
+    <div class="head w-100 mt-2">
+        <table class="table table-secondary table-bordered align-middle">
+            <thead class="bg-dark text-light">
+                <tr class="bg-dark text-light">
+                    <th>
+                        FOTOGRAFÍA
+                    </th>
+                    <th>
+                        CANT.
+                    </th>
+                    <th>
+                        N. PARTE
+                    </th>
+                    <th>
+                        DESCRIPCIÓN
+                    </th>
+                    <th>
+                        P. U.
+                    </th>
+                    <th>
+                        TOTAL
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cotiza of listaCotizacion">
+                    <td></td>
+                    <td>
+                        {{ cotiza.cantidad }}
+                    </td>
+                    <td>
+                        {{ cotiza.codrep }}
+                    </td>
+                    <td>
+                        <p>
+                            <span>
+                               <strong> {{ cotiza.nombreRep | uppercase }} </strong>
+                            </span>
+                            <br>
+                            <small>
+                                {{ cotiza.descripcionRepuesto }}
+                            </small>
+                        </p>
+                    </td>
+                    <td>
+                       {{ cotiza.preUnitarioSinIva | number: '1.2-2' }}
+                    </td>
+                    <td>
+                       {{ cotiza.totalSinIva | number: '1.2-2' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="head w-100 mt-2 d-flex justify-content-between">
+        <div class="w-75 p-2">
+            <p>
+                <span>
+                    Esperamos su vuestra grata orden,
+                </span>
+                <br>
+                <strong>
+                    Atentamente,
+                </strong>
+            </p>
+        </div>
+        <div class="d-flex flex-column p-2">
+            <div class="d-flex justify-content-between">
+                <div>SUBTOTAL</div>
+                &nbsp;
+                <div>
+                    <strong>{{ subTotal | number: '1.2-2' }}</strong>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div>I.V.A. <strong>({{iva}}%)</strong> : </div>
+                &nbsp;
+                <div>
+                    <strong>{{ totalIVA | number: '1.2-2' }}</strong>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between">
+                <div>TOTAL:</div>
+                &nbsp;
+                <div>
+                    <strong>{{ totalCotizacion | number: '1.2-2' }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100 d-flex justify-content-center" style="margin-top: 105px;">
+        <div class="head w-100 d-flex justify-content-between">
+             <div class="d-flex flex-column"
+                  style="font-size: 13pt; text-align: left;">
+                  <div>
+                    <div style="width: 300px; height: 110px; background-image: url(../../../../assets/firmas/Firma-Daniel-Davila.png); background-size: 100%,100%; background-repeat: no-repeat;" ></div>
+                  </div>
+                  <div class="d-flex flex-column">
+                    <span>
+                      <strong>&nbsp;&nbsp; DANIEL E. DÁVILA</strong>
+                    </span>
+                    <span>
+                      <small>&nbsp;&nbsp; Presidente</small>
+                    </span>
+                  </div>
+             </div>
+             <div class="d-flex justify-content-end align-items-end"
+                  style="font-size: 11pt; text-align: right;">
+                  <span class="d-flex flex-column">
+                    <hr class="w-100" style="border: solid 2px gray !important;">
+                    <strong>FIRMA O SELLO DE APROBACIÓN</strong>
+                  </span>
+             </div>
+        </div>
+    </div>
+    <div class="w-100 footer">
+        <div class="line w-100"></div>
+        <div class="d-flex justify-content-end w-100">
+            <span class="text-dark"
+                  style="text-align: right;">
+                  GUAYAQUIL {{ direccion }} * {{ telf1 }} - {{ telf2 }} * {{ email }}
+            </span>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+/* Estilo personalizado para el input de tipo file en Bootstrap para replicar el look de Tailwind */
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.custom-file-input::before {
+  content: 'Elegir archivo';
+  display: inline-block;
+  background: linear-gradient(to right, #e0f2fe, #e3f2fd); /* Light blue gradient */
+  color: #2196f3; /* Blue text */
+  border: 1px solid #90caf9; /* Light blue border */
+  border-radius: 50px; /* Fully rounded */
+  padding: 8px 16px; /* Padding for size */
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem; /* Equivalent to text-sm */
+  margin-right: 1rem; /* Equivalent to mr-4 */
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-file-input:hover::before {
+  background-color: #bbdefb; /* Lighter blue on hover */
+  border-color: #64b5f6;
+}
+
+.custom-file-input:active::before {
+  background-color: #90caf9; /* Even lighter blue on active */
+  border-color: #42a5f5;
+}
+
+.custom-file-input:focus::before {
+  box-shadow: 0 0 0 0.25rem rgba(66, 153, 225, 0.25); /* Focus ring */
+}

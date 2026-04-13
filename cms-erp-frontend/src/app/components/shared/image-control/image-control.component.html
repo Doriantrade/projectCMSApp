@@ -1,0 +1,27 @@
+
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<section class="w-100">
+        
+        <label for="fileUp" id="imageUp" class="d-flex justify-content-center">
+            <div class="imagen-container shadow" [ngStyle]="{'background-image': 'url('+_IMGE+')', 'background-size': '100% 100%'}"></div>
+        </label>
+        
+        <input type="file" id="fileUp"
+               (change)="encodeImageFileAsURL();
+               onFileSelected($event)">
+
+        <button mat-raised-button 
+                *ngIf="showbtnperfil"
+                [disabled]="disbtnimg"
+                class="w-100"
+                color="warn"
+                (click)="validateaccion(3)">
+                <!-- this.datalisten.modulo= 'Perfil' -->
+                <mat-icon>sync-alt</mat-icon> Actualizar Imagen
+        </button>
+</section>

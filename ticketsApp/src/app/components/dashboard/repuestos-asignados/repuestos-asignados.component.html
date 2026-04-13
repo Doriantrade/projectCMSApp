@@ -1,0 +1,90 @@
+
+    <div class="d-flex w-100 " style="margin-left: 10px;">
+        <div class="d-flex align-items-center" style="background-color: rgb(42, 42, 42);"
+             *ngIf="listaRepuestoRequerimientos.length > 0">
+          <div mat-button
+               [matMenuTriggerFor]="menu"
+               *ngIf="_cli_view"
+               class="d-flex align-items-center p-2 w-100 text-light">
+               <mat-icon>more_vert</mat-icon>
+          </div>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item 
+                    (click)="openDataRepuestosDialog('COTIZACION')">
+              <mat-icon>picture_as_pdf</mat-icon>
+              <span>Generar cotización</span>
+            </button>
+            <button mat-menu-item (click)="openDataProcessDownCotizModal()">
+              <mat-icon>cancel</mat-icon>
+              <span>Dar de baja</span>
+            </button>
+          </mat-menu>
+        </div>
+        <div class="text-light p-2 d-flex justify-content-between"
+             style="background-color: rgb(71, 71, 71); color: white; border-top-right-radius: 10px;">
+             <span> Repuestos </span>
+             <small class="text-warning">
+                Nuestros precios ya incluyen I.V.A.
+             </small>
+        </div>
+    </div>
+    <table class="table table-secondary shadow table-striped-columns align-middle" style="margin-left: 10px;">
+        <thead class="bg-secondary text-light">
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Código
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Marca
+            </th>
+            <th *ngIf="_cli_view">
+                Precio. U.
+            </th>
+            <th *ngIf="_cli_view">
+                Total
+            </th>
+            <th></th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let rep of listaRepuestoRequerimientos"
+                class="animate__animated animate__fadeInUp">
+                <td>
+                    {{ rep.cantidad }}
+                </td>
+                <td>
+                    {{ rep.codrep }}
+                </td>
+                <td>
+                    {{ rep.nombreRep }}
+                </td>
+                <td>
+                    {{ rep.marcaRepuesto }}
+                </td>
+                <td *ngIf="_cli_view">
+                    {{ rep.precioUnitario | number: '1.2-2' }}
+                </td>
+                <td *ngIf="_cli_view">
+                    {{ rep.valorFinal | number: '1.2-2' }}
+                </td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-secondary mt-2 d-flex align-items-center" style="margin-left: 10px;"  
+         *ngIf="listaRepuestoRequerimientos.length == 0">
+         <mat-icon>info</mat-icon>
+         <small>No hay repuestos asignados en este momento.</small>
+    </div>
+    <div class="sumTotales p-2" *ngIf="listaRepuestoRequerimientos.length > 0" style="margin-left: 10px;"> 
+        <strong *ngIf="_cli_view">
+           <small>TOTAL</small>
+           <span style="color: yellowgreen;"> $ {{ calculoTotalFactur | number: '1.2-2' }} </span>
+        </strong>
+    </div>
+
+

@@ -1,0 +1,382 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="module-workarea p-4 " *ngIf="_form_create && _show_form" >
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>{{modulo.icono}}</mat-icon>
+        <span class="fs-5">
+            {{modulo.nombre}}
+        </span>
+    </div>
+    <hr>
+    <div class="form-section">
+        <form [formGroup]="userForm" class="mb-2" (ngSubmit)="onSubmit()">
+            <div class=" d-flex flex-wrap justify-content-between " >
+            <div class="mb-3 col-4 ">
+                <label for="Nombre" class="form-label text-secondary  ">
+                    Nombres:
+                </label>
+                <input type="text" class="form-control" formControlName="Nombre" #Nombre id="Nombre" placeholder="José Carlos">
+            </div>
+            <div class="mb-3 col-4 ">
+                <label for="Apellido" class="form-label text-secondary ">
+                    Apellidos:
+                </label>
+                <input type="text" class="form-control" formControlName="Apellido" #Apellido id="Apellido" placeholder="Mora Cedeño">
+            </div>
+            <div class="mb-3 col-1">
+                <label for="Cedula" class="form-label text-secondary">
+                    Edad:
+                </label>
+                <input type="number" class="form-control" formControlName="Edad" #Edad id="Edad" placeholder="21">
+            </div>
+            </div>
+            <div class=" d-flex flex-wrap justify-content-between  ">
+            <div class="mb-3 col-5 ">
+                <label for="Email" class="form-label text-secondary">
+                    Email:
+                </label>
+                <input type="email" class="form-control" formControlName="Email" #Email id="Email" placeholder="name@example.com">
+            </div>
+            <div class="mb-3 col-2 ">
+                <label for="Cedula" class="form-label text-secondary">
+                    Cédula:
+                </label>
+                <input type="text" class="form-control" formControlName="Cedula" #Cedula id="Cedula" placeholder="099988555">
+            </div>
+            
+            <div class="mb-3 col-4">
+                <label for="Contrasenia" class="form-label text-secondary">
+                    Contraseña:
+                </label>
+                <input type="password" class="form-control" formControlName="Contrasenia" #Contrasenia id="Contrasenia" placeholder="***">
+            </div>
+            </div>
+            <div class=" d-flex flex-wrap justify-content-between ">
+            <div class="mb-3 col-3  ">
+                <label for="Cargo" class="form-label text-secondary">
+                    Cargo:
+                </label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="Cargo" #Cargo id="Cargo" aria-label="">
+                        <option *ngFor="let cargo of cargoLista" [value]="cargo.codigo" >
+                            {{cargo.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            <div class="mb-3 col-4 ">
+                <label for="Estado"
+                       class="form-label text-secondary">
+                       Estado del trabajador:
+                </label>
+                <select class="inpForms form-select w-100"
+                        formControlName="Estado" #Estado id="Estado" aria-label="">
+                        <option *ngFor="let estadoTrabajador of estadoTrabajadorLista" [value]="estadoTrabajador.codigo" >
+                            {{estadoTrabajador.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            <div class="mb-3 col-2">
+                <label for="CodEstadoCivil" class="form-label text-secondary">
+                    Estado Civil:
+                </label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="CodEstadoCivil" #CodEstadoCivil id="CodEstadoCivil" aria-label="">
+                        <option *ngFor="let ecivil of estadoCivilLista" [value]="ecivil.codigo" >
+                            {{ecivil.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            <div class="mb-3 col-2">
+                <label for="CodSexo" class="form-label text-secondary">
+                    Sexo:
+                </label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="CodSexo" #CodSexo id="CodSexo" aria-label="">
+                        <option *ngFor="let sexo of sexoLista" [value]="sexo.codigo" >
+                            {{sexo.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between" >
+            <div class="mb-3 col-3  ">
+                <label for="CodProvincia">Provincia</label>
+                <select class="inpForms form-select   w-100" 
+                        formControlName="CodProvincia" #CodProvincia 
+                        (change)="getCantones()"
+                        id="CodProvincia" aria-label="">
+                        <option *ngFor="let provincia of provinciaLista"                                     
+                                [value]="provincia.codigo">
+                                {{provincia.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+
+            <div class="mb-3 col-3  ">
+                <label for="CodCanton">Cantón</label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="CodCanton" #CodCanton id="CodCanton" aria-label="">
+                        <option *ngFor="let canton of cantonLista" [value]="canton.codigo" >
+                            {{canton.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            <div class="mb-3 col-5">
+                <label for="Direccion" class="form-label m-0 text-secondary">
+                    Dirección:
+                </label>
+                <input type="text" class="form-control" formControlName="Direccion" #Direccion id="Direccion" placeholder="Callejo 5 y peatonal ...">
+            </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between">
+            <div class="mb-3">
+                <label for="CodDepartamento">Departamento:</label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="CodDepartamento" #CodDepartamento id="CodDepartamento" aria-label="">
+                        <option *ngFor="let departamento of departamentoLista" [value]="departamento.codigo" >
+                            {{departamento.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="Tipo">Tipo:</label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="Tipo" #Tipo id="Tipo" aria-label="">
+                        <option *ngFor="let tipo of tipoLista"
+                                [value]="tipo.codigo" >
+                            {{tipo.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="Codcaracteristicas"  >Habilidades:</label>
+                <select class="inpForms form-select   w-100"
+                        formControlName="Codcaracteristicas" #Codcaracteristicas id="Codcaracteristicas" aria-label="">
+                        <option *ngFor="let capacidades of capacidadesLista" [value]="capacidades.codigo" >
+                            {{capacidades.nombre | titlecase }}                                
+                        </option>
+                </select>
+            </div>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between">
+                <div class="mb-3 col-4">
+                    <label for="CodCanton">Movilidad:</label>
+                    <select class="inpForms form-select w-100"
+                            formControlName="Movilidad"
+                            #Movilidad id="Movilidad"
+                            aria-label="">
+                            <option *ngFor="let movil of moviLista"
+                                    [value]="movil.codigo">
+                                    {{ movil.nombre | titlecase }}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-2 ">
+                    <label for="CodCanton">Tipo de Licencia:</label>
+                    <select class="inpForms form-select   w-100"
+                            formControlName="CodLicencia" #CodLicencia id="CodLicencia" aria-label="">
+                            <option *ngFor="let licencia of licenciaLista"
+                                    [value]="licencia.codigo" >
+                                    {{ licencia.nombre | titlecase }}
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-3 ">
+                    <label for="Cedula" class="form-label text-secondary">
+                        Telf:
+                    </label>
+                    <input type="text" class="form-control" formControlName="Telf" #Telf id="Telf" placeholder="098212252">
+                </div>
+                <div class="mb-3 col-2 ">
+                    <label for="Cedula" class="form-label text-secondary">
+                        Fecha de Ingreso:
+                    </label>
+                    <input type="date" class="form-control" 
+                           formControlName="fecingreso"
+                           #fecingreso 
+                           id="fecingreso"
+                           >
+                </div>
+                <div class="mb-3 col-2 ">
+                    <label for="Cedula" class="form-label text-secondary">
+                        Fecha de Salida:
+                    </label>
+                    <input type="date" class="form-control" 
+                           formControlName="fecsalida"
+                           #fecsalida 
+                           id="fecsalida"
+                           >
+                </div>
+                <div class="floating-button">
+                    <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()" >
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button type="submit" mat-raised-button color="primary" *ngIf="_create_show" >
+                        <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}} {{modulo.nombre}}
+                    </button>
+                    <button type="submit" mat-raised-button color="primary" *ngIf="_edit_btn" >
+                        <mat-icon>sync_alt</mat-icon> Actualizar {{modulo.nombre}}
+                    </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="module-workarea p-4 mt-3 ">
+<div class="text-secondary d-flex align-item-center m-0 p-0">
+     <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > {{modulo.nombre}} Registrados  </span>
+</div>
+<hr>
+<div class="table-responsive w-100">
+    <section class="filtros  mb-2">
+        <!-- <input type="text" class="form-control" > -->
+        <small class="text-secondary">
+            Cantidad de usuarios agregados 
+            <strong class="text-primary">
+               ( {{listUsuarios.length}} )
+            </strong>
+        </small>
+        <div class="mb-2 d-flex">
+          <input class=" w-100 form-control rounded-pill"
+                 fxFlex="auto" type="text"
+                 (keyup)="applyFilter($event)" 
+                 #input placeholder="Búsqueda de usuarios registrados....">
+                 <button *ngIf="pMod <= 2" class="btn btn-warning rounded-circle ms-2 d-flex align-items-center justify-content-center"
+                 style="width: 40px; height: 40px;"
+                 (click)="_show_form = !_show_form; _cancel_button= true">
+           <mat-icon>add</mat-icon>
+         </button>
+        </div>        
+
+    </section>
+    <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100" >
+
+        <ng-container matColumnDef="edit">
+            
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              <span>
+                <mat-icon *ngIf="_edit_show" >
+                  edit
+                </mat-icon>
+              </span>
+              <span *ngIf="_delete_show" >
+                <mat-icon>
+                  delete
+                </mat-icon>
+              </span>
+            </th>
+            
+            <td mat-cell *matCellDef="let row">
+              <span class="edit" (click)="catchData(row); _show_form=true" *ngIf="_edit_show;">
+                <mat-icon>
+                  edit
+                </mat-icon>
+              </span>
+              <span *ngIf="_delete_show && pMod === 1" class="delete" (click)="eliminarUsuario(row)">
+                <mat-icon  >
+                  delete
+                </mat-icon>
+              </span>
+            </td>
+
+          </ng-container>
+
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Nombres
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.nombre}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="apellido">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Apellidos
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.apellido}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cédula">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cédula
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.cedula}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Dirección">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Dirección
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.direccion   }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreDepartamento">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Departamento
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.nombreDepartamento }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreCargo">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Cargo
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.nombreCargo   }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombreProvincia">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Provincia
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.nombreProvincia}}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nombreCanton">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Canton
+            </th>
+            <td mat-cell *matCellDef="let row">
+              {{row.nombreCanton}}
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+    
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            Datos no encontrados...
+          </td>
+        </tr>
+    </table>
+    <mat-paginator [length]="100"
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   aria-label="Select page">
+</mat-paginator>    
+</div>
+</div>
+

@@ -1,0 +1,175 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<div class="module-workarea">
+    <!-- Header -->
+    <div class="monitor-header">
+        <div class="title-section">
+            <mat-icon>{{modulo.icono}}</mat-icon>
+            <span class="module-title">{{modulo.nombre}}</span>
+        </div>
+        <div class="status-section">
+            <span class="badge online" *ngIf="markers.length > 0">
+                En línea: {{markers.length}}
+            </span>
+            <span class="badge offline" *ngIf="markers.length === 0">
+                Esperando señal...
+            </span>
+            <button class="btn btn-primary btn-sm d-flex align-items-center gap-1 config-btn"
+                (click)="toggleSettingsPanel()">
+                <mat-icon style="font-size: 18px; width: 18px; height: 18px;">settings</mat-icon>
+                Configurar
+            </button>
+        </div>
+    </div>
+
+    <!-- Panel de Configuración Lateral -->
+    <div class="settings-panel shadow-lg" [class.open]="showSettingsPanel">
+        <div class="panel-header border-bottom p-3 d-flex justify-content-between align-items-center">
+            <h3 class="h5 m-0 text-primary fw-bold">Configuración de Monitoreo</h3>
+            <button class="btn btn-link text-dark p-0" (click)="toggleSettingsPanel()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+
+        <!-- TABS -->
+        <ul class="nav nav-tabs px-3 pt-2">
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" [class.active]="activeTab === 'config'" (click)="switchTab('config')">Dispositivos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" style="cursor: pointer;" [class.active]="activeTab === 'tecnicos'" (click)="switchTab('tecnicos')">
+                    Técnicos <span *ngIf="tecnicosList.length > 0">({{tecnicosList.length}})</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="panel-content">
+            <!-- TABLA CONFIGURACIONES O DISPOSITIVOS -->
+            <div *ngIf="activeTab === 'config'">
+                <div class="table-container" *ngIf="!selectedSetting">
+                <table class="table table-hover table-sm custom-table">
+                    <thead class="table-light text-secondary">
+                        <tr>
+                            <th>MAC</th>
+                            <th>Usuario Asignado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of settingsData">
+                            <td>{{item.codmac}}</td>
+                            <td [title]="item.nombreUsuario">{{item.nombreUsuario}}</td>
+                            <td>
+                                <button class="btn btn-outline-primary btn-sm p-1" (click)="editSetting(item)">
+                                    <mat-icon style="font-size: 18px; width: 18px; height: 18px;">edit</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Formulario de Edición -->
+            <div class="edit-form p-3" *ngIf="selectedSetting">
+                <h4 class="h6 mb-3 border-bottom pb-2 text-secondary fw-bold">Editar Configuración:
+                    {{selectedSetting.codmac}}</h4>
+                <div class="row g-3">
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Intervalo Envío (seg)</label>
+                        <input type="number" class="form-control form-control-sm"
+                            [(ngModel)]="selectedSetting.timeSendDataGeoLocalization">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Inicio Laboral</label>
+                        <input type="time" class="form-control form-control-sm"
+                            [(ngModel)]="selectedSetting.horarioLaboinicial">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Fin Laboral</label>
+                        <input type="time" class="form-control form-control-sm"
+                            [(ngModel)]="selectedSetting.horarioLabofinal">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Aprox (m)</label>
+                        <input type="number" class="form-control form-control-sm"
+                            [(ngModel)]="selectedSetting.aproximGeoLocalizacion">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Pasos (m)</label>
+                        <input type="number" class="form-control form-control-sm" [(ngModel)]="selectedSetting.pasos">
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label small mb-1">Método Envío</label>
+                        <select class="form-select form-select-sm" [(ngModel)]="selectedSetting.metodoDeEnvioDeDatos">
+                            <option [value]="1">Tiempo</option>
+                            <option [value]="2">Pasos</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions mt-4 d-flex justify-content-end gap-2">
+                    <button class="btn btn-light btn-sm border" (click)="cancelEdit()">Cancelar</button>
+                    <button class="btn btn-primary btn-sm" (click)="saveSetting()">Guardar Cambios</button>
+                </div>
+            </div>
+            </div> <!-- CLOSE activeTab === 'config' -->
+
+            <!-- TABLA TÉCNICOS TIPO '003' -->
+            <div *ngIf="activeTab === 'tecnicos'">
+                <div class="table-container p-3 pt-0">
+                    <div class="alert alert-info py-2" *ngIf="tecnicosList.length === 0 && !_show_spinner">
+                        No hay técnicos disponibles con rol 003.
+                    </div>
+
+                    <div *ngIf="tecnicosList.length > 0">
+                        <input type="text" class="form-control form-control-sm mb-2" placeholder="Buscar por nombre o apellido..." [(ngModel)]="searchTerm">
+                        <div style="max-height: 50vh; overflow-y: auto;">
+                            <table class="table table-hover table-sm">
+                                <thead class="table-light text-secondary" style="position: sticky; top: 0; z-index: 10;">
+                                    <tr>
+                                        <th class="text-center" title="Seleccionar Todos">
+                                            <input type="checkbox" class="form-check-input" [checked]="allSelected" (change)="toggleAll($event)">
+                                        </th>
+                                        <th>Nombre</th>
+                                        <th>Teléfono</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let tec of filteredTecnicosList" style="cursor: pointer;" (click)="toggleTecnico(tec.coduser)">
+                                        <td class="text-center" (click)="$event.stopPropagation()">
+                                            <input type="checkbox" class="form-check-input" [(ngModel)]="selectedTecnicosMap[tec.coduser]">
+                                        </td>
+                                        <td>{{tec.nombre}} {{tec.apellido}}</td>
+                                        <td>{{tec.telf || 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="alert alert-warning py-2 mt-2" *ngIf="filteredTecnicosList.length === 0">
+                            No se encontraron técnicos para "{{searchTerm}}".
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Map Container - Ocupa todo el espacio restante -->
+    <div class="map-wrapper">
+        <google-map height="100%" width="100%" [center]="center" [zoom]="zoom" [options]="mapOptions">
+            <map-marker *ngFor="let marker of visibleMarkers" [position]="marker.position" [title]="marker.title"
+                [options]="marker.options">
+            </map-marker>
+        </google-map>
+    </div>
+</div>

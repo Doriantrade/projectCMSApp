@@ -1,0 +1,179 @@
+.producto {
+    width: 500px;
+    background-color: rgb(222, 222, 222);
+    border: solid 1px white;
+}
+
+.imagen-container {
+
+    width: 230px;
+    height: 255px;
+    background-color: gray;
+    border-radius: 5px;
+    border: solid 5px white;
+    transition: ease all 1s;
+
+}
+
+
+.imagen-container:hover {
+    transition: ease all 1s;
+    background-color: rgb(59, 136, 110);
+    cursor: pointer;
+}
+
+
+.contain-bodegas {
+    height: 62vh;
+    overflow-y: auto;
+}
+
+.spanbtn {
+    cursor: pointer;
+    transition: ease all 0.5s;
+}
+
+.spanbtn:hover {
+    transition: ease all 0.5s;
+    color: orange;
+}
+
+.bodegas {
+
+    width: 180px;
+    height: auto;
+    margin: 10px;
+    z-index: 1;
+    transform: scale(1);
+    transition: ease all 0.5s;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.bodegas:hover{
+    transition: ease all 0.5s;
+    transform: scale(1.05);
+    cursor: pointer;
+    // padding: 10px;
+    border-radius:  10px;
+    background-color: rgba(104, 153, 183, 0.58);
+}
+
+.title-bodega {
+    width: 160px;
+    position: relative;
+    top: 15px;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 1px rgba($color: #000000, $alpha: 0.5);
+    background-color: whitesmoke;
+    border: solid 2px green;
+    z-index: 2;
+    font-weight: bold;
+    color: green;
+    font-size: 8pt;
+}
+
+.checkcajas {
+    margin-top: -40px;
+}
+
+.cajas-contenido {
+    padding: 25px;
+    background-color: #1e342f;
+    border-radius: 10px;
+    height: 60vh;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 3;
+    display: flex;
+    justify-content: stretch;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    padding-bottom: 0px !important;
+}
+
+
+.cajas {
+    width: 200px;
+    height: 190px;
+    background-size: 100% 100%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    align-items: center;
+    background-image: url('../../../../../../assets/palets.png');
+    transition: ease all 1s;
+}
+
+.cajas:hover {
+    transition: ease all 0.5s;
+    border-radius: 10px;
+    background-color: rgba(86, 77, 30, 0.664);
+}
+
+.notebox {
+    padding: 5px;
+    border-radius: 3px;
+    width: 160px;
+    background-color: beige;
+    color: #191305;
+    font-size: 9pt;
+    box-shadow: 5px 5px rgba($color: #000000, $alpha: 0.3);
+}
+
+.details-palets {
+    width: 250px;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: 10px 5px 5px rgba($color: #000000, $alpha: 0.5);
+    background-color: whitesmoke;
+    z-index: 10;
+}
+
+.textdetail {
+    padding: 5px;
+    border-bottom: dashed 1px gray;
+}
+
+
+
+
+@keyframes animatedcaja {
+
+    0% {
+        opacity: 1;
+        transform: translateX(-100px);
+        // transform: scale(1);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateX(40px);
+        // transform: scale(1);
+    }
+
+    75% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+}
+
+.transfer-mod {
+    z-index: 15;
+    width: 400px;
+    // height: 100;
+    background-color: whitesmoke;
+
+}
+
+.lista-productos {
+    height: 370px;
+    overflow-y: auto;
+}

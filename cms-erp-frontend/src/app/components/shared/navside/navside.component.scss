@@ -1,0 +1,76 @@
+.nav-side{
+    width: 300px;
+    height: 100vh;
+    background-color: rgb(54, 66, 52);
+    transition: ease all 0.5s;
+    position: relative; /* Importante para fijar el boton a su borde */
+    z-index: 1000;
+}
+
+.nav {
+    background-color: rgba(33, 44, 33, 0.57);
+    transition: ease all 1s;
+    
+}
+
+.bodynavSide {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 83vh;
+    padding: 8px;
+}
+
+.nav:hover {
+    transition: ease all 0.5s;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: rgb(36, 54, 32);
+    color: yellowgreen;
+}
+
+.module {
+    transition: ease all 0.5s;
+    color: white;
+}
+.module:hover {
+    transition: ease all 0.5s;
+    color: yellowgreen;
+}
+
+.cerrar {
+    font-size: 9pt;
+    padding: 5px;
+}
+
+.btnsplit {
+    background-color: #28a745;
+    color: white;
+    height: 60px; /* Alargado */
+    width: 20px; /* Rectangular angosto */
+    border-radius: 0 6px 6px 0; /* Bordes derechos redondeados */
+    position: absolute;
+    top: 50%; /* Centrado vertical en el navside */
+    right: -20px; /* Todo su ancho visible fuera de nav-side */
+    transform: translateY(-50%); 
+    transition: ease all 0.3s;
+    z-index: 1001; /* Siempre por encima */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 0px 5px rgba(0,0,0,0.2);
+}
+
+.btnsplit mat-icon {
+    font-size: 16px !important;
+    width: 16px !important; 
+    height: 16px !important;
+    margin-left: -2px; /* Centrado optico */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnsplit:hover {
+    cursor: pointer;
+    background-color: #218838;
+}

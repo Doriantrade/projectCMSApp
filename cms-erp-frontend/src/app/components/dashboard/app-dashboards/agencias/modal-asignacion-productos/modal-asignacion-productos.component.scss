@@ -1,0 +1,41 @@
+.maquinasasign{
+    margin: 10px;
+    width: 45%;
+    border: solid 1px gray;
+    padding: 10px;
+    background-color: rgb(232, 231, 231);
+    height: 400px;
+    border-radius: 5px;
+
+}
+
+.mod {
+    padding: 10px;
+    border-bottom: solid 1px gray;
+    cursor: pointer;
+    transition: ease all 0.5s;
+    color: black;
+}
+
+.mod:hover {
+    transition: ease all 0.5s;
+    background-color: yellowgreen;
+}
+
+.modd {
+    padding: 10px;
+    border-bottom: solid 1px gray;
+    cursor: pointer;
+    transition: ease all 0.5s;
+    color: black;
+}
+
+.modd:hover {
+    transition: ease all 0.5s;
+    background-color: rgb(234, 145, 28);
+}
+
+.bodymaqasign {
+    height: 300px;
+    overflow-y: auto;
+}

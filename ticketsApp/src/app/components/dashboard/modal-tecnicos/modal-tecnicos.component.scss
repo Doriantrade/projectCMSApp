@@ -1,0 +1,26 @@
+.fixed-header {
+    height: 70vh; /* Ajusta la altura según tu necesidad */
+    overflow-y: auto;
+  }
+  
+  .fixed-header thead th {
+    position: sticky;
+    top: 0;
+    background-color: #007bff; /* O el color que necesites */
+    z-index: 1;
+  }
+
+  .fixed-header-filter {
+    position: sticky; 
+  }
+
+  .info{
+    margin: 10px;
+    background-color: rgb(226, 219, 26);
+    border: groove 1px gray;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+  }
+  

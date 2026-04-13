@@ -1,0 +1,199 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+
+<app-contratos></app-contratos>
+
+<div class="mini-module-workarea w-100 p-4 mt-3 " style="height: 320px !important;" >
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+         <mat-icon>{{modulo.icon}}</mat-icon>
+         <span class="fs-5">Garantías</span>
+    </div>
+    <hr>
+    <div class="form-section">
+        <form [formGroup]="garantiaForm" class="mb-2" (ngSubmit)="onSubmit()">
+
+            <div class="d-flex justify-content-between  flex-wrap" >
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label">
+                        Nombre garantía <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" 
+                           formControlName="nombre" #nombre
+                           id="nombre" placeholder="">
+                </div>
+                <div class="mb-3 col-6 ">
+                    <label for="descripcionbreve" class="form-label">
+                        Breve descripción de la garantía
+                    </label>
+                    <input type="text" class="form-control" 
+                           formControlName="descripcionbreve" #descripcionbreve
+                           id="descripcionbreve" placeholder="">
+                </div>
+            </div>
+            <div class="d-flex justify-content-between  flex-wrap" >
+                <div class="mb-3 col-4  ">
+                    <label for="codfrecuencia">Tipo de Frecuencia <span class="text-danger">*</span> </label>
+                    <select class="inpForms form-select   w-100"
+                            formControlName="codfrecuencia" #codfrecuencia id="codfrecuencia" aria-label="">
+                            <option *ngFor="let frec of frecuenciaList" [value]="frec.codigo" >
+                                {{frec.nombre | titlecase }}                                
+                            </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-4  ">
+                    <label for="codtipomant">Tipo de Mantenimiento <span class="text-danger">*</span> </label>
+                    <select class="inpForms form-select   w-100"
+                            formControlName="codtipomant" #codtipomant id="codtipomant" aria-label="">
+                            <option *ngFor="let mantenimiento of tipomatenimientoList" [value]="mantenimiento.codigo" >
+                                {{mantenimiento.nombre | titlecase }}                                
+                            </option>
+                    </select>
+                </div>
+                
+            </div>
+            <div class="mini-floating-button">
+
+                <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()" >
+                    <mat-icon>cancel</mat-icon>
+                </button>
+                <button *ngIf="pMod <= 3" type="submit" mat-raised-button color="primary">
+                    <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}} {{modulo.nombre}}
+                </button>
+
+        </div> 
+        </form>
+    </div>
+
+</div>
+
+
+
+<div class="mini-module-workarea w-100 p-4 mt-3 " style="max-height:  600px !important;" >
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+         <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > {{modulo.nombre}} Registrados  </span>
+    </div>
+    <hr>
+    <div class="table-responsive w-100">
+        <section class="filtros  mb-2">
+            <!-- <input type="text" class="form-control" > -->
+            <small class="text-secondary">
+                Cantidad de garantías registradas 
+                <strong class="text-primary">
+                   ( {{garantiaslista.length}} )
+                </strong>
+            </small>
+            <div class="mb-2 d-flex">
+              <input class=" w-100 form-control rounded-pill"
+                     fxFlex="auto" type="text"
+                     (keyup)="applyFilter($event)" 
+                     #input placeholder="Búsqueda de garantías registradas....">
+            </div>        
+    
+        </section>
+        <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100" >
+    
+            <ng-container matColumnDef="edit">
+                
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <span>
+                    <mat-icon>
+                      edit
+                    </mat-icon>
+                  </span>
+                  <span *ngIf="_delete_show" >
+                    <mat-icon>
+                      delete
+                    </mat-icon>
+                  </span>
+                </th>
+                
+                <td mat-cell *matCellDef="let row">
+                  <span *ngIf="pMod <= 3" class="edit" (click)="catchData(row)">
+                    <mat-icon>
+                      edit
+                    </mat-icon>
+                  </span>
+                  <span *ngIf="_delete_show && pMod === 1" class="delete" (click)="eliminarClientes(row)">
+                    <mat-icon  >
+                      delete
+                    </mat-icon>
+                  </span>
+                </td>
+    
+              </ng-container>       
+    
+            <ng-container matColumnDef="Nombre" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nombre
+                </th>
+                <td  mat-cell 
+                    *matCellDef="let row"
+                    >
+                        {{row.nombre}}
+                </td>
+            </ng-container>    
+    
+            <ng-container matColumnDef="BreveDescripcion" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Breve Descripción
+                </th>
+                <td   mat-cell 
+                    *matCellDef="let row" >
+                  {{row.descripcionbreve}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="Frecuencia" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Frecuencia
+                </th>
+                <td   mat-cell 
+                    *matCellDef="let row" >
+                  {{row.nombrefrecuencia}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="TipoMant" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Mantenimiento
+                </th>
+                <td   mat-cell 
+                    *matCellDef="let row" >
+                  {{row.nombretipomant}}
+                </td>
+            </ng-container>    
+    
+            <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                Datos no encontrados...
+              </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="100"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 25, 100]"
+                       aria-label="Select page">
+    </mat-paginator>    
+    </div>
+    </div>
+
+
+    <!-- <div class="mini-module-workarea w-100 p-4 mt-3 " style="max-height:  600px !important;" >
+        <div class="text-secondary d-flex align-item-center m-0 p-0">
+             <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > {{modulo.nombre}} Registrados  </span>
+        </div>
+        <hr>
+        <section>
+
+
+
+        </section>
+    </div> -->

@@ -1,0 +1,275 @@
+<div class="d-flex justify-content-end">
+    <button class="btn btn-warning d-flex align-items-center" [printSectionId]="'rep-'+padId" ngxPrint>
+        <mat-icon>download</mat-icon> &nbsp; Descargar PDF
+    </button>
+</div>
+
+<div class="cont w-100 p-4" [id]="'rep-'+padId">
+    <!-- <div class="head d-flex w-100"> -->
+    <div class="head" style="display: flex; width: 100%;">
+        <div class="type-head w-50">
+            <img src="../../../../assets/logotipo/descarga.png"
+                 width="200px"
+                 height="110px"
+                 >
+        </div>
+        <div class="type-head w-50">
+            <div class="d-flex flex-column" style="text-align: center;">                
+                <h2 class="m-0">
+                    <strong>
+                        REPORTE TÉCNICO
+                    </strong>
+                </h2>
+                <hr class="m-1 p-0">
+                <h1 class="text-danger m-0"
+                    style="font-size: 25pt;">
+                    <strong> {{ padId }} </strong>
+                </h1>
+                <hr class="m-1 p-0">
+                <h4 class="m-0">
+                    <strong>CASH MACHINE SERVICE C. LTDA.</strong>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="head w-100 mt-2">
+        <div class="d-flex justify-content-between">
+            <div class="item-head-data col-6 d-flex flex-column">
+                <small class="text-dark">INSTITUCIÓN/BANCO</small>
+                <span>
+                    <strong> {{ nombreCliente }} </strong>
+                </span>
+            </div>
+            <div class="item-head-data col-3">
+                <small class="text-dark">FECHA</small>
+                <span></span>
+            </div>
+            <div class="item-head-data col-3">
+                <small class="text-dark">HORA DE INGRESO</small>
+                <span>{{fechaFormateada}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="head w-100 mb-2 ">
+        <div class="d-flex justify-content-between">
+            <div class="item-head-data col-3 d-flex flex-column">
+                <small class="text-dark">CIUDAD/PROVINCIA</small>
+                <span>
+                    <strong> {{ provinciaAgencia }} </strong>
+                </span>
+            </div>
+            <div class="item-head-data col-6">
+                <small class="text-dark">AGENCIA/OFICINA</small>
+                <span>
+                    <strong> {{ nombreAgencia }} </strong>
+                </span>
+            </div>
+            <div class="item-head-data col-3">
+                <small class="text-dark">HORA DE SALIDA</small>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="head w-100 d-flex justify-content-center p-3">
+        <strong> DATOS DEL EQUIPO </strong>
+    </div>
+
+    <div class="head w-100 d-flex justify-content-center mt-2">
+        <div class="item-head-data col-5 d-flex flex-column">
+            <small class="text-dark">DESCRIPCIÓN</small>
+            <span>
+                <strong> {{ tipoMaquina }} </strong>
+            </span>
+        </div>
+        <div class="item-head-data col-4">
+            <small class="text-dark">CONTADOR/INICIAL/FINAL</small>
+            <span>
+                <strong> {{ contadorinicial }} / _ _ _ _ _ _ _ _ _  </strong>
+            </span>
+        </div>
+        <div class="item-head-data col-3">
+            <small class="text-dark">COD. CE.</small>
+            <span> {{ codigobp }} </span>
+        </div>
+    </div>
+    <div class="head w-100 d-flex justify-content-center mb-2">
+        <div class="item-head-data col-3 d-flex flex-column">
+            <small class="text-dark">MARCA</small>
+            <span>
+                <strong> {{ marca }} </strong>
+            </span>
+        </div>
+        <div class="item-head-data col-3">
+            <small class="text-dark">MODELO</small>
+            <span>
+                <strong> {{ modelo }} </strong>
+            </span>
+        </div>
+        <div class="item-head-data col-3">
+            <small class="text-dark">NO. SERIE</small>
+            <span>
+                <strong>
+                    {{ nSerieEquipo }} 
+                </strong>
+            </span>
+        </div>
+        <div class="item-head-data col-3">
+            <small class="text-dark">COD. INV</small>
+            <span> 
+                <strong> {{ ninventario }} </strong>
+            </span>
+        </div>
+    </div>
+
+    <div class="head w-100 d-flex justify-content-center">
+        <div class="item-head-data w-50">
+            <small class="text-dark">DESCRIPCIÓN DEL SERVICIO:</small>
+            <span> 
+                <strong> {{ serieTicket | uppercase }} </strong>
+            </span>
+        </div>
+        <div class="item-head-data w-50">
+            <small class="text-dark">ESTADO DEL EQUIPO:</small>
+            <span> 
+                <strong> {{ serieTicket | uppercase }} </strong>
+            </span>
+        </div>
+    </div>
+
+    <div class="head w-100 d-flex justify-content-between mt-2">
+        <div class="item-head-data w-50">
+            <span> 
+                <strong> OBSERVACIONES </strong>
+            </span>
+        </div>
+        <div class="item-head-data w-50">
+            <span> 
+                <strong> CHECKLIST MANTENIMIENTO </strong>
+            </span>
+        </div>
+    </div>
+
+    <div class="head w-100 d-flex justify-content-between mb-2">
+        <div class="item-head-data w-50">
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+            <div class="list-obs"></div>
+        </div>
+        <div class="item-head-data w-50">
+            <small class="d-flex justify-content-between m-1" *ngFor="let checkList of listaCheckListaMantenimiento" > 
+                <span> {{ checkList.nombre }} </span>
+                <span>
+                    <div class="box-check"></div>
+                </span>
+            </small>
+        </div>
+    </div>
+
+    <div class="head w-100  " *ngIf="listaRepuestoRequerimientos.length > 0">
+        <div class="item-head-data w-100" style="text-align: center;" >
+            <span> 
+                <strong> REPUESTOS UTILIZADOS </strong>
+            </span>
+        </div>
+    </div>
+
+    <div class="head w-100 mb-2" *ngIf="listaRepuestoRequerimientos.length > 0">
+        <table class="table table-light table-bordered table-sm align-middle">
+            <thead class="bg-dark text-light">
+                <th>
+                    CANT
+                </th>
+                <th>
+                    N. PARTE
+                </th>
+                <th>
+                    DESCRIPCIÓN
+                </th>
+                <th>
+                    SOLICITADO
+                </th>
+                <th>
+                    UTILIZADO
+                </th>                
+            </thead>
+            <tbody>
+                <tr *ngFor="let rep of listaRepuestoRequerimientos">
+                    <td>
+                        {{ rep.cantidad }}
+                    </td>
+                    <td>
+                        {{ rep.codrep }}
+                    </td>
+                    <td>
+                        Nombre: 
+                        <strong>{{ rep.nombreRep }} </strong> <strong> > </strong> 
+                        <span>Marca:</span> 
+                        <strong> {{ rep.marcaRepuesto }} </strong>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <div class="box-check">
+                                <mat-icon style="font-size: 11pt;">done</mat-icon>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-center">
+                            <div class="box-check">
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="head w-100 d-flex justify-content-between mt-2">
+        <div class="item-head-data w-50">
+            <span> 
+                <strong> TÉCNICO EN SERVICIO C.M.S. </strong>
+            </span>
+        </div>
+        <div class="item-head-data w-50">
+            <span> 
+                <strong> FIRMA AUTORIZADA DE LA AGENCIA </strong>
+            </span>
+        </div>
+    </div>
+    <div class="head w-100 d-flex justify-content-between">
+        <div class="item-head-data w-50">
+            <div class="firma-space">
+
+            </div>
+        </div>
+        <div class="item-head-data w-50">
+            <div class="firma-space">
+
+            </div>
+            <small style="font-size: 8pt;" class="text-dark">
+                Previo a la firma de conformidad se llenan la <strong>HORA DE INGRESO Y DE SALIDA</strong>
+            </small>
+        </div>
+    </div>
+    <div class="head w-100 d-flex justify-content-between">
+        <div class="item-head-data w-50">
+            <small> 
+                Nombre: <strong> {{ nombreTecnico }} / {{ cedulaTecnico }} </strong>
+            </small>
+        </div>
+        <div class="item-head-data w-50">
+            <small> 
+                Nombre:
+            </small>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="clientes">
+
+    <div class="mb-2 d-flex w-100">
+        <form [formGroup]="filterForm" class="w-100">
+            <input class=" w-100 shadow-sm form-control rounded-pill" fxFlex="auto" type="text"
+                formControlName="filterCli" #filterCli id="filterCli" (keyup)="filterCliente()"
+                placeholder="Búsqueda de clientes registrados...">
+        </form>
+    </div>
+    <div style="height: 73vh; overflow-y: auto;">
+        <div *ngFor="let clientes of listaClientes"
+            class="clientes-box d-flex justify-content-between align-items-center"
+            [ngClass]="{'selected': clientes === selectedCliente}" (click)="emitCli(clientes); emitCliStyle(clientes)"
+            (contextmenu)="onRightClick($event, clientes)">
+            <div class=" d-flex justify-content-start align-items-center">
+                <mat-icon>
+                    chevron_left
+                </mat-icon>
+                <div class="my-badge">
+                    {{clientes.cantidadRequerimientos}}
+                </div>
+            </div>
+            <span style="text-align: right;"> {{ clientes.nombre }} </span>
+        </div>
+
+    </div>
+</div>
+
+<div style="visibility: hidden; position: fixed" [style.left]="menuTopLeftPosition.x"
+    [style.top]="menuTopLeftPosition.y" [matMenuTriggerFor]="contextMenu">
+</div>
+
+<mat-menu #contextMenu="matMenu">
+    <ng-template matMenuContent let-item="item">
+        <button mat-menu-item (click)="emitCli(item); emitCliStyle(item)"> <mat-icon>open_in_browser</mat-icon>
+            Abrir</button>
+        <button mat-menu-item (click)="openModalCreateTicket(item)"><mat-icon>add</mat-icon> Crear ticket</button>
+    </ng-template>
+</mat-menu>

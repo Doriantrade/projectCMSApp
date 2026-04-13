@@ -1,0 +1,5495 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CMS-System",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/AnyFiles/fysicfile/{nombreArchivo}": {
+      "get": {
+        "tags": [
+          "AnyFiles"
+        ],
+        "parameters": [
+          {
+            "name": "nombreArchivo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Asesor/guardarAsignacionAsesor": {
+      "post": {
+        "tags": [
+          "AsesorCliente"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asesorcliente"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asesorcliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asesorcliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asesorcliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MaquinaAgencia/GuardarMaquinaAgencia": {
+      "post": {
+        "tags": [
+          "AsignacionMaquinariaAgencia"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionmaquinacliente"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionmaquinacliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionmaquinacliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionmaquinacliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MaquinaAgencia/obtenerAsignacionmaquinacliente/{cagencia}/{codcia}": {
+      "get": {
+        "tags": [
+          "AsignacionMaquinariaAgencia"
+        ],
+        "parameters": [
+          {
+            "name": "cagencia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MaquinaAgencia/elimianarAsignacionmaquinacliente/{cprod}/{codcia}": {
+      "get": {
+        "tags": [
+          "AsignacionMaquinariaAgencia"
+        ],
+        "parameters": [
+          {
+            "name": "cprod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionMobilTecnico": {
+      "get": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AsignacionMobilTecnico/{id}": {
+      "get": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionMobilTecnico/ByMac/{mac}": {
+      "get": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "parameters": [
+          {
+            "name": "mac",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AsignacionMobilTecnico/UpdateByMac": {
+      "put": {
+        "tags": [
+          "AsignacionMobilTecnico"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionMobilTecnico"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/asignacionProvincias/obtenerTecnicoProvincia/{ccuser}/{ccia}/{type}": {
+      "get": {
+        "tags": [
+          "AsignacionProvincias"
+        ],
+        "parameters": [
+          {
+            "name": "ccuser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/asignacionProvincias/eliminarTecnicoProvincia/{id}": {
+      "get": {
+        "tags": [
+          "AsignacionProvincias"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/asignacionProvincias/eliminarTecnicoProvinciaPorUsuario/{codUser}/{codCia}": {
+      "get": {
+        "tags": [
+          "AsignacionProvincias"
+        ],
+        "parameters": [
+          {
+            "name": "codUser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codCia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/asignacionProvincias/saveAsignacion": {
+      "post": {
+        "tags": [
+          "AsignacionProvincias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionprovincias"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionprovincias"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionprovincias"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Asignacionprovincias"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionUsuarioBodega/GuardarAsignacionUsuarioBodega": {
+      "post": {
+        "tags": [
+          "AsignacionUsuarioBodega"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionUsuarioBodega/EditarAsignacionUsuarioBodega/{id}": {
+      "put": {
+        "tags": [
+          "AsignacionUsuarioBodega"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AsignacionUsuarioBodega"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionUsuarioBodega/ObtenerAsignacionUsuarioBodega/{ccia}": {
+      "get": {
+        "tags": [
+          "AsignacionUsuarioBodega"
+        ],
+        "parameters": [
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignacionUsuarioBodega/EliminarAsignacionUsuarioBodega/{id}": {
+      "delete": {
+        "tags": [
+          "AsignacionUsuarioBodega"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AuditApp/GuardarConsumo": {
+      "post": {
+        "tags": [
+          "AuditApp"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AuditApp"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AuditApp"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AuditApp"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.AuditApp"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Bodegas/guardarBodegas": {
+      "post": {
+        "tags": [
+          "Bodegas"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Bodegas/obtenerBodegas/{codcia}": {
+      "get": {
+        "tags": [
+          "Bodegas"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Bodegas/eliminarBodegas/{id}": {
+      "get": {
+        "tags": [
+          "Bodegas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Bodegas/EditarBodegas/{id}": {
+      "put": {
+        "tags": [
+          "Bodegas"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Bodegas"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/obtenerClientes/{ccia}/{tp}": {
+      "get": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tp",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/eliminarClientes/{codcli}/{codcia}": {
+      "get": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "codcli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/eliminarAgencia/{codagencia}/{codcia}": {
+      "get": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "codagencia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/obtenerAgencias/{codcia}/{fil}/{prov}": {
+      "get": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fil",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "prov",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/obtenerAgenciasMaquinarias/{ccli}/{codcia}": {
+      "get": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "ccli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/EditarAgencia/{codagencia}/{ccia}": {
+      "put": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "codagencia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/EditarCliente/{codcli}/{ccia}": {
+      "put": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "parameters": [
+          {
+            "name": "codcli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/guardarCliente": {
+      "post": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ClienteAgencia/guardarAgencia": {
+      "post": {
+        "tags": [
+          "ClientesAgencias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Agencia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Contratos/GuardarContratos": {
+      "post": {
+        "tags": [
+          "Contratos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Contrato"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Contrato"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Contrato"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Contrato"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Contratos/obtenerContratos/{codcia}": {
+      "get": {
+        "tags": [
+          "Contratos"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/GuardarCrono": {
+      "post": {
+        "tags": [
+          "Cronograma"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/ObtenerCronograma/{codcia}/{an}/{me}/{loc}/{tp}/{userTecnic}": {
+      "get": {
+        "tags": [
+          "Cronograma"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "an",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "me",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "loc",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tp",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "userTecnic",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/CalculoAsignacionCronograma/{codFecuency}/{codcrono}": {
+      "get": {
+        "tags": [
+          "Cronograma"
+        ],
+        "parameters": [
+          {
+            "name": "codFecuency",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcrono",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/ObtenerCronogramaMobilTecnico/{ctecnic}/{codcia}": {
+      "get": {
+        "tags": [
+          "Cronograma"
+        ],
+        "parameters": [
+          {
+            "name": "ctecnic",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/EditarCrono/{codcrono}": {
+      "put": {
+        "tags": [
+          "Cronograma"
+        ],
+        "parameters": [
+          {
+            "name": "codcrono",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cronograma"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Cronograma/DeleteCronograma/{codcrono}": {
+      "get": {
+        "tags": [
+          "Cronograma"
+        ],
+        "parameters": [
+          {
+            "name": "codcrono",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DataMaster/GetDataMaster/{mast}": {
+      "get": {
+        "tags": [
+          "DataMaster"
+        ],
+        "parameters": [
+          {
+            "name": "mast",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DataMaster/ObtenerDatamasterGrupo/{grupo}": {
+      "get": {
+        "tags": [
+          "DataMaster"
+        ],
+        "parameters": [
+          {
+            "name": "grupo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/DataMaster/ObtenerDatamasterSubGrupos/{grupo}/{sgrupo}": {
+      "get": {
+        "tags": [
+          "DataMaster"
+        ],
+        "parameters": [
+          {
+            "name": "grupo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sgrupo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/CronoDetalleUnit/DetalleUnitCrono/{tipo}/{crono}/{mes}/{dia}": {
+      "get": {
+        "tags": [
+          "detalleCronogramaUnit"
+        ],
+        "parameters": [
+          {
+            "name": "tipo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "crono",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mes",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "dia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Empresa/obtenerEmpresa": {
+      "get": {
+        "tags": [
+          "Empresa"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Garantias/GuardarGarantias": {
+      "post": {
+        "tags": [
+          "Garantias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Garantias/EditarGarantia/{codgarantia}": {
+      "put": {
+        "tags": [
+          "Garantias"
+        ],
+        "parameters": [
+          {
+            "name": "codgarantia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Garantias"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Garantias/obtenerGarantias/{codcia}": {
+      "get": {
+        "tags": [
+          "Garantias"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/crearCarpeta/{nombre}": {
+      "post": {
+        "tags": [
+          "Imagen"
+        ],
+        "parameters": [
+          {
+            "name": "nombre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Archivo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Archivo": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/GetImageControl/{route}": {
+      "get": {
+        "tags": [
+          "Imagen"
+        ],
+        "parameters": [
+          {
+            "name": "route",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/saveImagen": {
+      "post": {
+        "tags": [
+          "Imagen"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/obtenerImagen/{cbinding}/{tp}": {
+      "get": {
+        "tags": [
+          "Imagen"
+        ],
+        "parameters": [
+          {
+            "name": "cbinding",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tp",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/GuardarImagenEntidad": {
+      "post": {
+        "tags": [
+          "Imagen"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Imagen/EditarImagen/{codbinding}": {
+      "put": {
+        "tags": [
+          "Imagen"
+        ],
+        "parameters": [
+          {
+            "name": "codbinding",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.ImgFile"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/localidad/MainLocalidad": {
+      "get": {
+        "tags": [
+          "Localidad"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/login/login": {
+      "post": {
+        "tags": [
+          "login"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MacMobile/guardarAsignacionMacTecnico": {
+      "post": {
+        "tags": [
+          "MacMobile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MacMobilUser"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MacMobilUser"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MacMobilUser"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MacMobilUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/MacMobile/ByMac/{mac}/today": {
+      "get": {
+        "tags": [
+          "MacMobile"
+        ],
+        "parameters": [
+          {
+            "name": "mac",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mantenimiento/guardarMantenimiento": {
+      "post": {
+        "tags": [
+          "Mantenimiento"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Mantemaqcro"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Mantemaqcro"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Mantemaqcro"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Mantemaqcro"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mantenimiento/actualizarEstado/{id}": {
+      "put": {
+        "tags": [
+          "Mantenimiento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nuevoEstado",
+            "in": "header",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "usuario",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mantenimiento/ObtenerMantenimientoCrono/{cagencia}/{m}/{a}/{l}": {
+      "get": {
+        "tags": [
+          "Mantenimiento"
+        ],
+        "parameters": [
+          {
+            "name": "cagencia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "m",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "a",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "l",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Mantenimiento/eliminarMantenimiento/{id}": {
+      "get": {
+        "tags": [
+          "Mantenimiento"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/obtenerMaquinaria/{codcia}": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/obtenerMaquinariaHistorico/{codmaquina}": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "codmaquina",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/obtenerMaquinariaIMG": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/eliminarMaquinaria/{codmaquina}": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "codmaquina",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/ObtenerMaquinasSinBodega/{codcia}/{option}": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "option",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/ObtenerMaquinaUnit/{tpmaq}/{mar}/{mod}/{tip}/{codmaquina}": {
+      "get": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "tpmaq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mar",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tip",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "codmaquina",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/GuardarImagenProductos": {
+      "post": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.fileController.IMGProd"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.fileController.IMGProd"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.fileController.IMGProd"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.fileController.IMGProd"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/GuardarMaquinaria": {
+      "post": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Maquinaria/EditarMaquinaria/{codmaquina}": {
+      "put": {
+        "tags": [
+          "Maquinaria"
+        ],
+        "parameters": [
+          {
+            "name": "codmaquina",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Maquinaria"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/ModuleMobil/ObtenerModuleMobile/{codcia}": {
+      "get": {
+        "tags": [
+          "ModuleMobile"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/modulos/GetAllModulos": {
+      "get": {
+        "tags": [
+          "Modulo"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/modulos/AsignarModulo/{coduser}/{idmod}/{codcia}": {
+      "post": {
+        "tags": [
+          "Modulo"
+        ],
+        "parameters": [
+          {
+            "name": "coduser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "idmod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/modulos/GetModulos/{userCod}": {
+      "get": {
+        "tags": [
+          "Modulo"
+        ],
+        "parameters": [
+          {
+            "name": "userCod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/modulos/EditarPermisosModulos/{permmod}/{codmod}/{userCod}": {
+      "get": {
+        "tags": [
+          "Modulo"
+        ],
+        "parameters": [
+          {
+            "name": "permmod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codmod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userCod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignarProductoBodega/guardarProductoBodega": {
+      "post": {
+        "tags": [
+          "ProdBodAsig"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Prodbodegasigna"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Prodbodegasigna"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Prodbodegasigna"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Prodbodegasigna"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignarProductoBodega/obtenerItemsBodega/{codbod}/{estado}": {
+      "get": {
+        "tags": [
+          "ProdBodAsig"
+        ],
+        "parameters": [
+          {
+            "name": "codbod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "estado",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/AsignarProductoBodega/eliminarItemBodega/{codbod}": {
+      "get": {
+        "tags": [
+          "ProdBodAsig"
+        ],
+        "parameters": [
+          {
+            "name": "codbod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repbodasigna/GuardarRepbodasigna": {
+      "post": {
+        "tags": [
+          "ProdRepAsigna"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repbodasigna"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repbodasigna"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repbodasigna"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repbodasigna"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/guardarRepuestos": {
+      "post": {
+        "tags": [
+          "Repuestos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/ObtenerMarcaRepuetos": {
+      "get": {
+        "tags": [
+          "Repuestos"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/ObtenerModeloMarcaRepuetos/{idMarcaRep}": {
+      "get": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "idMarcaRep",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/EditarMarcaRepuestos/{id}": {
+      "put": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/EliminarMarcaRepuestos/{id}": {
+      "delete": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/GuardarMarcaRepuestos": {
+      "post": {
+        "tags": [
+          "Repuestos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.MarcaRepuestos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/obtenerRepuestos/{usc}/{codcia}": {
+      "get": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "usc",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/eliminarRepuestos/{usc}/{codrep}": {
+      "get": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "usc",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codrep",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Repuestos/EditarRepuestos/{codrep}": {
+      "put": {
+        "tags": [
+          "Repuestos"
+        ],
+        "parameters": [
+          {
+            "name": "codrep",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Repuestos"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SettingsGeoLocalizacionMobil": {
+      "get": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SettingsGeoLocalizacionMobil/ByMac/{mac}": {
+      "get": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "parameters": [
+          {
+            "name": "mac",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/SettingsGeoLocalizacionMobil/MobileMonitorData": {
+      "get": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/SettingsGeoLocalizacionMobil/{id}": {
+      "put": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.SettingsGeoLocalizacionMobil"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SettingsGeoLocalizacionMobil"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/obtenerDetalleTrans/{codcabe}": {
+      "get": {
+        "tags": [
+          "Transferecias"
+        ],
+        "parameters": [
+          {
+            "name": "codcabe",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/ProcesoTransdferenciaBod": {
+      "post": {
+        "tags": [
+          "Transferecias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.TransferenciasProd.Transferencia"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.TransferenciasProd.Transferencia"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.TransferenciasProd.Transferencia"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CMS_System.Controllers.TransferenciasProd.Transferencia"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/repoOrdenTransferProd/{ccia}/{ccab}": {
+      "get": {
+        "tags": [
+          "Transferecias"
+        ],
+        "parameters": [
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccab",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/CliBodegAsign/{ccli}/{cmaq}": {
+      "get": {
+        "tags": [
+          "Transferecias"
+        ],
+        "parameters": [
+          {
+            "name": "ccli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cmaq",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/invmov": {
+      "get": {
+        "tags": [
+          "Transferecias"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Transferencias/guardarDetalleTransaciion": {
+      "post": {
+        "tags": [
+          "Transferecias"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Entytrandet"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Entytrandet"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Entytrandet"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Entytrandet"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/guardarUsuario": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/ObtenerUsuariosExec/{codcia}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/ObtenerTecnicosAppMovil": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/ObtenerTecniCrono/{idlocalidad}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "idlocalidad",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/ObtenerCuentaUsuario/{coduser}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "coduser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/GetUser/{userCod}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userCod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/eliminarUsuario/{userCod}/{codcia}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userCod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/EditarUsuario/{coduser}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "coduser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Usuario"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/CrearCuentas/{userCod}/{ccia}/{tcuenta}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userCod",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tcuenta",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/CrearCuentasHelpDesk/{codCliente}/{codCia}/{R}/{Nombre}/{Apellido}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "codCliente",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codCia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "R",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Nombre",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Apellido",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioPortalTicket": {
+      "get": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioPortalTicket/{id}": {
+      "get": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/UsuarioPortalTicket/{coduser}": {
+      "get": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "parameters": [
+          {
+            "name": "coduser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "UsuarioPortalTicket"
+        ],
+        "parameters": [
+          {
+            "name": "coduser",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.UsuarioPortalTicket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/versionamiento/obtenerVersionamiento/{version}": {
+      "get": {
+        "tags": [
+          "Versionamiento"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/versionamiento/obtenerVersionCMS": {
+      "get": {
+        "tags": [
+          "Versionamiento"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CMS_System.WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CMS_System.WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CMS_System.WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/ObtenerAgenciasGeneral/{codcia}/{ccli}": {
+      "get": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "parameters": [
+          {
+            "name": "codcia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "ccli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/ObtenerAgenciaZonificada/{codzone}/{codcli}": {
+      "get": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "parameters": [
+          {
+            "name": "codzone",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "codcli",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/ObtenerAgenciasLocalidad/{codlocal}/{codzone}": {
+      "get": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "parameters": [
+          {
+            "name": "codlocal",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "codzone",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/ActualizarAgenciaEstado/{estado}/{cAgencia}": {
+      "get": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "parameters": [
+          {
+            "name": "estado",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "cAgencia",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/guardarZonificacion": {
+      "post": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cardinal"
+              }
+            },
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cardinal"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cardinal"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/cmsDb2024_System.Models.Cardinal"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Zonificacion/eliminarDataCardinal/{id}": {
+      "get": {
+        "tags": [
+          "Zonificacion"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CMS_System.Controllers.fileController.IMGProd": {
+        "type": "object",
+        "properties": {
+          "codmaquina": {
+            "type": "string",
+            "nullable": true
+          },
+          "img": {
+            "type": "string",
+            "nullable": true
+          },
+          "type": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CMS_System.Controllers.TransferenciasProd.Transferencia": {
+        "type": "object",
+        "properties": {
+          "codprod": {
+            "type": "string",
+            "nullable": true
+          },
+          "state": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "cuser": {
+            "type": "string",
+            "nullable": true
+          },
+          "boden": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bodsal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CMS_System.WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Agencia": {
+        "type": "object",
+        "properties": {
+          "codagencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "longitud": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitud": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "campoA": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "campoB": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "horarioatenciond": {
+            "type": "string",
+            "nullable": true
+          },
+          "codfrecuencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcia": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "codProv": {
+            "type": "string",
+            "nullable": true
+          },
+          "codCanton": {
+            "type": "string",
+            "nullable": true
+          },
+          "horarioatencionh": {
+            "type": "string",
+            "nullable": true
+          },
+          "horarioatenciondm": {
+            "type": "string",
+            "nullable": true
+          },
+          "horarioatencionhm": {
+            "type": "string",
+            "nullable": true
+          },
+          "centrocostos": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Asesorcliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Asignacionmaquinacliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codprod": {
+            "type": "string",
+            "nullable": true
+          },
+          "codagencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecasign": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.AsignacionMobilTecnico": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mac": {
+            "type": "string",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Asignacionprovincias": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcia": {
+            "type": "string",
+            "nullable": true
+          },
+          "codprov": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcanton": {
+            "type": "string",
+            "nullable": true
+          },
+          "codmantenimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "codusermod": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechainicio": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fechamod": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.AsignacionUsuarioBodega": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "iduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "idbodega": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "urlImagenFirma": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.AuditApp": {
+        "type": "object",
+        "properties": {
+          "consumoMb": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "milisegundos": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "api": {
+            "type": "string",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaconsumo": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ip": {
+            "type": "string",
+            "nullable": true
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "method": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Bodegas": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombrebodega": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccli": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Cardinal": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombrelocalizacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "feccrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "idlocalidad": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "campoA": {
+            "type": "string",
+            "nullable": true
+          },
+          "campoB": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "codagencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "codtecnico": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Cliente": {
+        "type": "object",
+        "properties": {
+          "codcliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "ruc": {
+            "type": "string",
+            "nullable": true
+          },
+          "replegal": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechacontinicio": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fechacontfinal": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "telfclimanteni": {
+            "type": "string",
+            "nullable": true
+          },
+          "correomantenimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "telfpago": {
+            "type": "string",
+            "nullable": true
+          },
+          "correopago": {
+            "type": "string",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcia": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreMantenimiento": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombrePago": {
+            "type": "string",
+            "nullable": true
+          },
+          "extension1": {
+            "type": "string",
+            "nullable": true
+          },
+          "extension2": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Contrato": {
+        "type": "object",
+        "properties": {
+          "codcontrato": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fecinicial": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fecfinal": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcli": {
+            "type": "string",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "feccrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Cronograma": {
+        "type": "object",
+        "properties": {
+          "codcrono": {
+            "type": "string",
+            "nullable": true
+          },
+          "codusertecnic": {
+            "type": "string",
+            "nullable": true
+          },
+          "codagencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "feccrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "codusercreacrono": {
+            "type": "string",
+            "nullable": true
+          },
+          "semanainicio": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "mes": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "dia": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "anio": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fechamantenimiento": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "maquinasmanuales": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "codlocalidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idRequer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Entytrandet": {
+        "type": "object",
+        "properties": {
+          "codtrandet": {
+            "type": "string",
+            "nullable": true
+          },
+          "codtran": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "codprod": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Garantias": {
+        "type": "object",
+        "properties": {
+          "codgarantia": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcionbreve": {
+            "type": "string",
+            "nullable": true
+          },
+          "codfrec": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fecusercrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "codtipomant": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.ImgFile": {
+        "type": "object",
+        "properties": {
+          "codentidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "imagen": {
+            "type": "string",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.MacMobilUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mac": {
+            "type": "string",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "longitud": {
+            "type": "string",
+            "nullable": true
+          },
+          "latitud": {
+            "type": "string",
+            "nullable": true
+          },
+          "idTicket": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Mantemaqcro": {
+        "type": "object",
+        "properties": {
+          "idmantenimiento": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codcrono": {
+            "type": "string",
+            "nullable": true
+          },
+          "codtecnico": {
+            "type": "string",
+            "nullable": true
+          },
+          "feciniciomante": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "feccrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fecfinmant": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "horainit": {
+            "$ref": "#/components/schemas/System.TimeSpan"
+          },
+          "horafin": {
+            "$ref": "#/components/schemas/System.TimeSpan"
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "codprod": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "idRequer": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Maquinaria": {
+        "type": "object",
+        "properties": {
+          "codmaquina": {
+            "type": "string",
+            "nullable": true
+          },
+          "codtipomaquina": {
+            "type": "string",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelo": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "nserie": {
+            "type": "string",
+            "nullable": true
+          },
+          "ninventario": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigobp": {
+            "type": "string",
+            "nullable": true
+          },
+          "codusercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "feccrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "codcia": {
+            "type": "string",
+            "nullable": true
+          },
+          "contadorinicial": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "contadorfinal": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "vidautil": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "valorCompra": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "porcentajeVenta": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "desccuentoAplicable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "estadoContador": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.MarcaRepuestos": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombreMarcaRep": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "campoA": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Prodbodegasigna": {
+        "type": "object",
+        "properties": {
+          "codmaquinariabodega": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codmaquinaria": {
+            "type": "string",
+            "nullable": true
+          },
+          "codbodega": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Repbodasigna": {
+        "type": "object",
+        "properties": {
+          "codrepbodega": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codrep": {
+            "type": "string",
+            "nullable": true
+          },
+          "codbodega": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Repuestos": {
+        "type": "object",
+        "properties": {
+          "codrep": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombreRep": {
+            "type": "string",
+            "nullable": true
+          },
+          "codigo": {
+            "type": "string",
+            "nullable": true
+          },
+          "urlimagenA": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "marca": {
+            "type": "string",
+            "nullable": true
+          },
+          "modelo": {
+            "type": "string",
+            "nullable": true
+          },
+          "activo": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "marcaRep": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "estado": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "codTipoMaquina": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcia": {
+            "type": "string",
+            "nullable": true
+          },
+          "cantRep": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "valorCompra": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "porcentajeVenta": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "desccuentoAplicable": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "vidautil": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "observacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codModelo": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.SettingsGeoLocalizacionMobil": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "codmac": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeSendDataGeoLocalization": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "horarioLaboinicial": {
+            "$ref": "#/components/schemas/System.TimeSpan"
+          },
+          "horarioLabofinal": {
+            "$ref": "#/components/schemas/System.TimeSpan"
+          },
+          "aproximGeoLocalizacion": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          },
+          "metodoDeEnvioDeDatos": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "permisos": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "fecrea": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "usercrea": {
+            "type": "string",
+            "nullable": true
+          },
+          "pasos": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "colorRutaTrazado": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.Usuario": {
+        "type": "object",
+        "properties": {
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "cedula": {
+            "type": "string",
+            "nullable": true
+          },
+          "cargo": {
+            "type": "string",
+            "nullable": true
+          },
+          "contrasenia": {
+            "type": "string",
+            "nullable": true
+          },
+          "estado": {
+            "type": "string",
+            "nullable": true
+          },
+          "edad": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "tipo": {
+            "type": "string",
+            "nullable": true
+          },
+          "movilidad": {
+            "type": "string",
+            "nullable": true
+          },
+          "codcaracteristicas": {
+            "type": "string",
+            "nullable": true
+          },
+          "valoracion": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "codProvincia": {
+            "type": "string",
+            "nullable": true
+          },
+          "codCanton": {
+            "type": "string",
+            "nullable": true
+          },
+          "codSexo": {
+            "type": "string",
+            "nullable": true
+          },
+          "codEstadoCivil": {
+            "type": "string",
+            "nullable": true
+          },
+          "codDepartamento": {
+            "type": "string",
+            "nullable": true
+          },
+          "codLicencia": {
+            "type": "string",
+            "nullable": true
+          },
+          "telf": {
+            "type": "string",
+            "nullable": true
+          },
+          "direccion": {
+            "type": "string",
+            "nullable": true
+          },
+          "codCia": {
+            "type": "string",
+            "nullable": true
+          },
+          "fecingreso": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "fecsalida": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "tipoCapacidad": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "cmsDb2024_System.Models.UsuarioPortalTicket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "usuario": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "correo": {
+            "type": "string",
+            "nullable": true
+          },
+          "idCliente": {
+            "type": "string",
+            "nullable": true
+          },
+          "rol": {
+            "type": "string",
+            "nullable": true
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "apellido": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "string",
+            "nullable": true
+          },
+          "coduser": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccia": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "System.TimeSpan": {
+        "type": "object",
+        "properties": {
+          "ticks": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "days": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hours": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "milliseconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minutes": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "seconds": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalDays": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalHours": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMilliseconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalMinutes": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          },
+          "totalSeconds": {
+            "type": "number",
+            "format": "double",
+            "readOnly": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

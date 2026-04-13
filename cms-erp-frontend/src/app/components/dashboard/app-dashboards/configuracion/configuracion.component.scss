@@ -1,0 +1,23 @@
+
+.options {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.options:hover{
+    transition: ease all 0.5s;
+    background-color: rgb(194, 194, 194);
+    border-radius: 5px;
+}
+
+
+.configuracion-type {
+
+    width: 300px;
+    padding: 10px;
+    border: solid 1px gray;
+    background-color: whitesmoke;
+    border-radius: 5px;
+
+}

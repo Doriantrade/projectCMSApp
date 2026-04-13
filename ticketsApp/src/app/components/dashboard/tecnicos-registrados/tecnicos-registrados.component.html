@@ -1,0 +1,42 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <span class="loader"></span>
+    </div>
+</div>
+
+<div class="text-secondary mt-2 d-flex align-items-center" 
+     *ngIf="listaTecnicosTickets.length == 0">
+     <mat-icon>info</mat-icon>
+     <small>No hay técnicos asignados en este momento.</small>
+</div>
+
+<div *ngFor="let tecnicos of listaTecnicosTickets"
+     class="tecnicos d-flex align-items-center p-2 animate__animated animate__backInUp">
+     <div class="m-1">
+         <img class="shadow-sm" 
+              [src]="tecnicos.imagen || ' ../../../../assets/user-default/defect-user.png' "
+              width="80px"
+              height="auto">
+     </div>
+     <div class="m-1 d-flex flex-column">
+         <div>
+             <strong> {{ tecnicos.nombreTecnico | uppercase }} </strong>
+         </div>
+         <div class="d-flex align-items-center">
+             <span>C.I.:</span> &nbsp; <span> {{ tecnicos.cedula }} </span>
+         </div>
+         <div class="d-flex align-items-center">
+            <mat-icon>event</mat-icon> &nbsp;
+            <span> {{ tecnicos.feciniciomante | date: 'dd-MM-yyyy' }} </span>
+         </div>
+         <div class="d-flex align-items-center">
+            <mat-icon>alarm</mat-icon> &nbsp;
+            <span> {{ tecnicos.horainit | slice:0:-3 }} </span> &nbsp; - &nbsp; <span> {{ tecnicos.horafin | slice:0:-3 }} </span>
+         </div>
+         <div class="rounded-pill p-1 shadow-sm"
+              [style]="'background-color:'+tecnicos.colorReasignacion+'; color: white;'">
+              {{ tecnicos.nombreReasignacion }}
+         </div>
+
+     </div>
+</div>

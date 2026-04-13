@@ -1,0 +1,151 @@
+
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="d-flex" >
+
+<section class="movimientos">
+    <div class="d-flex flex-column">
+        <div class=" d-flex align-items-center ">
+            <mat-icon>conveyor_belt</mat-icon> Movimientos por transferencia &nbsp;&nbsp;
+            <span [matBadge]="listamovimientos.length" matBadgePosition="after" matBadgeColor="warn"></span>
+        </div>
+        <section class="filtros mt-2 mb-2" >
+            <div class="mb-2 d-flex">
+              <input class=" w-100 form-control rounded-pill"
+                     fxFlex="auto" type="text"
+                     [(ngModel)]="searchTerm"
+                     (keyup)="filterMovimientos()" 
+                     #input placeholder="Búsqueda de movimientos...">
+            </div>        
+        </section>
+        </div>
+
+    <ol>
+        <li class="m-1" 
+            *ngFor="let movimientos of listamovimientos"
+            [ngStyle]="{'background-color': movimientos.color}"
+            (click)="obtenerKardexCacbecera(movimientos.codtrancab)">
+            <div>
+                <small>Código:</small><span> {{movimientos.codtrancab}}</span>
+            </div>
+            <div>
+                <small>Fecha Transferecia:</small>
+                <span>{{movimientos.feccrea | date: 'dd-MM-yyyy'}}</span>
+            </div>
+        </li>
+    </ol>
+
+
+</section>
+<div class="d-flex flex-column w-75">
+<div class="d-flex justify-content-between " >
+    <form [formGroup]="movimientoForm" >
+        <mat-radio-group aria-label="Select an option" 
+                         formControlName="tipomovimiento"
+                         #tipomovimiento
+                         name="tipomovimiento"
+                         class="p-2 shadow rounded-pill bg-primary text-light d-flex  justify-content-center align-items-center  "
+                         (change)="filterRadioMovimiento()"
+                         >
+            <mat-radio-button value="E">T. Entrada</mat-radio-button>
+            <mat-radio-button value="S">T. Salida</mat-radio-button>
+            <mat-radio-button value="A" [checked]="true" >Todos</mat-radio-button>
+        </mat-radio-group>
+    </form>
+    <div>
+        <button (click)="downloadPDF(nombre+'-'+serie_transfer)" mat-raised-button color="warn" class="d-flex align-items-center">
+            <mat-icon>picture_as_pdf</mat-icon>Generar PDF
+        </button>
+    </div>
+</div>
+<section class="work-area w-100" #pdfContent>
+
+    <section class="cabecera w-100 d-flex flex-column align-items-center justify-content-center "> 
+        
+        <div class="d-flex justify-content-between w-100">
+            <h1>
+                <strong>{{nombre}}</strong>
+            </h1>
+            <h1>
+                <strong>{{serie_transfer}}</strong>
+            </h1>
+        </div>
+        <div class="detallecabecera w-100 d-flex justify-content-between ">
+            <div class="w-50 p-3 " >
+                <div class="d-flex justify-content-between w-100 p-1">
+                     <small>Usuario encargado:</small><span class="fs-6 text-secondary"> {{user_transfer | uppercase}}</span> 
+                </div>
+                <div class="d-flex justify-content-between w-100 p-1">
+                     <small> Cédula usuario:</small><span class="fs-6 text-secondary"> {{cedulaUsuario}} </span> 
+                </div>
+                <div class="d-flex justify-content-between w-100 p-1">
+                     <small> Fecha transferencia:</small><span class="fs-6 text-secondary" > {{ fecha_transfer | date: 'dd-MM-yyyy' }} </span>
+                </div>
+                <div class="d-flex justify-content-between w-100 p-1">
+                     <small> Empresa: </small><span class="fs-6 text-secondary" > {{ empresa_transfer | uppercase }} </span>
+                </div>
+            </div>
+            <div class="w-50 p-3">
+                <div class="d-flex justify-content-between w-100 p-1"><small> Bodega de entrada:</small><span class="fs-6 text-secondary"> {{bodegaEntrada}} </span></div>
+                <div class="d-flex justify-content-between w-100 p-1"><small> Bodega de salida:</small><span class="fs-6 text-secondary"> {{bodegaSalida}} </span></div>
+                <div class="d-flex justify-content-between w-100 p-1"><small> Total de productos transferidos:</small><span class="fs-6 text-secondary"> {{listadetalletrans.length}} </span></div>
+            </div>
+
+        </div>
+        <div class="observacioncabera w-100 mt-3">
+            <small>Observación:</small>
+            <br>
+            <span>
+                {{observacion | uppercase }}
+            </span>
+        </div>
+    </section>
+    <section class="w-100 mt-2">
+        <div class="table-responsive">
+            <table class="table" id="myTable" #myTable >
+                <thead class="text-black" style="border-radius:  5px;" [ngStyle]="{'background-color': _color_transfer}" >
+                    <th class="p-3">Nombre del producto</th>
+                    
+                    <th class="p-3">Descripción del proceso</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let detalle of listadetalletrans" >
+                        <td class="p-3">
+                            {{detalle.nombremaquina}}
+                        </td>                        
+                        <td class="p-3" style="text-align: justify;">{{detalle.descripcion}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <section class="footer w-100">
+
+        <div class="d-flex justify-content-between " >
+            <span class="d-flex flex-column align-items-center ">
+                <small>Autorizado por:</small>
+                <span class="line">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                <span>
+                    <small class="text-secondary" >Nombre:</small>
+                </span>
+            </span>
+            <span class="d-flex flex-column align-items-center">
+                <small>Recibido por:</small>
+                <span class="line">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </span>
+                <span>
+                    <small class="text-secondary" >Nombre:</small>
+                </span>
+            </span>
+        </div>
+
+    </section>
+</section>
+</div>
+</div>

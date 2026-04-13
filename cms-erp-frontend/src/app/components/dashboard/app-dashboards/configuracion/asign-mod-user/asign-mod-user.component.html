@@ -1,0 +1,152 @@
+
+<div class="p-2 d-flex justify-content-between align-items-start">
+
+    <section class="listusuarios">
+        <div class="p-2 bg-primary rounded-2 text-light mb-2 " >
+             Usuarios registrados a esta empresa ({{listausuarios.length}}) 
+        </div>
+        <div class="mt-4" >
+            <div class="usuarios p-2"
+                 *ngFor="let usuario of listausuarios"
+                 (click)="obtenerModulosUsuarios( usuario.coduser )" >
+                <div>
+                    <small class="text-secondary" > Nombre: </small>
+                    <span class="text-primary" > {{usuario.nombre}} {{usuario.apellido}} </span>
+                </div>
+                <div class="text-secondary">
+                    <small>Cargo:</small>
+                    <span> {{usuario.nombreCargo | uppercase}} </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="w-100 m-2">   
+        <div  class="d-flex justify-content-between" >
+            <span class="p-2 bg-primary rounded-pill text-light mb-2 " >
+                Módulos registrados a esta cuenta ({{listaModulosUsuario.length}}) 
+            </span>
+            <button class="p-2 btn btn-outline-secondary  rounded-pill  mb-2 d-flex align-items-center " 
+                    [disabled]="_show_modules_account" 
+                    (click)="abrirModalAgregacion()">
+                Agregar módulos a esta cuenta <mat-icon  >add</mat-icon>
+            </button>
+        </div>
+        <span class="d-flex align-items-center bg-secondary text-light rounded-top-2 p-1">
+            <mat-icon class="text-warning" >info</mat-icon>
+            <span class="d-flex align-items-center" >
+                Iniciales del nivel de permisos: L = Leer, C = Crear, A = Actualizar, E = Eliminar, y 
+                <mat-icon> visibility_off </mat-icon> = Habilitar o inhabilitar módulo
+            </span>
+        </span>
+        <div class="table-responsive" style="height: 68vh; overflow-y: auto;" >
+            
+            <table class="table table-primary table-sm table-hover align-middle   ">
+                <thead class="bg-primary text-light shadow " style="position: sticky; top: 0; z-index: 1;" >
+                    <th class="p-2" >
+                        Módulo
+                    </th>
+                    <th class="p-2" >
+                        Descripción
+                    </th>
+                    <th class="p-2" >
+                        Permisos
+                    </th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let modulo of listaModulosUsuario">
+                        <td>
+                            <div class="d-flex justify-content-start align-items-center " >
+                                <mat-icon>
+                                    {{modulo.icon}}
+                                </mat-icon>
+                                <span>
+                                    {{modulo.moduleName}}
+                                </span>
+                            </div>
+                        </td>
+                        <td>
+                          {{modulo.moduleDescription}}
+                        </td>
+                        <td>
+                          <div class="d-flex">
+                            <mat-radio-group aria-label="Select an option" (change)="actualiarPermisos(modulo, $event.value)" >
+                                <mat-radio-button [value]="1" 
+                                                  [checked]="modulo.permisos === 1">
+                                                  L., C., A., E. 
+                                </mat-radio-button>
+                                <mat-radio-button [value]="2" 
+                                                  [checked]="modulo.permisos === 2">
+                                                  L., C., A. 
+                                </mat-radio-button>
+                                <mat-radio-button [value]="3" 
+                                                  [checked]="modulo.permisos === 3">
+                                                  L., A. 
+                                </mat-radio-button>
+                                <mat-radio-button [value]="4" 
+                                                  [checked]="modulo.permisos === 4">
+                                                  L. 
+                                </mat-radio-button>
+                                <mat-radio-button [value]="0" 
+                                                  [checked]="modulo.permisos === 0">
+                                  <mat-icon>visibility_off</mat-icon>
+                                </mat-radio-button>
+                            </mat-radio-group>
+                          </div>
+                        </td>
+                      </tr>
+                      
+                </tbody>
+            </table>
+        </div>
+    </section>
+</div>
+
+<!-- Modal para agregar módulos faltantes -->
+<div class="modal fade show" tabindex="-1" style="display: block; background: rgba(0,0,0,0.6);" *ngIf="showAssignmentModal">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content shadow-lg border-0">
+      <div class="modal-header bg-primary text-light">
+        <h5 class="modal-title d-flex align-items-center">
+            <mat-icon class="me-2">playlist_add</mat-icon> Agregar Módulos Faltantes
+        </h5>
+        <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="cerrarModalAgregacion()"></button>
+      </div>
+      <div class="modal-body p-4" style="max-height: 70vh; overflow-y: auto;">
+        
+        <div *ngIf="modulosFaltantes?.length === 0" class="alert alert-success d-flex align-items-center" role="alert">
+          <mat-icon class="me-2">check_circle</mat-icon>
+          <div>Este usuario ya tiene asignados todos los módulos disponibles en el sistema.</div>
+        </div>
+        
+        <table class="table table-hover align-middle" *ngIf="modulosFaltantes?.length > 0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="text-secondary ps-3">Módulo</th>
+              <th scope="col" class="text-secondary">Descripción</th>
+              <th scope="col" class="text-center text-secondary">Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let modulo of modulosFaltantes">
+              <td class="ps-3">
+                <div class="d-flex align-items-center">
+                  <mat-icon class="me-2 text-primary">{{modulo.icon}}</mat-icon>
+                  <strong class="text-dark">{{modulo.moduleName}}</strong>
+                </div>
+              </td>
+              <td class="text-secondary small">{{modulo.moduleDescription}}</td>
+              <td class="text-center">
+                <button class="btn btn-sm btn-outline-success rounded-pill px-3 d-flex align-items-center justify-content-center m-auto" 
+                        (click)="asignarModuloUsuario(modulo)">
+                   <mat-icon class="me-1" style="font-size: 16px; width: 16px; height: 16px;">add_circle</mat-icon> Agregar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>
+

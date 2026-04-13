@@ -1,0 +1,434 @@
+<div class="spinner-overlay" *ngIf="_show_spinner" >
+    <div class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="d-flex" >
+<div class="mini-module-workarea w-75 p-4 m-1" *ngIf="_show_form">
+    <div class="d-flex justify-content-between" >
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+         <mat-icon>{{modulo.icono}}</mat-icon>
+         <span class="fs-5 m-0">{{modulo.nombre}}</span>
+    </div>
+    <div class=" extraconfmaq d-flex align-content-center justify-content-end flex-column " style="z-index: 1000;" >
+        <div>
+            <div>
+                <input id="maquinagencia" type="checkbox" (change)="validateEstadoasignMaquina()" [(ngModel)]="_maquinaAgencia" class="form-check-input"> &nbsp;
+                <label for="maquinagencia">Asignar máquina a un cliente al crear</label>
+            </div>
+            <div *ngIf="_show_data_asign" >
+                <span class="text-primary"><small class="text-secondary">Cliente:</small>&nbsp; {{this.clientesAsignado}}</span> &nbsp;&nbsp;
+                <span class="text-primary"><small class="text-secondary">Agencia:</small>&nbsp; {{this.agenciaAsignada}}</span>
+            </div>
+        </div>
+        <form [formGroup]="agenciaForm" class="mb-2 mt-2 d-flex aligbn-items-center " *ngIf="_showcliente" >
+        <div  class="d-flex m-1 flex-column animate__animated animate__fadeIn  " style="z-index: auto;" >
+            <label for="codcliente"> Seleccionar el cliente </label>
+            <p-autoComplete formControlName="codcliente"
+                #codcliente
+                id="codcliente" 
+                (click)="validationCliente()"
+                [dropdown]="true"
+                [suggestions]="filteredcliente"
+                (completeMethod)="filterCliente($event)"
+                [style]="{'width':'100%'}"
+                field="name">
+            </p-autoComplete>
+        </div>
+        <div *ngIf="_show_form_agency" class="d-flex m-1 flex-column animate__animated animate__fadeIn" style="z-index: auto;">
+            <label for="codcliente">
+                Seleccionar la agencia a asignar
+            </label>
+            <p-autoComplete [dropdown]="true"
+                            (click)="validacionBtnAsign()"
+                            formControlName="codagencia"
+                            #codagencia
+                            id="codagencia" 
+                            [suggestions]="filteredAgencias"
+                            (completeMethod)="filterAgencia($event)"
+                            field="name">
+            </p-autoComplete>
+        </div>
+    </form>
+        <div class="btnsetts mt-2 w-100 d-flex justify-content-end " *ngIf="_show_form_agency">
+            <button class="btn btn-warning d-flex align-items-center" 
+                    (click)="automatizacionAsignacionMaquinaria()">
+                    <mat-icon>done</mat-icon>&nbsp; Terminar Asignación
+            </button>
+        </div>
+    </div>
+    </div>
+    <hr>
+    <div class="form-section">
+        <form [formGroup]="maquinariaForm" class="mb-2" (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-between">
+                <div class="mb-3 col-4">
+                    <label for="codtipomaquina" class="form-label">
+                        Tipo de Maquinaria:<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex">
+                        <select class="inpForms form-select w-100"
+                                formControlName="codtipomaquina"
+                                #codtipomaquina
+                                id="codtipomaquina"
+                                (click)="onMaquinariaChange($event)"
+                                (change)="onMaquinariaChange($event)"
+                                aria-label="">
+                                <option *ngFor="let tipomaquina of tipoMaquinaLista" [value]="tipomaquina.codigo">
+                                    {{tipomaquina.nombre | titlecase }} - {{tipomaquina.codigo}}
+                                </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 col-4 ">
+                    <label for="marca" class="form-label ">
+                        Marca:<span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex">
+                        <select class="inpForms form-select w-100"
+                                formControlName="marca" #marca id="marca" aria-label=""
+                                (change)="getSubgrupos()"
+                                (click)="getSubgrupos()">
+                                <option *ngFor="let marca of grupolista; let i = index"
+                                [value]="marca.codmarca"
+                                [selected]="i === 0">
+                            {{ marca.codmarca }} - {{ marca.nombremarca | titlecase }}
+                        </option>
+                        </select>                           
+                    </div>
+                </div>
+                
+                <div class="mb-3 col-2">
+                    <label for="modelo" class="form-label">
+                        Modelo:<span class="text-danger">*</span>
+                    </label>
+                    <select class="inpForms form-select w-100"
+                            formControlName="codmodelo"
+                            id="modelo"
+                            (change)="obtenerCodigoModelo($event)">
+                        <option *ngFor="let modelo of sgrupolista" 
+                                [value]="modelo.codmodelo">
+                            {{ modelo.nombremodelo | uppercase }} - {{ modelo.codmodelo }}
+                        </option>
+                    </select>
+                </div>        
+            </div>
+            <div class="d-flex justify-content-between align-item-start">
+                <!-- Número de Serie -->
+                <div class="mb-3 col-2">
+                    <label for="nserie" class="form-label">
+                        Número de Serie <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control"
+                           (keypress)="validarTextoSinCaracteresEspeciales($event)"
+                           formControlName="nserie"
+                           id="nserie"
+                           placeholder="A-000111223221...">
+                </div>
+            
+                <!-- Número de Inventario -->
+                <div class="mb-3 col-2">
+                    <label for="ninventario" class="form-label" title="Número de Inventario">
+                        Número de Inv.
+                    </label>
+                    <input type="text" class="form-control"
+                           (keypress)="validarTextoSinCaracteresEspeciales($event)"
+                           formControlName="ninventario"
+                           id="ninventario"
+                           placeholder="55881">
+                </div>
+            
+                <!-- Código BP -->
+                <div class="mb-3 col-2">
+                    <label for="codigobp" class="form-label">
+                        Código BP.
+                    </label>
+                    <input type="text" class="form-control"
+                           (keypress)="validarTextoSinCaracteresEspeciales($event)"
+                           formControlName="codigobp"
+                           id="codigobp"
+                           placeholder="00012-B">
+                </div>
+            
+                <!-- Contador Inicial -->
+              <!-- Contador Inicial -->
+<div class="mb-3 col-2">
+    <label for="contadorinicial" class="form-label">
+        Contador Inicial: 
+    </label>
+    <input type="number" class="form-control"
+           (keyup)="validacionMenorContador()" 
+           (input)="validarContador($event)" 
+           formControlName="contadorinicial"
+           #contadorinicial id="contadorinicial"
+           placeholder="0">
+</div>
+
+<!-- Contador Final -->
+<div class="mb-3 col-2">
+    <label for="contadorfinal" class="form-label">
+        Contador Final: 
+    </label>
+    <input type="number" class="form-control"
+           (keyup)="validacionMenorContador()"
+           (input)="validarContador($event)"
+           formControlName="contadorfinal"
+           #contadorfinal id="contadorfinal"
+           placeholder="0">
+</div>
+
+            </div>
+            
+            <div class="d-flex justify-content-between align-item-end mb-3">                
+                <div class="w-75">
+                    <label for="nombre" class="form-label">
+                        Observación técnica de la máquina. 
+                    </label>
+                    <input type="text" class="form-control" 
+                           formControlName="observacion" 
+                           #observacion id="observacion"
+                           placeholder="Esta máquina viene con los rodillos a parte...">
+                </div>
+                <div class="d-flex align-items-center p-2 bg-warning shadow-sm rounded-2" style="cursor: pointer;">
+                    <div class="form-check">
+                        <input class="form-check-input"
+                                type="checkbox" value="" 
+                                formControlName="estado"
+                                #estado 
+                                id="estado"
+                                name="estado">
+                        <label class="form-check-label" for="estado" style="cursor: pointer;">
+                            Estado de la máquina: <br>
+                            <span class="text-secondary" > (Fuera de servicio) </span>
+                        </label>
+                      </div>
+                </div>
+                </div>
+                <div class="mini-floating-button">
+                        <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()" >
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                        <button *ngIf="pMod <= 3" type="submit" mat-raised-button color="primary">
+                            <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}} {{modulo.nombre}}
+                        </button>        
+                </div>     
+            
+        </form>
+    </div>
+</div>
+<div id="foto-area" class="mini-module-workarea w-25 p-4 m-1 d-flex justify-content-center flex-column align-items-center " *ngIf="_show_form">
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>add_a_photo</mat-icon>
+        <span class="fs-7 p-1"> Foto+ <span style="display: none;">{{ modulo.nombre }}</span> </span>
+    </div>
+    
+    
+
+    <hr>
+
+    <label for="fileUp" id="imageUp" class="d-flex justify-content-center">
+        <div class="imagen-container shadow" [ngStyle]="{'background-image': 'url('+_IMGE+')', 'background-size': '100% 100%'}"></div>
+    </label>
+
+</div>
+</div>
+
+
+<div class="module-workarea p-4 mt-3 ">
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+         <mat-icon>{{modulo.icono}}</mat-icon><span class="fs-5" > {{modulo.nombre}} Registrada  </span>
+    </div>
+    <hr>
+    <div class="table-responsive w-100">
+        <section class="filtros  mb-2">
+            <!-- <input type="text" class="form-control" > -->
+            <small class="text-secondary">
+                Cantidad de máquinas registradas 
+                <strong class="text-primary">
+                   ( {{maquinariaLista.length}} )
+                </strong>
+            </small>
+            <div class="mb-2 d-flex">
+              <input class=" w-100 form-control rounded-pill"
+                     fxFlex="auto" type="text"
+                     (keyup)="applyFilter($event)" 
+                     #input placeholder="Búsqueda de máquinas registradas....">
+                     <button *ngIf="pMod <= 2" class="btn btn-warning rounded-circle ms-2 d-flex align-items-center justify-content-center"
+                     style="width: 40px; height: 40px;"
+                     (click)="_show_form = !_show_form; _cancel_button= true">
+               <mat-icon>add</mat-icon>
+             </button>
+            </div>        
+    
+        </section>
+        <table mat-table [dataSource]="dataSource" class="mtTable shadow " matSort class="w-100" >
+    
+            <ng-container matColumnDef="edit">
+                
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  <span>
+                    <mat-icon>
+                      edit
+                    </mat-icon>
+                  </span>
+                  <span *ngIf="_delete_show" >
+                    <mat-icon>
+                      delete
+                    </mat-icon>
+                  </span>
+                </th>
+                
+                <td mat-cell *matCellDef="let row" >
+                  <span *ngIf="pMod <= 3" class="edit" (click)="capturainfo(row); _show_form=true" >
+                    <mat-icon>
+                      edit
+                    </mat-icon>
+                  </span>
+                  <span *ngIf="_delete_show && pMod === 1" class="delete"  (click)="eliminarMaquinaria(row)">
+                    <mat-icon>delete</mat-icon>
+                  </span>
+                  <span [ngStyle]="{'color': row.colorEstadoObsoleto}" >
+                    <mat-icon>
+                        warning 
+                    </mat-icon>
+                  </span>
+                </td>
+    
+              </ng-container>    
+
+    
+            <ng-container matColumnDef="icon">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row">
+                    <span class="w-100 d-flex align-items-center" 
+                          [matTooltip]="row.nombreCliente"
+                          matTooltipPosition="before"
+                          [ngStyle]="{'color': row.colorestado}" >
+                        <mat-icon>{{row.icon}}</mat-icon>
+                    </span>
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="nombretipomaquina" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Nombre tipo máquina
+                </th>
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" >
+                  {{row.nombretipomaquina}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="modelo" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Modelo
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.modelo}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="marca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Marca
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row">
+                  {{row.marca}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="ninventario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    N. Inventario
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.ninventario}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="nserie">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    N. Serie
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.nserie}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="codigobp" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Codigo B.P.
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.codigobp}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="continicial">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Contador Inicial
+                </th>
+                <td style="cursor: pointer; color: yellowgreen; " mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.contadorinicial}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="contfinal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Contador Final
+                </th>
+                <td style="cursor: pointer; color: orange; " mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.contadorfinal}}
+                </td>
+            </ng-container>
+    
+            <ng-container matColumnDef="observacion" >
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    Observación
+                </th>
+                <!-- [matTooltip]="'Nombre Mant.: ' +row.nombreMantenimiento+ '  Telf Mant.: ' + row.telfclimanteni +'  Correo: '+ row.correomantenimiento +'Nombre Cobro:  ' +row.nombrePago+  '   Telf. Cobro: ' + row.telfpago + '    Correo: ' + row.correopago + ' Observacion: ' + row.observacion" -->
+                <td style="cursor: pointer;" mat-cell 
+                    *matCellDef="let row" 
+                    >
+                  {{row.observacion}}
+                </td>
+            </ng-container>
+    
+    
+            <tr mat-header-row *matHeaderRowDef="columnHead"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnHead;"></tr>
+        
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">
+                Datos no encontrados...
+              </td>
+            </tr>
+        </table>
+        <mat-paginator [length]="100"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[5, 10, 25, 100]"
+                       aria-label="Select page">
+    </mat-paginator>    
+    </div>
+    </div>

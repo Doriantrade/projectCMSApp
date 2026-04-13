@@ -1,0 +1,126 @@
+
+
+    <!-- Encabezado de la tarjeta con el título y el nuevo botón de consulta -->
+    <div class="card-header bg-white p-4 border-bottom-0 rounded-top-4">
+      <div class="d-flex align-items-center justify-content-between">
+        <h2 class="card-title text-left m-0 fw-bolder text-dark" style="font-size: 18pt; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+          > Registro de técnicos <img src="../../../../assets/IESS-logo/IESS-logotipo.png" width="130px" height="auto" alt="Logo IESS">
+        </h2>
+        <!-- Botón para consultar el documento actual (llama a la función en TS) -->
+        <button
+          type="button"
+          class="btn btn-outline-info fw-bold rounded-pill shadow-sm"
+          (click)="fetchCurrentMonthFileDetails()"
+          style="padding: 10px 20px; font-size: 0.95rem;"
+        >
+          <svg class="d-inline-block align-middle me-2" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+          Consultar Doc. Actual
+        </button>
+      </div>
+      <hr class="mt-4 mb-0">
+    </div>
+
+    <div class="card-body p-5">
+      <!-- Formulario de Angular reactivo -->
+      <form [formGroup]="IessDocuRegisterForm" (ngSubmit)="onSubmit()">
+        <!-- Contenedor flexible para el input de archivo y la previsualización -->
+        <div class="row g-4 mb-4">
+          <!-- Sección de entrada de archivo PDF y tabla (ocupará la mitad del espacio en pantallas medianas y grandes) -->
+          <div class="col-md-6">
+            <div class="d-flex flex-column">
+              <label htmlFor="docuPDF" class="form-label fs-6 fw-semibold text-secondary mb-3">
+                Seleccionar Documento PDF:
+              </label>
+              <input
+                type="file"
+                id="docuPDF"
+                name="docuPDF"
+                accept=".pdf"
+                (change)="onFileSelected($event)"
+                class="form-control form-control-lg border-2 border-info-subtle shadow-sm custom-file-input"
+              />
+              <small class="form-text text-muted mt-2 d-block">Solo se permiten archivos PDF (tamaño máximo: 10MB).</small>
+              <!-- Mensaje de error de validación -->
+              <div *ngIf="IessDocuRegisterForm.get('docuPDF')?.errors?.['required'] && IessDocuRegisterForm.get('docuPDF')?.touched"
+                   class="text-danger small mt-2 fw-medium">
+                El archivo PDF es obligatorio para el registro.
+              </div>
+            </div>
+
+            <!-- Sección de la tabla de documentos -->
+            <div class="mt-4">
+              <h3 class="fs-5 fw-semibold text-secondary mb-3">Documento(s) en Servidor:</h3>
+              <div class="table-responsive">
+                <table class="table table-striped table-hover table-bordered align-middle">
+                  <thead class="table-primary">
+                    <tr>
+                      <th scope="col">Nombre Archivo</th>
+                      <th scope="col">Peso</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Usar fetchedFileDetails como un array para el *ngFor -->
+                    <tr *ngFor="let itemFile of fetchedFileDetails">
+                      <td>{{ itemFile.nombreArchivo }}</td>
+                      <td>{{ itemFile.tamano }}</td>
+                      <td class="text-center">
+                        <!-- Botón de previsualización con Bootstrap icon -->
+                        <button
+                          type="button"
+                          class="btn btn-outline-secondary btn-sm"
+                          (click)="onPreviewFile(itemFile)"
+                          title="Previsualizar Documento"
+                        >
+                          <svg class="bi" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                          </svg>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- Mensaje si no hay archivos cargados -->
+                    <tr *ngIf="fetchedFileDetails.length === 0">
+                      <td colspan="3" class="text-center text-muted py-3">No hay documentos disponibles del mes actual.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sección de previsualización del PDF (ocupará la otra mitad y será más grande) -->
+          <div *ngIf="pdfPreviewUrl" class="col-md-6">
+            <h2 class="fs-5 fw-semibold text-secondary mb-3">Previsualización del PDF:</h2>
+            <div class="border border-2 border-info-subtle rounded-3 overflow-hidden shadow-sm d-flex justify-content-center align-items-center" style="height: 500px;">
+              <iframe
+                [src]="pdfPreviewUrl"
+                title="Previsualización de Documento PDF"
+                class="w-100 h-100"
+                frameBorder="0"
+              >
+                <p class="text-center text-muted">Tu navegador no soporta la previsualización de documentos PDF.</p>
+              </iframe>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón de envío -->
+        <div class="d-flex justify-content-end pt-3">
+          <button
+            type="submit"
+            class="btn btn-primary btn-lg fw-bold rounded-pill shadow-lg text-white"
+            style="background: linear-gradient(to right, #6366f1, #3b82f6); border: none; transition: all 0.3s ease; padding: 12px 30px;"
+            onmouseover="this.style.background='linear-gradient(to right, #4f46e5, #2563eb)'; this.style.transform='scale(1.05)';"
+            onmouseout="this.style.background='linear-gradient(to right, #6366f1, #3b82f6)'; this.style.transform='scale(1)';"
+            onfocus="this.style.boxShadow='0 0 0 0.25rem rgba(99, 102, 241, 0.25)';"
+            onblur="this.style.boxShadow='none';"
+          >
+            <svg class="d-inline-block align-middle me-2" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Enviar Documento
+          </button>
+        </div>
+      </form>
+    </div>
+  
+

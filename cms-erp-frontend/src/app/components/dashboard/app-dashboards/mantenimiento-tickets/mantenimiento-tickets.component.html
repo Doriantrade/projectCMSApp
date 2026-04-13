@@ -1,0 +1,190 @@
+<div class="spinner-overlay" *ngIf="_show_spinner">
+    <div class="spinner-container">
+        <mat-spinner></mat-spinner>
+    </div>
+</div>
+<div class="module-workarea p-4 " *ngIf="_form_create && _show_form">
+
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>{{modulo?.icono || 'confirmation_number'}}</mat-icon>
+        <span class="fs-5">
+            {{modulo?.nombre || 'Mantenimiento Tickets'}}
+        </span>
+    </div>
+    <hr>
+    <div class="form-section">
+        <form [formGroup]="userForm" class="mb-2" (ngSubmit)="onSubmit()">
+            <div class=" d-flex flex-wrap justify-content-between ">
+                <div class="mb-3 col-3 ">
+                    <label for="usuario" class="form-label text-secondary">
+                        Usuario (*):
+                    </label>
+                    <input type="text" class="form-control" formControlName="usuario" id="usuario"
+                        placeholder="Username">
+                </div>
+                <div class="mb-3 col-3">
+                    <label for="password" class="form-label text-secondary">
+                        Contraseña (*):
+                    </label>
+                    <input type="password" class="form-control" formControlName="password" id="password"
+                        placeholder="***">
+                </div>
+                <div class="mb-3 col-5 ">
+                    <label for="correo" class="form-label text-secondary">
+                        Correo (*):
+                    </label>
+                    <input type="email" class="form-control" formControlName="correo" id="correo"
+                        placeholder="name@example.com">
+                </div>
+            </div>
+
+            <div class=" d-flex flex-wrap justify-content-between ">
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label text-secondary">
+                        Nombre (*):
+                    </label>
+                    <input type="text" class="form-control" formControlName="nombre" id="nombre" placeholder="Nombre">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="apellido" class="form-label text-secondary">
+                        Apellido (*):
+                    </label>
+                    <input type="text" class="form-control" formControlName="apellido" id="apellido"
+                        placeholder="Apellido">
+                </div>
+                <div class="mb-3 col-3">
+                    <label for="idCliente" class="form-label text-secondary">
+                        Cliente:
+                    </label>
+                    <select class="inpForms form-select w-100" formControlName="idCliente" id="idCliente">
+                        <option value="">-- Seleccione Cliente --</option>
+                        <option *ngFor="let cliente of clientesLista" [value]="cliente.codcliente || cliente.codcli">
+                            {{cliente.nombre | titlecase}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class=" d-flex flex-wrap justify-content-between ">
+                <div class="mb-3 col-3">
+                    <label for="rol" class="form-label text-secondary">
+                        Rol:
+                    </label>
+                    <select class="inpForms form-select w-100" formControlName="rol" id="rol">
+                        <option value="">-- Seleccione Rol --</option>
+                        <option *ngFor="let rl of rolesLista" [value]="rl.codigo">
+                            {{rl.nombre | titlecase}}
+                        </option>
+                    </select>
+                </div>
+                <div class="mb-3 col-2">
+                    <label for="active" class="form-label text-secondary">
+                        Activo:
+                    </label>
+                    <select class="inpForms form-select w-100" formControlName="active" id="active">
+                        <option value="A">Activo</option>
+                        <option value="I">Inactivo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-end">
+                <div class="floating-button">
+                    <button mat-raised-button type="button" color="warn" *ngIf="_cancel_button" (click)="limpiar()">
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                    <button type="submit" mat-raised-button color="primary" *ngIf="_create_show">
+                        <mat-icon>{{_icon_button}}</mat-icon> {{_action_butto}}
+                    </button>
+                    <button type="submit" mat-raised-button color="primary" *ngIf="_edit_btn">
+                        <mat-icon>sync_alt</mat-icon> Actualizar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="module-workarea p-4 mt-3 ">
+    <div class="text-secondary d-flex align-item-center m-0 p-0">
+        <mat-icon>{{modulo?.icono || 'confirmation_number'}}</mat-icon><span class="fs-5"> {{modulo?.nombre ||
+            'Mantenimiento Tickets'}} Registrados </span>
+    </div>
+    <hr>
+    <div class="table-responsive w-100">
+        <section class="filtros  mb-2">
+            <small class="text-secondary">
+                Cantidad de usuarios registrados
+                <strong class="text-primary">
+                    ( {{listUsuariosTickets.length}} )
+                </strong>
+            </small>
+            <div class="mb-2 d-flex">
+                <input class=" w-100 form-control rounded-pill" fxFlex="auto" type="text" (keyup)="applyFilter($event)"
+                    placeholder="Búsqueda de usuarios tickets....">
+                <button *ngIf="pMod <= 2" class="btn btn-warning rounded-circle ms-2 d-flex align-items-center justify-content-center"
+                    style="width: 40px; height: 40px;" (click)="_show_form = !_show_form; _cancel_button= true">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+        </section>
+
+        <table mat-table [dataSource]="dataSource" class="mtTable shadow" matSort class="w-100">
+
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                    <span><mat-icon *ngIf="_edit_show">edit</mat-icon></span>
+                    <span *ngIf="_delete_show"><mat-icon>delete</mat-icon></span>
+                </th>
+                <td mat-cell *matCellDef="let row">
+                    <span class="edit" (click)="catchData(row); _show_form=true" *ngIf="_edit_show;">
+                        <mat-icon>edit</mat-icon>
+                    </span>
+                    <span *ngIf="_delete_show && pMod === 1" class="delete" (click)="eliminarUsuario(row)">
+                        <mat-icon>delete</mat-icon>
+                    </span>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+                <td mat-cell *matCellDef="let row">{{row.nombre}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellido">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+                <td mat-cell *matCellDef="let row">{{row.apellido}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="usuario">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</th>
+                <td mat-cell *matCellDef="let row">{{row.usuario}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="correo">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+                <td mat-cell *matCellDef="let row">{{row.correo}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="rol">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Rol</th>
+                <td mat-cell *matCellDef="let row">{{row.rol}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="active">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Activo</th>
+                <td mat-cell *matCellDef="let row">{{row.active}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="7">Datos no encontrados...</td>
+            </tr>
+        </table>
+
+        <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+        </mat-paginator>
+    </div>
+</div>

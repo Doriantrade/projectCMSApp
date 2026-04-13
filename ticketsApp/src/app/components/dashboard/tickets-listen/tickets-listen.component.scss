@@ -1,0 +1,89 @@
+.tick {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    min-width: 200px; /* Responsive minimum width */
+    max-width: 300px; /* Prevent it from getting too wide */
+    flex: 1 1 200px;  /* Flex grow/shrink/basis */
+    align-items: start;
+    padding: 15px; /* Increased padding slightly */
+    /* margin: 10px; Removed margin in favor of gap in parent */
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 8px; /* Rounded corners */
+    position: relative; /* Context for absolute positioning if needed */
+}
+
+.btn-color {
+    width: 15px; height: 15px; border-radius: 100%;
+    cursor: pointer;
+    transition: ease all 0.5s;
+}
+
+.btn-color:hover {
+    transition: ease all 0.5s;
+    transform: scale(1.1);
+}
+
+.container-box-ticket {
+    position: absolute; 
+    margin-left: -20px;
+    margin-top: -9px;
+}
+
+.box-ticket {
+    width: 15px;
+    height: 12px;
+    background-color: #f8f9fa;
+}
+
+.tick:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 1.2em;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+.body strong {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.body small {
+    font-size: 0.8em;
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .tick {
+        padding: 10px;
+        margin: 5px;
+    }
+
+    .header {
+        font-size: 1em;
+    }
+
+    .body strong {
+        font-size: 0.9em;
+    }
+
+    .body small {
+        font-size: 0.7em;
+    }
+}

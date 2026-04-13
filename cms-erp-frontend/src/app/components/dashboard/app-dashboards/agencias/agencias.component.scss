@@ -1,0 +1,24 @@
+.ha {
+
+    padding: 10px;
+    border: solid 1px gray;
+    border-radius: 5px;
+
+}
+
+.robot {
+    cursor: pointer;
+    transition: ease all 0.5s;
+    transform: scale(1);
+}
+
+.robot:hover {
+    transition: ease all 0.8s;
+    background-color: transparent;
+    background-color: orange;
+    transform: scale(1.1);
+    padding: 5px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba($color: #000000, $alpha: 0.5);
+    color: #4c4c4c;
+}
